@@ -67,8 +67,29 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="sidebar" style="    --rem: 16;
+    <div class="field-wrapper" style="    --rem: 16;
+    font-family: SF UI;
+    font-size: 1em;
+    font-weight: 300;
+    visibility: visible;
+    box-sizing: inherit;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 625px;
+    max-height: 100%;
+    margin: 0 auto;
+    border-left: 1px solid #bcbaba;
+    border-right: 1px solid #bcbaba;
+    min-width: 1002px;
+    max-width: 1400px;
+    border-left-color: #222;
+    border-right-color: #222;
+    background: #383838;
+    display: inline;">
+                    <div class="sidebar" style="    --rem: 16;
     font-family: SF UI;
     font-size: 1em;
     font-weight: 300;
@@ -81,10 +102,10 @@
     height: 100%;
     min-height: 550px;
     width: 32%;">
-            {{!-- Start of Income section --}}
-            <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
-                style="height: 195px; overflow: hidden;">
-                <div class="block-header font-icon icon-download" style="    
+                {{!-- Start of Income section --}}
+                <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
+                    style="height: 195px; overflow: hidden;">
+                    <div class="block-header font-icon icon-download" style="    
                 --rem: 16;
     font-family: SF UI;
     visibility: visible;
@@ -103,8 +124,8 @@
     color: #ccc;
     border-top-color: #393939;
     background: linear-gradient(to bottom,#333 0%,#222 100%);">
-                    INCOME
-                    <div class="block-total sum" id="incomes-total" style="    --rem: 16;
+                        INCOME
+                        <div class="block-total sum" id="incomes-total" style="    --rem: 16;
     font-family: SF UI;
     visibility: visible;
     line-height: 34px;
@@ -115,68 +136,69 @@
     box-sizing: inherit;
     font-weight: normal;
     float: right;">5&nbsp;000&nbsp;<span class="rub">kr</span></div>
-                </div>
+                    </div>
 
-                <div class="block-body" style="overflow-y: hidden; box-sizing: border-box; margin: 0px; border: 0px;">
-                    <table class="report" style="width: 100%;     margin: 0;
+                    <div class="block-body"
+                        style="overflow-y: hidden; box-sizing: border-box; margin: 0px; border: 0px;">
+                        <table class="report" style="width: 100%;     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;">
-                        <colgroup>
-                            <col>
-                            <col width="">
-                        </colgroup>
+                            <colgroup>
+                                <col>
+                                <col width="">
+                            </colgroup>
 
-                        <tbody>
-                            <tr class="game-id-salary">
-                                <td>Employment</td>
-                                <td class="num" style="text-align:right">5&nbsp;000&nbsp;<span class="rub">kr</span>
-                                </td>
-                            </tr>
-                            <tr class="titles">
-                                <td>
-                                    <div>Investments</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="incomes-deposit-after" class="titles">
-                                <td>
-                                    <div>Real estate</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="incomes-real_estate-after" class="titles">
-                                <td>
-                                    <div>Business</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="incomes-business-after" class="titles">
-                                <td>
-                                    <div>Other</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="incomes-other-after" style="display:none">
-                                <td></td>
-                            </tr>
-                            <tr id="incomes-after" class="hidden">
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="_track">
-                    <div class="_free">
-                        <div class="_bar" style="height: 0px; top: 0px;"></div>
+                            <tbody>
+                                <tr class="game-id-salary">
+                                    <td>Employment</td>
+                                    <td class="num" style="text-align:right">5&nbsp;000&nbsp;<span class="rub">kr</span>
+                                    </td>
+                                </tr>
+                                <tr class="titles">
+                                    <td>
+                                        <div>Investments</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="incomes-deposit-after" class="titles">
+                                    <td>
+                                        <div>Real estate</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="incomes-real_estate-after" class="titles">
+                                    <td>
+                                        <div>Business</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="incomes-business-after" class="titles">
+                                    <td>
+                                        <div>Other</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="incomes-other-after" style="display:none">
+                                    <td></td>
+                                </tr>
+                                <tr id="incomes-after" class="hidden">
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="_track">
+                        <div class="_free">
+                            <div class="_bar" style="height: 0px; top: 0px;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {{!-- End of Income section --}}
-            {{!-- Start of Costs section --}}
-            <div class="block ui-droppable" id="costs" data-folded="0" data-baron-v-id="0"
-                style="height: 195px; overflow: hidden;">
-                <div class="block-header font-icon icon-download" style="    
+                {{!-- End of Income section --}}
+                {{!-- Start of Costs section --}}
+                <div class="block ui-droppable" id="costs" data-folded="0" data-baron-v-id="0"
+                    style="height: 195px; overflow: hidden;">
+                    <div class="block-header font-icon icon-download" style="    
                 --rem: 16;
     font-family: SF UI;
     visibility: visible;
@@ -195,8 +217,8 @@
     color: #ccc;
     border-top-color: #393939;
     background: linear-gradient(to bottom,#333 0%,#222 100%);">
-                    COSTS
-                    <div class="block-total sum" id="incomes-total" style="    --rem: 16;
+                        COSTS
+                        <div class="block-total sum" id="incomes-total" style="    --rem: 16;
     font-family: SF UI;
     visibility: visible;
     line-height: 34px;
@@ -207,38 +229,38 @@
     box-sizing: inherit;
     font-weight: normal;
     float: right;">4&nbsp;000&nbsp;<span class="rub">kr</span></div>
-                </div>
+                    </div>
 
-                <div class="block-body" style="overflow-y: auto; box-sizing: border-box; margin: 0px; border: 0px;">
-                    <table class="report" style="width: 100%;     margin: 0;
+                    <div class="block-body" style="overflow-y: auto; box-sizing: border-box; margin: 0px; border: 0px;">
+                        <table class="report" style="width: 100%;     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;">
-                        <colgroup>
-                            <col>
-                            <col width="">
-                        </colgroup>
+                            <colgroup>
+                                <col>
+                                <col width="">
+                            </colgroup>
 
-                        <tbody>
-                            <tr class="game-id-salary">
-                                <td>General</td>
-                                <td class="num" style="text-align:right">4&nbsp;000&nbsp;<span class="rub">kr</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="_track">
-                    <div class="_free">
-                        <div class="_bar" style="height: 0px; top: 0px;"></div>
+                            <tbody>
+                                <tr class="game-id-salary">
+                                    <td>General</td>
+                                    <td class="num" style="text-align:right">4&nbsp;000&nbsp;<span class="rub">kr</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="_track">
+                        <div class="_free">
+                            <div class="_bar" style="height: 0px; top: 0px;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {{!-- End of Costs section --}}
-            {{!-- Start of Assets section --}}
-            <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
-                style="height: 195px; overflow: hidden;">
-                <div class="block-header font-icon icon-download" style="    
+                {{!-- End of Costs section --}}
+                {{!-- Start of Assets section --}}
+                <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
+                    style="height: 195px; overflow: hidden;">
+                    <div class="block-header font-icon icon-download" style="    
                 --rem: 16;
     font-family: SF UI;
     visibility: visible;
@@ -257,8 +279,8 @@
     color: #ccc;
     border-top-color: #393939;
     background: linear-gradient(to bottom,#333 0%,#222 100%);">
-                    ASSETS
-                    <div class="block-total sum" id="incomes-total" style="    --rem: 16;
+                        ASSETS
+                        <div class="block-total sum" id="incomes-total" style="    --rem: 16;
     font-family: SF UI;
     visibility: visible;
     line-height: 34px;
@@ -269,31 +291,33 @@
     box-sizing: inherit;
     font-weight: normal;
     float: right;">0&nbsp;<span class="rub">kr</span></div>
-                </div>
+                    </div>
 
-                <div class="block-body" style="overflow-y: hidden; box-sizing: border-box; margin: 0px; border: 0px;">
-                    <table class="report" style="width: 100%;     margin: 0;
+                    <div class="block-body"
+                        style="overflow-y: hidden; box-sizing: border-box; margin: 0px; border: 0px;">
+                        <table class="report" style="width: 100%;     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;">
-                        <colgroup>
-                            <col>
-                            <col width="30%">
-                        </colgroup>
-                        <tbody>
-                            <tr id="game-id-cash">
-                                <td style="    color: #ffffff;
+                            <colgroup>
+                                <col>
+                                <col width="30%">
+                            </colgroup>
+                            <tbody>
+                                <tr id="game-id-cash">
+                                    <td style="    color: #ffffff;
     --rem: 16;
     font-family: SF UI;
     font-size: 1em;
     font-weight: 300;
     visibility: visible;">Наличные:</td>
-                                <td class="sum" id="cash" style="text-align:right">500&nbsp;<span class="rub">kr</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="block-body" style="overflow-y: scroll; box-sizing: border-box; margin: 0px; border: 0px;     color: #ffffff;
+                                    <td class="sum" id="cash" style="text-align:right">500&nbsp;<span
+                                            class="rub">kr</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="block-body" style="overflow-y: scroll; box-sizing: border-box; margin: 0px; border: 0px;     color: #ffffff;
     --rem: 16;
     font-family: SF UI;
     font-size: 1em;
@@ -303,7 +327,7 @@
     box-sizing: border-box;
     margin: 0px;
     border: 0px;">
-                        <table class="report" style="    --rem: 16;
+                            <table class="report" style="    --rem: 16;
     font-family: SF UI;
     font-weight: 300;
     visibility: visible;
@@ -313,7 +337,7 @@
     box-sizing: inherit;
     border-collapse: collapse;
     width: 100%;">
-                            <colgroup style="    --rem: 16;
+                                <colgroup style="    --rem: 16;
     font-family: SF UI;
     font-weight: 300;
     visibility: visible;
@@ -322,10 +346,10 @@
     font-size: 1em;
     border-collapse: collapse;
     box-sizing: inherit;">
-                                <col width="50%">
-                            </colgroup>
+                                    <col width="50%">
+                                </colgroup>
 
-                            <tbody style="    --rem: 16;
+                                <tbody style="    --rem: 16;
     font-family: SF UI;
     font-weight: 300;
     visibility: visible;
@@ -334,66 +358,66 @@
     font-size: 1em;
     border-collapse: collapse;
     box-sizing: inherit;">
-                                <tr class="titles first">
-                                    <td>
-                                        <div>Страхование</div>
-                                    </td>
-                                    <td>Стоимость</td>
-                                    <td>Защита</td>
-                                </tr>
-                                <tr id="assets-insurance-after" class="titles">
-                                    <td>
-                                        <div>Вложения</div>
-                                    </td>
-                                    <td>Количество</td>
-                                    <td>Сумма</td>
-                                </tr>
-                                <tr id="assets-deposit-after" class="titles">
-                                    <td>
-                                        <div>Акции/Фонды</div>
-                                    </td>
-                                    <td>Количество</td>
-                                    <td>Сумма</td>
-                                </tr>
-                                <tr id="assets-stock-after" class="titles">
-                                    <td>
-                                        <div>Недвижимость</div>
-                                    </td>
-                                    <td>Первый взнос</td>
-                                    <td>Стоимость</td>
-                                </tr>
-                                <tr id="assets-real_estate-after" class="titles">
-                                    <td>
-                                        <div>Бизнес</div>
-                                    </td>
-                                    <td>Первый взнос</td>
-                                    <td>Стоимость</td>
-                                </tr>
-                                <tr id="assets-business-after" class="titles">
-                                    <td>
-                                        <div>Прочие</div>
-                                    </td>
-                                    <td>Первый взнос</td>
-                                    <td>Стоимость</td>
-                                </tr>
-                                <tr id="assets-other-after" style="display:none">
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    <tr class="titles first">
+                                        <td>
+                                            <div>Страхование</div>
+                                        </td>
+                                        <td>Стоимость</td>
+                                        <td>Защита</td>
+                                    </tr>
+                                    <tr id="assets-insurance-after" class="titles">
+                                        <td>
+                                            <div>Вложения</div>
+                                        </td>
+                                        <td>Количество</td>
+                                        <td>Сумма</td>
+                                    </tr>
+                                    <tr id="assets-deposit-after" class="titles">
+                                        <td>
+                                            <div>Акции/Фонды</div>
+                                        </td>
+                                        <td>Количество</td>
+                                        <td>Сумма</td>
+                                    </tr>
+                                    <tr id="assets-stock-after" class="titles">
+                                        <td>
+                                            <div>Недвижимость</div>
+                                        </td>
+                                        <td>Первый взнос</td>
+                                        <td>Стоимость</td>
+                                    </tr>
+                                    <tr id="assets-real_estate-after" class="titles">
+                                        <td>
+                                            <div>Бизнес</div>
+                                        </td>
+                                        <td>Первый взнос</td>
+                                        <td>Стоимость</td>
+                                    </tr>
+                                    <tr id="assets-business-after" class="titles">
+                                        <td>
+                                            <div>Прочие</div>
+                                        </td>
+                                        <td>Первый взнос</td>
+                                        <td>Стоимость</td>
+                                    </tr>
+                                    <tr id="assets-other-after" style="display:none">
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="_track">
+                        <div class="_free">
+                            <div class="_bar" style="height: 0px; top: 0px;"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="_track">
-                    <div class="_free">
-                        <div class="_bar" style="height: 0px; top: 0px;"></div>
-                    </div>
-                </div>
-            </div>
-            {{!-- End of Assets section --}}
-            {{!-- Start of Liabilities section --}}
-            <div class="block ui-droppable" id="liabilities" data-folded="0" data-baron-v-id="3"
-                style="height: 203px; overflow: hidden;">
-                <div class="block-header font-icon icon-bank" style="    --rem: 16;
+                {{!-- End of Assets section --}}
+                {{!-- Start of Liabilities section --}}
+                <div class="block ui-droppable" id="liabilities" data-folded="0" data-baron-v-id="3"
+                    style="height: 203px; overflow: hidden;">
+                    <div class="block-header font-icon icon-bank" style="    --rem: 16;
     font-family: SF UI;
     visibility: visible;
     box-sizing: inherit;
@@ -411,8 +435,8 @@
     color: #ccc;
     border-top-color: #393939;
     background: linear-gradient(to bottom,#333 0%,#222 100%);">
-                    Liabilities
-                    <div class="block-total sum" id="liabilities-total" style="    --rem: 16;
+                        Liabilities
+                        <div class="block-total sum" id="liabilities-total" style="    --rem: 16;
     font-family: SF UI;
     visibility: visible;
     line-height: 34px;
@@ -423,9 +447,9 @@
     box-sizing: inherit;
     font-weight: normal;
     float: right;">0&nbsp;<span class="rub">kr</span></div>
-                </div>
+                    </div>
 
-                <table class="report fixed-row" style="    --rem: 16;
+                    <table class="report fixed-row" style="    --rem: 16;
     font-family: SF UI;
     font-size: 1em;
     font-weight: 300;
@@ -436,28 +460,29 @@
     width: 100%;
     border-bottom: 1px solid #e5e5e5;
     border-bottom-color: #555;">
-                    <colgroup>
-                        <col>
-                        <col width="30%">
-                    </colgroup>
-                    <tbody>
-                        <tr class="game-id-credits">
-                            <td>
-                                <div>Кредит:</div>
-                            </td>
-                            <td class="sum" id="credits-value" style="    color: #ffffff;
+                        <colgroup>
+                            <col>
+                            <col width="30%">
+                        </colgroup>
+                        <tbody>
+                            <tr class="game-id-credits">
+                                <td>
+                                    <div>Кредит:</div>
+                                </td>
+                                <td class="sum" id="credits-value" style="    color: #ffffff;
     --rem: 16;
     font-family: SF UI;
     font-size: 1em;
     font-weight: 300;
     visibility: visible;
     text-align: right;">0&nbsp;<span class="rub">kr</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <div class="block-body" style="overflow-y: scroll; box-sizing: border-box; margin: 0px; border: 0px; ">
-                    <table class="report" style="    --rem: 16;
+                    <div class="block-body"
+                        style="overflow-y: scroll; box-sizing: border-box; margin: 0px; border: 0px; ">
+                        <table class="report" style="    --rem: 16;
     font-family: SF UI;
     font-weight: 300;
     visibility: visible;
@@ -467,33 +492,33 @@
     box-sizing: inherit;
     border-collapse: collapse;
     width: 100%;">
-                        <colgroup>
-                            <col>
-                            <col width="20%">
-                        </colgroup>
+                            <colgroup>
+                                <col>
+                                <col width="20%">
+                            </colgroup>
 
-                        <tbody>
-                            <tr class="titles">
-                                <td>
-                                    <div>Ипотека недвижимости</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="liabilities-real_estate-after" class="titles">
-                                <td>
-                                    <div>Кредиты бизнеса</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr id="liabilities-business-after" class="titles">
-                                <td>
-                                    <div>Прочие</div>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr class="game-id-pre_l0">
-                                <td>Общие</td>
-                                <td class="num" style="    --rem: 16;
+                            <tbody>
+                                <tr class="titles">
+                                    <td>
+                                        <div>Ипотека недвижимости</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="liabilities-real_estate-after" class="titles">
+                                    <td>
+                                        <div>Кредиты бизнеса</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="liabilities-business-after" class="titles">
+                                    <td>
+                                        <div>Прочие</div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="game-id-pre_l0">
+                                    <td>Общие</td>
+                                    <td class="num" style="    --rem: 16;
     font-family: SF UI;
     font-weight: 300;
     visibility: visible;
@@ -504,25 +529,292 @@
     padding: 3px 10px;
     cursor: default;
     text-align: right;">0&nbsp;<span class="rub">kr</span></td>
-                            </tr>
-                            <tr id="liabilities-other-after" style="display:none">
-                                <td></td>
-                            </tr>
-                            <tr id="liabilities-after" class="hidden">
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="_track">
-                    <div class="_free">
-                        <div class="_bar" style="height: 0px; top: 0px;"></div>
+                                </tr>
+                                <tr id="liabilities-other-after" style="display:none">
+                                    <td></td>
+                                </tr>
+                                <tr id="liabilities-after" class="hidden">
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="_track">
+                        <div class="_free">
+                            <div class="_bar" style="height: 0px; top: 0px;"></div>
+                        </div>
                     </div>
                 </div>
+                {{!-- End of Liabilities section --}}
             </div>
-            {{!-- End of Liabilities section --}}
-        </div>
+        
+
+        <div class="layout-column column-center swiper-slide" style="    --rem: 16;
+    font-family: SF UI;
+    font-size: 1em;
+    font-weight: 300;
+    visibility: visible;
+    box-sizing: inherit;
+    position: relative;
+    float: left;
+    height: 100%;
+    min-height: 550px;
+    min-width: 400px;
+    z-index: 2;
+    box-shadow: 0 0 16px rgba(0,0,0,0.2);
+    width: 36%;">
+
+				<div class="row-top players-row" id="users" title="Место для соперников в поединках">
+			<div class="indicator separator"></div>
+		<div class="indicator separator"></div>
+		<div class="indicator separator"></div>
+		<div class="indicator separator"></div>
+		<div class="indicator separator"></div>
+	</div>
+
+				<div class="column-content">
+					<div class="indicators-row progress-panel">
+						<div class="indicator separator" style="width: 100%;" id="game-progress-line">
+	<div class="i-wrap">
+		<div class="i-ava icon icon-progress"></div>
+		<div class="i-content">
+			<div class="progress-values">
+				<span class="progress-sum" id="progress-value">
+					500&nbsp;<span class="rub">i</span>				</span><br>
+				<span class="progress-value">1%</span>
+			</div>
+			<span class="progress-title">
+				капитал			</span>
+			<div class="progress-line orange">
+				<div style="width: 1%"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<span class="clear"></span>
+					</div>
+					
+<div id="indicators-panel">
+
+	<div class="indicators-row i-shadow">
+
+		<!-- Денежный поток -->
+		<div class="indicator" id="iCashflow">
+			<div class="i-wrap">
+				<div class="icon icon-cashflow"></div>
+				<div class="i-content">
+					<div class="i-title">Денежный поток</div>
+					<div class="i-value">1&nbsp;000&nbsp;<span class="rub">i</span></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Наличность -->
+		<div class="indicator" id="iCash">
+			<div class="i-wrap">
+				<div class="icon icon-cash"></div>
+				<div class="i-content">
+					<div class="i-title font-icon">Наличные</div>
+					<div class="i-value">500&nbsp;<span class="rub">i</span></div>
+				</div>
+			</div>
+
+			<!-- Меню банковских услуг -->
+			<div class="menu bank-menu"></div>
+		</div>
+
+		<!-- Кредит -->
+		<div class="indicator" id="iCredit">
+			<div class="i-wrap">
+				<div class="icon icon-credits"></div>
+				<div class="i-content">
+					<div class="i-title font-icon icon-arrow-dropdown">Кредит</div>
+					<div class="i-value">0&nbsp;<span class="rub">i</span></div>
+				</div>
+			</div>
+
+			<!-- Меню быстрого управления кредитами -->
+			<ul class="menu credits-menu">
+				<li id="payWithAllCash" disabled="disabled" class="async-item disabled">
+					<span class="font-icon icon-zap"></span>
+					<span class="item-title">отдать на все</span>
+				</li>
+									<li id="balanceCredit" disabled="disabled" class="async-item disabled">
+						<span class="font-icon icon-magic-wand"></span>
+						<span class="item-title">баланс</span>
+					</li>
+							</ul>
+		</div>
+	</div>
+
+	</div>
+
+<div id="card-field" class="card-start" style="top: 90px; bottom: 64px;">
+	<div class="card-header">
+		<div class="card-help icon-info-circle" onclick="currentCard.loadHelper('help')" title="Информация о карточке"></div>
+		<div class="card-icon"></div>
+		<div class="card-title">Приветствуем вас!</div>
+	</div>
+
+	<div class="card-content"><div id="start_dlg" class="field-content-inner" style="display: block;">
+					Вы на игровом поле.
+			 Здесь можно пройти краткое обучение или сразу начать игру				<h2>Задание для игры:</h2>
+		<ul class="game-task">
+							<li>
+					Набрать
+					<span class="help-inline" help-note="Стоимость активов за вычетом стоимости пассивов">капитал</span>
+					50&nbsp;000&nbsp;<span class="rub">i</span>				</li>
+					</ul>
+		<h2>Условия игры:</h2>
+				<div class="game-term profession-info">
+			<span class="profession-title">Профессия:</span>Курьер. Зарплата: <span class="salary">5&nbsp;000&nbsp;<span class="rub">i</span></span>
+		</div>
+
+					<div class="game-term steps-limit">
+				<span class="limit-title">Ограничение:
+				</span>
+				У вас есть <span class="limit">35 ходов</span> на всю игру			</div>
+			</div></div>
+
+	<div class="card-buttons"><button class="button button-green">Пройти обучение</button><button class="button button-green">Начать игру</button></div>
+
+	<div class="info-message-wrapper" id="infoMessage">
+		<div class="message-content-wrapper">
+			<div class="message-content"></div>
+		</div>
+	</div>
+
+</div><div id="financial-tools">
+	<div class="indicators-row separator i-shadow">
+
+		<!--Вклад-->
+		<button class="indicator bank-btn bank-deposit" title="Открыть" id="bankDepositOpen" disabled="disabled">
+			<span class="icon icon-card-plus"></span>
+		</button>
+		<button class="indicator bank-btn bank-deposit" title="Закрыть" id="bankDepositClose" disabled="disabled">
+			<span class="icon icon-card-minus"></span>
+		</button>
+
+		<!--Страхование или Утопить соседей-->
+					<button class="indicator" title="В разработке" disabled="disabled" id="insuranceHealth">
+				<span class="icon icon-insurance-health"></span>
+			</button>
+			<button class="indicator" title="В разработке" disabled="disabled" id="insuranceProperty">
+				<span class="icon icon-insurance-property"></span>
+			</button>
+		                
+		<!--Кредит-->
+		<button class="indicator bank-btn bank-credit" title="Взять" id="bankCreditGet" disabled="disabled">
+			<span class="icon icon-card-plus"></span>
+		</button>
+		<button class="indicator bank-btn bank-credit" title="Отдать" id="bankCreditPayoff" disabled="disabled">
+			<span class="icon icon-card-minus"></span>
+		</button>
+
+		<span class="clear"></span>
+	</div>
+
+	<div class="tool-title">Вклад</div>
+	<div class="tool-title insurance-block-title">Страхование</div>
+	<div class="tool-title">Кредит</div>
+
+	<span class="clear"></span>
+</div>
+
+
+<div class="hidden">
+
+	<!--Дилог взятия кредита-->
+	<div id="credits_get_dlg">
+		<p>Вы можете взять кредит под <span class="credit-rate"></span> ежемесячно. Совокупные выплаты не могут превышать Ваш денежный поток.</p>
+		<div class="extra-box">
+			Сумма операции: <input type="text" class="amount" value="0" disabled="disabled">
+
+			<div class="card-slider-wrapper">
+				<span class="border-value slider-min-value">0</span>
+				<div class="card-slider"><div class="card-slider-line"></div></div>
+				<span class="border-value slider-max-value"></span>
+			</div>
+
+			<label>
+				<input type="checkbox" class="use-max"><span class="marker"></span>&nbsp;Взять максимальную сумму
+			</label>
+		</div>
+
+		<div class="space">
+			Уменьшение ДП на: <span class="related-value num-expense"></span>
+		</div>
+	</div>
+
+
+	<!--Диалог отдачи кредита-->
+	<div id="credits_pay_dlg">
+		<p class="finance-line">Вы должны банку <span class="f-value total-sum"></span>.</p>
+		<div class="extra-box">
+			Сумма операции: <input type="text" class="amount" value="" disabled="disabled">
+
+			<div class="card-slider-wrapper">
+				<span class="border-value slider-min-value">0</span>
+				<div class="card-slider"><div class="card-slider-line"></div></div>
+				<span class="border-value slider-max-value"></span>
+			</div>
+
+			<label>
+				<input type="checkbox" class="use-max"><span class="marker"></span>&nbsp;Погасить максимальную сумму
+			</label>
+		</div>
+
+		<div class="space">
+			Увеличение ДП на: <span class="related-value num-income"></span>
+		</div>
+	</div>
+
+
+	<!--Диалог открытия вклада-->
+	<div id="deposit_open_dlg">
+		<p>
+			Вы можете открыть вклад и получать ежемесячный доход. Досрочное закрытие вклада влечет наложение штрафа в
+			размере половины общей суммы начислений по вкладу.
+		</p>
+
+		<p>Срок вклада:</p>
+		<div class="terms-list"></div>
+
+		<div class="extra-box">
+			Сумма операции: <input type="text" class="amount" value="1000" disabled="disabled">
+
+			<div class="card-slider-wrapper big-min-value">
+				<span class="border-value slider-min-value">1000</span>
+				<div class="card-slider"><div class="card-slider-line"></div></div>
+				<span class="border-value slider-max-value"></span>
+			</div>
+
+			<label>
+				<input type="checkbox" class="use-max"><span class="marker"></span>&nbsp;Открыть на максимальную сумму
+			</label>
+		</div>
+
+		<div class="space">
+			Ежемесячный доход: <span class="related-value num-income"></span>
+		</div>
+	</div>
+
+
+	<!--Диaлог закрытия вклада-->
+	<div id="deposit_take_back_dlg">
+		<p>На ваше имя в банке открыты следующие вклады:</p>
+
+		<div class="extra-box deposits-list"></div>
+
+		<div class="card-line">
+			Банк выдаст сумму:  <span class="related-value num-income"></span>
+		</div>
+	</div>
+
+</div>				</div>
+			</div>
     </div>
+
 </body>
 
 </html>
