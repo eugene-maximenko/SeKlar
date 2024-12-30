@@ -7705,3 +7705,20 @@ body > div > div.layout-column.column-center.swiper-slide {
   border-left-color: #222;
   border-right-color: #222;
   background: #383838;}
+  
+
+  #my > div.board-content.swiper-wrapper > div.layout-column.column-right.swiper-slide {
+    --rem: 16;
+    font-family: SF UI;
+    font-size: 1em;
+    font-weight: 300;
+    visibility: visible;
+    box-sizing: inherit;
+    position: relative;
+    z-index: 1;
+    float: left;
+    min-width: 300px;
+    height: 100%;
+    min-height: 550px;
+    width: 32%;
+  }

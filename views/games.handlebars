@@ -742,13 +742,33 @@
 
                 </div>
             </div>
+            {{!--End of interactive field --}}
         </div>
+        {{!-- Start of action history --}}
+        <div class="layout-column column-right swiper-slide">
+            <div class="column-content">
+                <div class="font-icon icon-bars folding-button" id="graphFolder" data-folded="1"></div>
+                
+                <div class="block" id="log" data-baron-v-id="4" style="height: 406px; overflow: hidden;">
+                    <div class="block-header font-icon icon-books folding-button" data-folded="0">
+                        <span onclick="gameLog.switchTo('personal')">Ваши действия</span>
+                    </div>
+                    <div class="block-body"
+                        style="overflow-y: scroll; box-sizing: border-box; margin: 0px; border: 0px;">
+                        <div id="log-personal"></div>
+                        <div id="log-common"></div>
+                    </div>
+                    <div class="_track">
+                        <div class="_free">
+                            <div class="_bar" style="height: 0px; top: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- End of action history --}}
     </div>
-    {{!--End of interactive field --}}
 
-    {{!-- Start of action history --}}
-    
-    {{!-- End of action history --}}
 
 </body>
 
