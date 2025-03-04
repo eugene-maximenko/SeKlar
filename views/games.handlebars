@@ -748,7 +748,7 @@
         <div class="layout-column column-right swiper-slide">
             <div class="column-content">
                 <div class="font-icon icon-bars folding-button" id="graphFolder" data-folded="1"></div>
-                
+
                 <div class="block" id="log" data-baron-v-id="4" style="height: 406px; overflow: hidden;">
                     <div class="block-header font-icon icon-books folding-button" data-folded="0">
                         <span onclick="gameLog.switchTo('personal')">Ваши действия</span>
@@ -769,7 +769,10 @@
         {{!-- End of action history --}}
     </div>
 
-
+    <!-- Socket-client script -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- JS script -->
+    <script src="/javascripts/game.js"></script>
 </body>
 
 </html>

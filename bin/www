@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
+const socketio = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -21,7 +22,16 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-/**
+const io = socketio(server);
+io.on('connection', (socket) => {
+
+  // Interraction with join page
+  socket.on('joinPageGreeting', () => {
+      // Notifycation about new connection
+      console.log('We have a new connection from join page ;)')
+  }) })
+
+  /**
  * Listen on provided port, on all network interfaces.
  */
 
