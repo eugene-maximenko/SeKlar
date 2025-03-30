@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
+const {updateInteractiveSection} = require('./utils/games')
 
 /**
  * Get port from environment and store in Express.
@@ -29,7 +30,11 @@ io.on('connection', (socket) => {
   socket.on('joinPageGreeting', () => {
       // Notifycation about new connection
       console.log('We have a new connection from join page ;)')
-  }) })
+    
+  }) 
+
+  socket.emit("updateInteractiveSection", updateInteractiveSection())
+})
 
   /**
  * Listen on provided port, on all network interfaces.
