@@ -11,7 +11,7 @@
 <body>
     <div class="field-wrapper">
         <div class="left-sidebar">
-            {{!-- Start of Income section --}}
+            <!-- {{!-- Start of Income section --}} -->
             <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
                 style="height: 195px; overflow: hidden;">
                 <div class="block-header font-icon icon-download" style="    
@@ -102,8 +102,8 @@
                     </div>
                 </div>
             </div>
-            {{!-- End of Income section --}}
-            {{!-- Start of Costs section --}}
+            <!-- {{!-- End of Income section --}} -->
+            <!-- {{!-- Start of Costs section --}} -->
             <div class="block ui-droppable" id="costs" data-folded="0" data-baron-v-id="0"
                 style="height: 195px; overflow: hidden;">
                 <div class="block-header font-icon icon-download" style="    
@@ -164,8 +164,8 @@
                     </div>
                 </div>
             </div>
-            {{!-- End of Costs section --}}
-            {{!-- Start of Assets section --}}
+            <!-- {{!-- End of Costs section --}}
+            {{!-- Start of Assets section --}} -->
             <div class="block ui-droppable" id="incomes" data-folded="0" data-baron-v-id="0"
                 style="height: 195px; overflow: hidden;">
                 <div class="block-header font-icon icon-download" style="    
@@ -319,8 +319,8 @@
                     </div>
                 </div>
             </div>
-            {{!-- End of Assets section --}}
-            {{!-- Start of Liabilities section --}}
+            <!-- {{!-- End of Assets section --}} -->
+            <!-- {{!-- Start of Liabilities section --}} -->
             <div class="block ui-droppable" id="liabilities" data-folded="0" data-baron-v-id="3"
                 style="height: 203px; overflow: hidden;">
                 <div class="block-header font-icon icon-bank" style="    --rem: 16;
@@ -450,10 +450,10 @@
                     </div>
                 </div>
             </div>
-            {{!-- End of Liabilities section --}}
+            <!-- {{!-- End of Liabilities section --}} -->
         </div>
 
-        {{!--Start of interactive field --}}
+        <!-- {{!--Start of interactive field --}} -->
         <div class="layout-column column-center swiper-slide" style="    --rem: 16;
     font-family: SF UI;
     font-size: 1em;
@@ -598,6 +598,17 @@
                     </div>
 
                 </div>
+
+                <!-- A template for displaying messages -->
+                <script id="card-template" type="text/html">
+        <div class="message">
+            <p>
+                <span class="message__name">{{username}}</span>
+            </p>
+            <p>{{message}}</p>
+        </div> 
+    </script>
+
                 <div id="financial-tools">
                     <div class="indicators-row separator i-shadow">
 
@@ -742,9 +753,9 @@
 
                 </div>
             </div>
-            {{!--End of interactive field --}}
+            <!-- {{!--End of interactive field --}} -->
         </div>
-        {{!-- Start of action history --}}
+        <!-- {{!-- Start of action history --}} -->
         <div class="layout-column column-right swiper-slide">
             <div class="column-content">
                 <div class="font-icon icon-bars folding-button" id="graphFolder" data-folded="1"></div>
@@ -766,7 +777,7 @@
                 </div>
             </div>
         </div>
-        {{!-- End of action history --}}
+        <!-- {{!-- End of action history --}} -->
     </div>
 
     <!-- Mustache library for HTML templates -->

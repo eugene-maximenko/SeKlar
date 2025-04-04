@@ -5,8 +5,16 @@ const socket = io();
 socket.emit('joinPageGreeting');
 
 const interactiveSection = document.querySelector("#card-field")
+const cardTemplate = document.querySelector("#card-template").innerHTML
+
 socket.on("updateInteractiveSection", message => {
     console.log(message)
 
-    interactiveSection.innerHTML = `<h1>${message}</h1>`
+    const html = Mustache.render(cardTemplate, {
+        username: "message",
+        message: 'whatever'
+    });
+    
+    console.log(html);
+    interactiveSection.insertAdjacentHTML('beforeend', html)
 })
