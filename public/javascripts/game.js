@@ -6,15 +6,16 @@ socket.emit('joinPageGreeting');
 
 const interactiveSection = document.querySelector("#card-field")
 const cardTemplate = document.querySelector("#card-template").innerHTML
+const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 
-socket.on("updateInteractiveSection", message => {
-    console.log(message)
+socket.on("updateInteractiveSection", () => {
 
-    const html = Mustache.render(cardTemplate, {
-        username: "message",
-        message: 'whatever'
+    const html = Mustache.render(cashEventCardTemplate, {
+        headerPhrase: 'Поздравляем, вам удалось заработать!',
+        eventDescription: 'Вы продали ненужный диван на Finn.no',
+        amount: 2000
     });
     
-    console.log(html);
-    interactiveSection.insertAdjacentHTML('beforeend', html)
+    interactiveSection.innerHTML = html
 })
+
