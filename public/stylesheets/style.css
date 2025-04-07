@@ -7722,3 +7722,7 @@ body > div > div.layout-column.column-center.swiper-slide {
     min-height: 550px;
     width: 32%;
   }
+
+  #cash-event-amount {
+    font-weight: bold;
+  }
