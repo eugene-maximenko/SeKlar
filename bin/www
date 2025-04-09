@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
-const {updateInteractiveSection} = require('./utils/games')
+const {updateInteractiveSection, pickRandomFinancialEvent} = require('./utils/games')
 
 /**
  * Get port from environment and store in Express.
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
     
   }) 
 
-  socket.emit("updateInteractiveSection", updateInteractiveSection())
+  socket.emit("updateInteractiveSection", pickRandomFinancialEvent())
 })
 
   /**

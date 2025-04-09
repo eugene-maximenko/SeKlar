@@ -8,19 +8,20 @@ const interactiveSection = document.querySelector("#card-field")
 const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 
-socket.on("updateInteractiveSection", () => {
+socket.on("updateInteractiveSection", randomFinancialEvent => {
     
-    const amount = -15000
+    const randomNumber = Math.floor(Math.random() * (3000-500+1) + 500)
+    const randomAmount = randomFinancialEvent.type == "income" ? randomNumber : -randomNumber  
+
     const html = Mustache.render(cashEventCardTemplate, {
-        headerPhrase: 'Поздравляем, вам удалось заработать!',
-        eventDescription: 'Вы продали ненужный диван на Finn.no',
-        amount
+        eventDescription: randomFinancialEvent.description,
+        amount: randomAmount
     });
     interactiveSection.innerHTML = html
     
     let cashEventColor = document.getElementById("cash-event-amount").style
     
-    if (amount > 0) {
+    if (randomAmount > 0) {
         cashEventColor.color = "#00d062"
     } else {cashEventColor.color = "red"}
 })
