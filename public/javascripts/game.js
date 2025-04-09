@@ -5,6 +5,7 @@ const socket = io();
 socket.emit('joinPageGreeting');
 
 const interactiveSection = document.querySelector("#card-field")
+const headerCashPointer = document.querySelector(".header-cash")
 const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 
