@@ -9,6 +9,11 @@ const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
 const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
+const startButton = document.querySelector('#start-button')
+
+startButton.addEventListener('click', () => {
+    socket.emit('game:start')
+})
 
 socket.on("updateInteractiveSection", randomFinancialEvent => {
     

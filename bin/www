@@ -34,8 +34,11 @@ io.on('connection', (socket) => {
       const user = addUser({id: socket.id})      
       socket.emit('updateState', user)
     }) 
+
+  socket.on('game:start', ()=>{
+    socket.emit("updateInteractiveSection", pickRandomFinancialEvent())
+  })
     
-    // socket.emit("updateInteractiveSection", pickRandomFinancialEvent())
 })
 
   /**
