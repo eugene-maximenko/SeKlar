@@ -2,10 +2,11 @@
 const socket = io();
 
 // Sending an event to the server in order to log out the new connection and get the event with the array of active rooms
-socket.emit('joinPageGreeting');
+socket.emit('user:join');
 
 const interactiveSection = document.querySelector("#card-field")
 const headerCashPointer = document.querySelector(".header-cash")
+const assetsCashPointer = document.querySelector('#asset-section-cash')
 const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 
@@ -27,3 +28,7 @@ socket.on("updateInteractiveSection", randomFinancialEvent => {
     } else {cashEventColor.color = "red"}
 })
 
+socket.on('updateState', user => {
+    headerCashPointer.innerText = user.cashAmount
+    assetsCashPointer.innerText = user.cashAmount
+})
