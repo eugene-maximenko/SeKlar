@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
     }) 
 
   socket.on('game:start', ()=>{
-    socket.emit("updateInteractiveSection", pickRandomFinancialEvent())
+    socket.emit("randomEventCard:display", pickRandomFinancialEvent())
   })
     
 })

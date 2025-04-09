@@ -50,8 +50,13 @@ const updateInteractiveSection = () => {
 
 const pickRandomFinancialEvent = () => {
   const randomFinancialEvent = financialEvents[Math.floor(Math.random() * financialEvents.length)]
+  
+  const randomNumber = Math.floor(Math.random() * (1500-500+1) + 500)
+  const randomAmount = randomFinancialEvent.type == "income" ? randomNumber : -randomNumber
+  randomFinancialEvent.amount = randomAmount
 
-  console.log(randomFinancialEvent)
+  console.log(randomFinancialEvent.amount);
+  
   return randomFinancialEvent
 }
 
