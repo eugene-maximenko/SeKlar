@@ -43,6 +43,17 @@ socket.on("randomEventCard:display", randomFinancialEvent => {
 
 socket.on('state:display', user => {
     console.log(JSON.stringify(user))
-    headerCashPointer.innerText = user.cashAmount
-    assetsCashPointer.innerText = user.cashAmount
+
+    headerCashPointer.style.opacity = 0.1    
+    assetsCashPointer.style.opacity = 0.1
+    
+    setTimeout(() => {
+        headerCashPointer.innerText = user.cashAmount
+        assetsCashPointer.innerText = user.cashAmount
+        
+        headerCashPointer.style.opacity = 1;
+        assetsCashPointer.style.opacity = 1
+      }, 500);  // 1000ms matches the duration of the fade-out
+
+
 })
