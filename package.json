@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "kill-port": "kill -9 $(lsof -t -i:3001)"
+    "kill-port": "kill -9 $(lsof -t -i:3001)",
+    "start-and-kill": "sh -c 'kill -9 $(lsof -t -i:3001) && nodemon ./bin/www'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
