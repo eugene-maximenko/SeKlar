@@ -4,12 +4,13 @@
  * Module dependencies.
  */
 
+
 var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
 const {updateInteractiveSection, pickRandomFinancialEvent} = require('./utils/games')
-const {addUser, updateStateDelta} = require('./utils/users')
+const {addUser, updateStateDelta, applyStateDelta} = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -41,6 +42,14 @@ io.on('connection', (socket) => {
     updateStateDelta({id: socket.id, cashAmountDelta: randomFinancialEvent.amount})
     socket.emit("randomEventCard:display", randomFinancialEvent)
   })
+
+  socket.on('state:approveUpdate', () => {
+    console.log('We got state:approveUpdate event from client :)');
+
+    applyStateDelta(socket.id)
+  })
+
+
     
 })
 

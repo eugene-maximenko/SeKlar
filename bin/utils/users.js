@@ -9,11 +9,23 @@ const addUser = ({id}) => {
     return user
 }
 
+const findUser = (id) => {return users.find(user=>user.id===id)}
+
 const updateStateDelta = ({id, cashAmountDelta}) => {
 
-    const user = users.find(user=>user.id===id) 
+    const user = findUser(id)
     user.cashAmountDelta = cashAmountDelta
     console.log(JSON.stringify(user))
 }
 
-module.exports = {addUser, updateStateDelta}
+const applyStateDelta = (id) => {
+    
+    const user = findUser(id)
+
+    user.cashAmount += user.cashAmountDelta
+    user.cashAmountDelta = 0
+
+    console.log(JSON.stringify(user))
+}
+
+module.exports = {addUser, updateStateDelta, applyStateDelta}
