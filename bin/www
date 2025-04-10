@@ -31,8 +31,9 @@ io.on('connection', (socket) => {
   socket.on('user:join', () => {
     
       // Notification about new connection
-      console.log('We have a new connection from join page ;)')
-      const user = addUser({id: socket.id})      
+      console.log('User opened the game page')
+      const user = addUser({id: socket.id})  
+
       socket.emit('state:display', user)
     }) 
 
@@ -46,7 +47,8 @@ io.on('connection', (socket) => {
   socket.on('state:approveUpdate', () => {
     console.log('We got state:approveUpdate event from client :)');
 
-    applyStateDelta(socket.id)
+    const user = applyStateDelta(socket.id)
+    socket.emit('state:display', user)
   })
 
 

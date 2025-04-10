@@ -41,7 +41,8 @@ socket.on("randomEventCard:display", randomFinancialEvent => {
     })
 })
 
-socket.on('updateState', user => {
+socket.on('state:display', user => {
+    console.log(JSON.stringify(user))
     headerCashPointer.innerText = user.cashAmount
     assetsCashPointer.innerText = user.cashAmount
 })

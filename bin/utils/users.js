@@ -26,6 +26,8 @@ const applyStateDelta = (id) => {
     user.cashAmountDelta = 0
 
     console.log(JSON.stringify(user))
+
+    return user
 }
 
 module.exports = {addUser, updateStateDelta, applyStateDelta}
