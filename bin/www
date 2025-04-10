@@ -9,7 +9,7 @@ var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
 const {updateInteractiveSection, pickRandomFinancialEvent} = require('./utils/games')
-const {addUser} = require('./utils/users')
+const {addUser, updateStateDelta} = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -32,11 +32,14 @@ io.on('connection', (socket) => {
       // Notification about new connection
       console.log('We have a new connection from join page ;)')
       const user = addUser({id: socket.id})      
-      socket.emit('updateState', user)
+      socket.emit('state:display', user)
     }) 
 
   socket.on('game:start', ()=>{
-    socket.emit("randomEventCard:display", pickRandomFinancialEvent())
+    const randomFinancialEvent = pickRandomFinancialEvent()
+  
+    updateStateDelta({id: socket.id, cashAmountDelta: randomFinancialEvent.amount})
+    socket.emit("randomEventCard:display", randomFinancialEvent)
   })
     
 })

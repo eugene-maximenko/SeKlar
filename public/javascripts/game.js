@@ -15,10 +15,13 @@ startButton.addEventListener('click', () => {
     socket.emit('game:start')
 })
 
+
 socket.on("randomEventCard:display", randomFinancialEvent => {
+
+    console.log(JSON.stringify(randomFinancialEvent))
     
     const amountIsPositiveNumber = randomFinancialEvent.amount > 0 ? true : false
-
+    
     const html = Mustache.render(cashEventCardTemplate, {
         eventDescription: randomFinancialEvent.description,
         amount: amountIsPositiveNumber ? `+${randomFinancialEvent.amount}` : randomFinancialEvent.amount
@@ -30,6 +33,12 @@ socket.on("randomEventCard:display", randomFinancialEvent => {
     if (randomFinancialEvent.amount > 0) {
         cashEventColor.color = "#00d062"
     } else {cashEventColor.color = "red"}
+    
+    const nextCardButton = document.querySelector('#next-card-button')
+    
+    nextCardButton.addEventListener('click', () => {
+        socket.emit('state:approveUpdate')
+    })
 })
 
 socket.on('updateState', user => {
