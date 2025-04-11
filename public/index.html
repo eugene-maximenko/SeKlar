@@ -611,13 +611,71 @@
                     </div>
                 </script>
 
+                <script id="stock-market-card-template" type="text/html">
+                    <div class="cash-event-card" style="color: white;">
+                        <h1><strong>Stock market</strong></h1>
+
+                        <p>Actual price: <span style="color: cyan;">{{actualPrice}}</span></p>
+
+                        <div>
+
+                            <table class="report" style="width: 100%;     margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;">
+                        <colgroup>
+                            <col>
+                            <col width="">
+                        </colgroup>
+
+
+                        <tbody>
+                            <tr>
+                                <td>Company name:</td>
+                                <td style="text-align:right; color: cyan;">{{companyName}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Fair price:</td>
+                                <td style="text-align:right; color: cyan;">{{fairPrice}}</td>
+                            </tr>
+                            <tr>
+                                <td>You have:</td>
+                                <td style="text-align:right; color: cyan;">nifiga</td>
+                            </tr>
+                        </tbody>
+                            </table>
+                    </div>
+
+                    <div class="tabs-panel">
+                        <div class="tabs-holder">
+                            <label>
+                                <input type="radio" name="operationChoice" id="buySelect" checked=""><span class="marker"></span>Покупка
+                                <div class="tab-background"></div>
+                            </label>
+                            <label><input type="radio" name="operationChoice" id="sellSelect"><span class="marker"></span>Продажа
+                                <div class="tab-background"></div>
+                            </label>
+                            <span class="clear"></span></div>
+                            <div class="tabs-content">
+                                <div class="amount-line">Введите количество 
+                                    <input autocomplete="off" id="user_amount" type="text" value="" tabindex="-1" inputmode="numeric" pattern="[0-9 ]*" onchange="update_field_amount(this, 46)" onkeyup="update_field_amount(this, 46)" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum">46&nbsp;<span class="rub">i</span></span>
+                                </div>
+                            </div>
+                </div>
+                    
+                        
+                        <div class="button button-green" id="next-card-button">Next card</button></div>
+                    </div>
+                </script>
+                
                 <div id="financial-tools">
                     <div class="indicators-row separator i-shadow">
-
+                        
                         <!--Вклад-->
                         <button class="indicator bank-btn bank-deposit" title="Открыть" id="bankDepositOpen"
-                            disabled="disabled">
-                            <span class="icon icon-card-plus"></span>
+                        disabled="disabled">
+                        <span class="icon icon-card-plus"></span>
                         </button>
                         <button class="indicator bank-btn bank-deposit" title="Закрыть" id="bankDepositClose"
                             disabled="disabled">

@@ -30,4 +30,11 @@ const applyStateDelta = (id) => {
     return user
 }
 
+const updateStockMarketAssetsDelta = (id) => {
+
+    const user = findUser(id)
+    // you should put in an Array of different companies
+    console.log(JSON.stringify(user))
+}
+
 module.exports = {addUser, updateStateDelta, applyStateDelta}

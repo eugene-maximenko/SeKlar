@@ -9,7 +9,7 @@ var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
-const {updateInteractiveSection, pickRandomFinancialEvent} = require('./utils/games')
+const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard} = require('./utils/games')
 const {addUser, updateStateDelta, applyStateDelta} = require('./utils/users')
 
 /**
@@ -49,6 +49,9 @@ io.on('connection', (socket) => {
 
     const user = applyStateDelta(socket.id)
     socket.emit('state:display', user)
+    socket.emit('stockMarketCard:display', 
+      pickRandomStockMarketCard()
+    )
   })
 
 

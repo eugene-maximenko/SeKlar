@@ -43,6 +43,38 @@ const financialEvents = [
   }
 ];
 
+const stockCardCompanies = [
+  {
+    "companyName": "Equinor",
+    "fairPrice": 80,
+    "minPrice": 40,
+    "maxPrice": 120
+  },
+  {
+    "companyName": "Telenor",
+    "fairPrice": 60,
+    "minPrice": 30,
+    "maxPrice": 90
+  },
+  {
+    "companyName": "DNB Bank",
+    "fairPrice": 70,
+    "minPrice": 35,
+    "maxPrice": 105
+  },
+  {
+    "companyName": "Yara International",
+    "fairPrice": 90,
+    "minPrice": 45,
+    "maxPrice": 135
+  },
+  {
+    "companyName": "Orkla",
+    "fairPrice": 50,
+    "minPrice": 25,
+    "maxPrice": 75
+  }]
+
 const updateInteractiveSection = () => {
 
   return "Don`t quit! Keep it up!"
@@ -60,4 +92,15 @@ const pickRandomFinancialEvent = () => {
   return randomFinancialEvent
 }
 
-module.exports = { updateInteractiveSection, pickRandomFinancialEvent }
+const pickRandomStockMarketCard = () => {
+  const randomStockMarketCard = stockCardCompanies[Math.floor(Math.random() * stockCardCompanies.length)]
+  const randomActualPrice = Math.floor(Math.random() * (randomStockMarketCard.maxPrice - randomStockMarketCard.minPrice) + randomStockMarketCard.minPrice)
+
+  randomStockMarketCard.actualPrice = randomActualPrice
+  console.log(JSON.stringify(randomStockMarketCard))
+  
+  return randomStockMarketCard
+}
+
+
+module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard }

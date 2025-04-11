@@ -7,9 +7,10 @@ socket.emit('user:join');
 const interactiveSection = document.querySelector("#card-field")
 const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
-const cardTemplate = document.querySelector("#card-template").innerHTML
+// const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const startButton = document.querySelector('#start-button')
+const stockMarketCardTemplate = document.querySelector("#stock-market-card-template").innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -56,4 +57,27 @@ socket.on('state:display', user => {
       }, 500);  // 1000ms matches the duration of the fade-out
 
 
+})
+
+socket.on('stockMarketCard:display', ({actualPrice,
+    companyName,
+    fairPrice }) => {
+    // console.log(JSON.stringify(randomStockMarketCard))
+    
+    const html = Mustache.render(stockMarketCardTemplate, {
+    actualPrice, companyName, fairPrice    
+    });
+    interactiveSection.innerHTML = html
+    
+    let cashEventColor = document.getElementById("cash-event-amount").style
+    
+    if (randomFinancialEvent.amount > 0) {
+        cashEventColor.color = "#00d062"
+    } else {cashEventColor.color = "red"}
+    
+    const nextCardButton = document.querySelector('#next-card-button')
+    
+    nextCardButton.addEventListener('click', () => {
+        socket.emit('state:approveUpdate')
+    })
 })
