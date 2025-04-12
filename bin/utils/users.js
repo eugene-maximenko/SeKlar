@@ -53,7 +53,7 @@ const updateStock = (data) => {
             console.log('User after changing stock' + JSON.stringify(user))
         }
         console.log('')
-    } else {
+    } else if (Number(amount)>0){
         stocks[stockCompanyName] = {
             amount: amountDelta,
             totalInvestment: investmentDelta,
@@ -61,6 +61,8 @@ const updateStock = (data) => {
         }
         console.log('User after initiating stock' + JSON.stringify(user))
         console.log('')
+    } else {
+        console.log(`Update stock function didn't change user.`);
     }
 
     return investmentDelta
