@@ -55,26 +55,25 @@ socket.on('state:display', user => {
         headerCashPointer.style.opacity = 1;
         assetsCashPointer.style.opacity = 1
       }, 500);  // 1000ms matches the duration of the fade-out
-
-
 })
 
 socket.on('stockMarketCard:display', ({actualPrice,
     companyName,
     fairPrice }) => {
-    // console.log(JSON.stringify(randomStockMarketCard))
     
     const html = Mustache.render(stockMarketCardTemplate, {
     actualPrice, companyName, fairPrice    
     });
     interactiveSection.innerHTML = html
+
+    const inputElement = document.querySelector('#input_amount')
+    const amountSum = document.querySelector(".amount-sum")
     
-    let cashEventColor = document.getElementById("cash-event-amount").style
-    
-    if (randomFinancialEvent.amount > 0) {
-        cashEventColor.color = "#00d062"
-    } else {cashEventColor.color = "red"}
-    
+    // Handler for the amount field
+    inputElement.onchange = function () {
+        amountSum.innerText = this.value * actualPrice
+    }
+
     const nextCardButton = document.querySelector('#next-card-button')
     
     nextCardButton.addEventListener('click', () => {
