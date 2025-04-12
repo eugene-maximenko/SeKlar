@@ -87,7 +87,7 @@ const pickRandomFinancialEvent = () => {
   const randomAmount = randomFinancialEvent.type == "income" ? randomNumber : -randomNumber
   randomFinancialEvent.amount = randomAmount
 
-  console.log(randomFinancialEvent.amount);
+  console.log(`Random event is gonna change cash by ` + randomFinancialEvent.amount);
   
   return randomFinancialEvent
 }
@@ -97,7 +97,7 @@ const pickRandomStockMarketCard = () => {
   const randomActualPrice = Math.floor(Math.random() * (randomStockMarketCard.maxPrice - randomStockMarketCard.minPrice) + randomStockMarketCard.minPrice)
 
   randomStockMarketCard.actualPrice = randomActualPrice
-  console.log(JSON.stringify(randomStockMarketCard))
+  console.log(`Random stock card: ` + JSON.stringify(randomStockMarketCard))
   
   return randomStockMarketCard
 }
