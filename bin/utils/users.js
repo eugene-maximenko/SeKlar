@@ -31,12 +31,13 @@ const updateStock = (data) => {
     console.log(JSON.stringify(data))
     const {amount, operationType, id, stockCompanyName, actualStockPrice} = data
 
-    const amountDelta = Number(amount)
     const user = findUser(id)
     console.log('User before changes' + JSON.stringify(user))
     
     const stocks = user.assets.stock
     
+    const userIsBuying = operationType === 'buySelect'
+    const amountDelta = userIsBuying ? Number(amount): -Number(amount)
     const investmentDelta = amountDelta * actualStockPrice
     
     if(stockCompanyName in stocks) {
