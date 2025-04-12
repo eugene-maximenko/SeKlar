@@ -77,6 +77,6 @@ socket.on('stockMarketCard:display', ({actualPrice,
     const nextCardButton = document.querySelector('#next-card-button')
     
     nextCardButton.addEventListener('click', () => {
-        socket.emit('state:approveUpdate')
+        socket.emit('state:stockUpdate', inputElement.value)
     })
 })
