@@ -74,9 +74,18 @@ socket.on('stockMarketCard:display', ({actualPrice,
         amountSum.innerText = this.value * actualPrice
     }
 
+    // Handler for active lable
+
+    let operationType = 'buySelect';
+
+    document.querySelector('.tabs-holder').addEventListener('change', function (e) {
+        operationType = e.target.id;
+    });
+
     const nextCardButton = document.querySelector('#next-card-button')
-    
+
     nextCardButton.addEventListener('click', () => {
-        socket.emit('state:stockUpdate', inputElement.value)
+
+        socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
     })
 })

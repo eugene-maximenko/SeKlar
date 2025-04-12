@@ -3,9 +3,8 @@ const $CASH_CONSTANT = 5000
 
 const addUser = ({id}) => {
     
-    const user = {id, cashAmount:$CASH_CONSTANT}
+    const user = {id, cashAmount:$CASH_CONSTANT, assets: {stock:{}}}
     users.push(user)
-    console.log(`${user} was added to the array. The array looks now like ${users[0].cashAmount}`);
     return user
 }
 
@@ -15,7 +14,6 @@ const updateStateDelta = ({id, cashAmountDelta}) => {
 
     const user = findUser(id)
     user.cashAmountDelta = cashAmountDelta
-    console.log(JSON.stringify(user))
 }
 
 const applyStateDelta = (id) => {
@@ -24,17 +22,39 @@ const applyStateDelta = (id) => {
 
     user.cashAmount += user.cashAmountDelta
     user.cashAmountDelta = 0
-
-    console.log(JSON.stringify(user))
-
+    
     return user
 }
 
-const updateStockMarketAssetsDelta = (id) => {
+const updateStock = (data) => {
+    
+    console.log(JSON.stringify(data))
+    const {amount, operationType, id, stockCompanyName, actualStockPrice} = data
 
+    const amountDelta = Number(amount)
     const user = findUser(id)
-    // you should put in an Array of different companies
-    console.log(JSON.stringify(user))
-}
+    console.log('User before changes' + JSON.stringify(user))
+    
+    const stocks = user.assets.stock
+    
+    const investmentDelta = amountDelta * actualStockPrice
+    
+    if(stockCompanyName in stocks) {
+        
+        stocks[stockCompanyName].totalInvestment += investmentDelta
+        stocks[stockCompanyName].amount += amountDelta
+        stocks[stockCompanyName].averagePrice = stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount
+        console.log('User after changing stock' + JSON.stringify(user))
+        console.log('')
+    } else {
+        stocks[stockCompanyName] = {
+            amount: amountDelta,
+            totalInvestment: investmentDelta,
+            averagePrice: actualStockPrice
+        }
+        console.log('User after initiating stock' + JSON.stringify(user))
+        console.log('')
+    }
+}    
 
-module.exports = {addUser, updateStateDelta, applyStateDelta}
+module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock}

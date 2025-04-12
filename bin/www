@@ -10,7 +10,7 @@ var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
 const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard} = require('./utils/games')
-const {addUser, updateStateDelta, applyStateDelta} = require('./utils/users')
+const {addUser, updateStateDelta, applyStateDelta, updateStock} = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -27,6 +27,9 @@ var server = http.createServer(app);
 
 const io = socketio(server);
 io.on('connection', (socket) => {
+
+  let stockCompanyName = null
+  let actualStockPrice = null
 
   socket.on('user:join', () => {
     
@@ -45,17 +48,25 @@ io.on('connection', (socket) => {
   })
 
   socket.on('state:approveUpdate', () => {
-    console.log('We got state:approveUpdate event from client :)');
 
     const user = applyStateDelta(socket.id)
     socket.emit('state:display', user)
+    const randomStockCard = pickRandomStockMarketCard()
+
+    stockCompanyName = randomStockCard.companyName
+    actualStockPrice = randomStockCard.actualPrice
+    
     socket.emit('stockMarketCard:display', 
-      pickRandomStockMarketCard()
+      randomStockCard
     )
   })
 
-  socket.on('state:stockUpdate', (amount) => {
-    console.log(amount);
+  socket.on('state:stockUpdate', ({amount, operationType}) => {
+    console.log('We got state:stockUpdate event from client :)');
+
+    console.log(amount,operationType);
+    
+    updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
   }) 
 
     
