@@ -66,18 +66,22 @@ io.on('connection', (socket) => {
 
     console.log(amount,operationType);
     
-    updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
+    const cashAmountDelta = -updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
+
+    updateStateDelta({id: socket.id, cashAmountDelta })
+    const user = applyStateDelta(socket.id)
+    socket.emit('state:display', user)
 
   //  to try number of stocks 
 /* 
-    const randomStockCard = pickRandomStockMarketCard()
+) */
+   const randomStockCard = pickRandomStockMarketCard()
 
-    stockCompanyName = randomStockCard.companyName
-    actualStockPrice = randomStockCard.actualPrice
-    
-    socket.emit('stockMarketCard:display', 
-      randomStockCard
-    ) */
+   stockCompanyName = randomStockCard.companyName
+   actualStockPrice = randomStockCard.actualPrice
+   
+   socket.emit('stockMarketCard:display', 
+     randomStockCard)
 
 
   }) 

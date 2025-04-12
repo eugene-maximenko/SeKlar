@@ -56,6 +56,8 @@ const updateStock = (data) => {
         console.log('User after initiating stock' + JSON.stringify(user))
         console.log('')
     }
+
+    return investmentDelta
 }    
 
 module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock}
