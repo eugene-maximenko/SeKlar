@@ -1,13 +1,12 @@
-// Setting up a connection with the server
+// Set up a connection with the server
 const socket = io();
 
-// Sending an event to the server in order to log out the new connection and get the event with the array of active rooms
+// Inform server about new connection
 socket.emit('user:join');
 
 const interactiveSection = document.querySelector("#card-field")
 const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
-// const cardTemplate = document.querySelector("#card-template").innerHTML
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const startButton = document.querySelector('#start-button')
 const stockMarketCardTemplate = document.querySelector("#stock-market-card-template").innerHTML
@@ -16,7 +15,7 @@ startButton.addEventListener('click', () => {
     socket.emit('game:start')
 })
 
-
+// Random Event Card
 socket.on("randomEventCard:display", randomFinancialEvent => {
 
     console.log(JSON.stringify(randomFinancialEvent))
@@ -42,6 +41,7 @@ socket.on("randomEventCard:display", randomFinancialEvent => {
     })
 })
 
+// Display cash
 socket.on('state:display', user => {
     console.log(JSON.stringify(user))
 
@@ -57,6 +57,7 @@ socket.on('state:display', user => {
       }, 500);  // 1000ms matches the duration of the fade-out
 })
 
+// Stock Card
 socket.on('stockMarketCard:display', ({actualPrice,
     companyName,
     fairPrice }) => {
@@ -82,10 +83,9 @@ socket.on('stockMarketCard:display', ({actualPrice,
         operationType = e.target.id;
     });
 
+    // Next button handler
     const nextCardButton = document.querySelector('#next-card-button')
-
     nextCardButton.addEventListener('click', () => {
-
         socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
     })
 })
