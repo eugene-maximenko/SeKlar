@@ -44,8 +44,14 @@ const updateStock = (data) => {
         
         stocks[stockCompanyName].totalInvestment += investmentDelta
         stocks[stockCompanyName].amount += amountDelta
-        stocks[stockCompanyName].averagePrice = stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount
-        console.log('User after changing stock' + JSON.stringify(user))
+
+        if(stocks[stockCompanyName].amount === 0) {
+            delete stocks[stockCompanyName]
+            console.log('User after removing stock' + JSON.stringify(user))
+        } else {
+            stocks[stockCompanyName].averagePrice = stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount
+            console.log('User after changing stock' + JSON.stringify(user))
+        }
         console.log('')
     } else {
         stocks[stockCompanyName] = {
