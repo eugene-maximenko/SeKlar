@@ -103,7 +103,11 @@ socket.on("state:stockDisplay", stockState => {
         // create new object
         // paste
 
-    const html = Mustache.render(stockStateTemplate,{});
+    const html = Mustache.render(stockStateTemplate,{companyName: 'Aurora',
+        amount: 45,
+        averagePrice: 95,
+        totalInvestment: Math.random()
+    });
     
     stockStateSection.insertAdjacentHTML('afterend', html)
 
