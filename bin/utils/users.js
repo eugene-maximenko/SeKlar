@@ -49,7 +49,7 @@ const updateStock = (data) => {
             delete stocks[stockCompanyName]
             console.log('User after removing stock' + JSON.stringify(user))
         } else {
-            stocks[stockCompanyName].averagePrice = stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount
+            stocks[stockCompanyName].averagePrice = Math.round(stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount)
             console.log('User after changing stock' + JSON.stringify(user))
         }
         console.log('')
