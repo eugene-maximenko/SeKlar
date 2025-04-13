@@ -64,8 +64,20 @@ const updateStock = (data) => {
     } else {
         console.log(`Update stock function didn't change user.`);
     }
-
+    
     return investmentDelta
 }    
 
-module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock}
+const prepareStockState = (id) => {
+    
+    const user = findUser(id)
+    
+    const stockState = user.assets.stock
+    
+    console.log(`User's stock state: ` + JSON.stringify(stockState));
+    console.log('')
+    
+    return stockState 
+}
+
+module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState}

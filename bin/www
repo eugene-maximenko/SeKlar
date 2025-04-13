@@ -10,7 +10,7 @@ var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
 const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard} = require('./utils/games')
-const {addUser, updateStateDelta, applyStateDelta, updateStock} = require('./utils/users')
+const {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState } = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -72,6 +72,9 @@ io.on('connection', (socket) => {
     const user = applyStateDelta(socket.id)
     socket.emit('state:display', user)
 
+    const stockState = prepareStockState(socket.id)
+    socket.emit('state:stockDisplay', stockState)
+
   //  to try number of stocks 
 /* 
 ) */
@@ -82,9 +85,9 @@ io.on('connection', (socket) => {
    
    socket.emit('stockMarketCard:display', 
      randomStockCard)
-
-
   }) 
+
+
 
     
 })

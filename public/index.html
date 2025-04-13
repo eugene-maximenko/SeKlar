@@ -609,7 +609,7 @@
                         <div class="button button-green" id="next-card-button">Next card</button></div>
 
                     </div>
-                </script>
+                </script>        
 
                 <script id="stock-market-card-template" type="text/html">
                     <div class="cash-event-card" style="color: white;">
@@ -659,7 +659,7 @@
                             <span class="clear"></span></div>
                             <div class="tabs-content">
                                 <div class="amount-line">Введите количество 
-                                    <input autocomplete="off" id="input_amount" placeholder="1" type="text" value="" tabindex="-1" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="color: cyan;">{{actualPrice}}</span>
+                                    <input autocomplete="off" id="input_amount" type="text" value="1" tabindex="" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="color: cyan;">{{actualPrice}}</span>
                                 </div>
                             </div>
                 </div>
@@ -668,6 +668,23 @@
                         <div class="button button-green" id="next-card-button">Next card</button></div>
                     </div>
                 </script>
+
+
+                 </script>
+
+                <script id="stock-state-template" type="text/html">
+                    <tr id="stock-line" class="titles">
+                        <td>{{companyName}}</td>
+                        <td class="num">
+                            <span class="num-income"></span>{{amount}} по {{averagePrice}}
+                        </td>
+                        <td class="num">{{totalInvestment}}
+                        </td>
+                    </tr>
+                        </script>     
+
+
+                
                 
                 <div id="financial-tools">
                     <div class="indicators-row separator i-shadow">

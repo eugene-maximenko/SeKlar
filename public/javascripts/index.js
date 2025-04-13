@@ -7,9 +7,13 @@ socket.emit('user:join');
 const interactiveSection = document.querySelector("#card-field")
 const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
-const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const startButton = document.querySelector('#start-button')
+const stockStateSection = document.querySelector('#assets-deposit-after')
+
+// Templates
+const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const stockMarketCardTemplate = document.querySelector("#stock-market-card-template").innerHTML
+const stockStateTemplate = document.querySelector('#stock-state-template').innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -89,3 +93,23 @@ socket.on('stockMarketCard:display', ({actualPrice,
         socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
     })
 })
+
+// Display Stock State
+socket.on("state:stockDisplay", stockState => {
+
+    console.log(`Client got this stockState `+JSON.stringify(stockState))
+        
+    // remove
+        // create new object
+        // paste
+
+    const html = Mustache.render(stockStateTemplate,{});
+    
+    stockStateSection.insertAdjacentHTML('afterend', html)
+
+    const nextCardButton = document.querySelector('#next-card-button')
+    
+    nextCardButton.addEventListener('click', () => {
+        socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
+    })
+}) 
