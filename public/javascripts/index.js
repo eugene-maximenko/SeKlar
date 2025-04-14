@@ -64,10 +64,11 @@ socket.on('state:display', user => {
 // Stock Card
 socket.on('stockMarketCard:display', ({actualPrice,
     companyName,
-    fairPrice }) => {
+    fairPrice, amountOnHands, averagePrice}) => {
     
+    const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} по ${averagePrice}` : 0
     const html = Mustache.render(stockMarketCardTemplate, {
-    actualPrice, companyName, fairPrice    
+    actualPrice, companyName, fairPrice, stockAmountOnHands  
     });
     interactiveSection.innerHTML = html
 

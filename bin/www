@@ -80,6 +80,13 @@ io.on('connection', (socket) => {
 ) */
    const randomStockCard = pickRandomStockMarketCard()
 
+   if(randomStockCard.companyName in stockState) {
+     randomStockCard.amountOnHands = stockState[randomStockCard.companyName].amount
+     randomStockCard.averagePrice = stockState[randomStockCard.companyName].averagePrice
+   } else {
+    randomStockCard.amountOnHands = 0
+   }
+
    stockCompanyName = randomStockCard.companyName
    actualStockPrice = randomStockCard.actualPrice
    
