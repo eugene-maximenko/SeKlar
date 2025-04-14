@@ -80,4 +80,44 @@ const prepareStockState = (id) => {
     return stockState 
 }
 
-module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState}
+const approveStockOperation = ({amount, id, operationType, actualStockPrice, stockCompanyName}) => {
+    
+    const purchaseType = 'buySelect'
+    const sellType = 'sellSelect'
+
+    const user = findUser(id)
+    const stockState = user.assets.stock
+    
+    console.log(`stockOperationIsApproved: ` + JSON.stringify(user));
+    console.log('')
+
+    
+    if (operationType === purchaseType) {
+
+        if (user.cashAmount >= actualStockPrice * amount) {
+            console.log('TRUE fro BUY is gonna be returned!');
+            
+            return true
+        }  
+
+        return false
+
+    } else if (operationType === sellType) {
+        if (stockCompanyName in stockState) {
+            const stockOnHands = stockState[stockCompanyName].amount
+
+            if(amount <= stockOnHands) {
+                console.log(`TRUE fro SELL is gonna be returned - stockOnHands = ${stockOnHands} and amount to sell = ${amount}`);
+            
+                return true
+            }
+            
+            return false
+        }
+
+        return false
+    }
+
+}
+
+module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation}

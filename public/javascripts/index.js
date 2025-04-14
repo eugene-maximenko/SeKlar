@@ -67,6 +67,7 @@ socket.on('stockMarketCard:display', ({actualPrice,
     fairPrice, amountOnHands, averagePrice}) => {
     
     const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} по ${averagePrice}` : 0
+
     const html = Mustache.render(stockMarketCardTemplate, {
     actualPrice, companyName, fairPrice, stockAmountOnHands  
     });
@@ -80,6 +81,7 @@ socket.on('stockMarketCard:display', ({actualPrice,
         amountSum.innerText = this.value * actualPrice
     }
 
+    // Validator for input
     inputElement.addEventListener('blur', () => {
         const value = inputElement.value.trim();
       
@@ -89,11 +91,10 @@ socket.on('stockMarketCard:display', ({actualPrice,
         if (!isValid) {
           // Optional: show error, shake input, or reset value
           alert('Only positive numbers allowed!');
+          // reset input area
+          inputElement.value = 1
+          amountSum.innerText = actualPrice
         }
-
-        // reset input area
-        inputElement.value = 1
-        amountSum.innerText = actualPrice
       });
       
 

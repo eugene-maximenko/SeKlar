@@ -9,8 +9,8 @@ var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
-const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard} = require('./utils/games')
-const {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState } = require('./utils/users')
+const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard,} = require('./utils/games')
+const {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation } = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -62,37 +62,46 @@ io.on('connection', (socket) => {
   })
 
   socket.on('state:stockUpdate', ({amount, operationType}) => {
+
     console.log('We got state:stockUpdate event from client :)');
 
     console.log(amount,operationType);
+
+    const stockOperationIsApproved = approveStockOperation({amount, id: socket.id,operationType, actualStockPrice, stockCompanyName})
+
+    if(stockOperationIsApproved) {
+      
+      const cashAmountDelta = -updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
+
+      updateStateDelta({id: socket.id, cashAmountDelta })
+      const user = applyStateDelta(socket.id)
+      socket.emit('state:display', user)
+  
+      const stockState = prepareStockState(socket.id)
+      socket.emit('state:stockDisplay', stockState)
+
+      const randomStockCard = pickRandomStockMarketCard()
+
+      if(randomStockCard.companyName in stockState) {
+            randomStockCard.amountOnHands = stockState[randomStockCard.companyName].amount
+            randomStockCard.averagePrice = stockState[randomStockCard.companyName].averagePrice
+          } else {
+            randomStockCard.amountOnHands = 0
+          }
+
+          stockCompanyName = randomStockCard.companyName
+          actualStockPrice = randomStockCard.actualPrice
+          
+          socket.emit('stockMarketCard:display', 
+            randomStockCard)
+            }
+  }
     
-    const cashAmountDelta = -updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
-
-    updateStateDelta({id: socket.id, cashAmountDelta })
-    const user = applyStateDelta(socket.id)
-    socket.emit('state:display', user)
-
-    const stockState = prepareStockState(socket.id)
-    socket.emit('state:stockDisplay', stockState)
 
   //  to try number of stocks 
 /* 
 ) */
-   const randomStockCard = pickRandomStockMarketCard()
-
-   if(randomStockCard.companyName in stockState) {
-     randomStockCard.amountOnHands = stockState[randomStockCard.companyName].amount
-     randomStockCard.averagePrice = stockState[randomStockCard.companyName].averagePrice
-   } else {
-    randomStockCard.amountOnHands = 0
-   }
-
-   stockCompanyName = randomStockCard.companyName
-   actualStockPrice = randomStockCard.actualPrice
-   
-   socket.emit('stockMarketCard:display', 
-     randomStockCard)
-  }) 
+   ) 
 
 
 
