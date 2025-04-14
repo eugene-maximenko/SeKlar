@@ -99,6 +99,10 @@ socket.on("state:stockDisplay", stockState => {
 
     console.log(`Client got this stockState `+JSON.stringify(stockState))
     
+    const stockRows = document.querySelectorAll(`#stock-row`)
+    
+    stockRows.forEach((e)=>{e.remove()})
+
     for(key in stockState) {
         
         const html = Mustache.render(stockStateTemplate,{companyName: key, 
@@ -107,25 +111,13 @@ socket.on("state:stockDisplay", stockState => {
             averagePrice: stockState[key].averagePrice,
         });
         
-        const stockRow = document.getElementById(`${key}`)
-        console.log(`Current company is ${key}`);
-        
-        console.log('We found ' + stockRow + 'we searched for ' + `#${key}`);
-        
-        if(stockRow){
-            console.log(`Record ${key} considered to be found. We will remove the previos record`);
-            stockRow.remove()
-            console.log('Now we will update the record!');
             stockStateSection.insertAdjacentHTML('afterend', html)
-        } else {
-            console.log(`We didn't find ${key} so we decided to add it now`);
-            stockStateSection.insertAdjacentHTML('afterend', html)
-        }
-}
 
-    const nextCardButton = document.querySelector('#next-card-button')
-    
-    nextCardButton.addEventListener('click', () => {
-        socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
-    })
+        }
+        
+        const nextCardButton = document.querySelector('#next-card-button')
+        
+        nextCardButton.addEventListener('click', () => {
+            socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
+        })
 }) 
