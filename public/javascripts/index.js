@@ -80,6 +80,23 @@ socket.on('stockMarketCard:display', ({actualPrice,
         amountSum.innerText = this.value * actualPrice
     }
 
+    inputElement.addEventListener('blur', () => {
+        const value = inputElement.value.trim();
+      
+        // Allow only digits (and not empty string)
+        const isValid = /^[1-9][0-9]*$/.test(value);
+      
+        if (!isValid) {
+          // Optional: show error, shake input, or reset value
+          alert('Only positive numbers allowed!');
+        }
+
+        // reset input area
+        inputElement.value = 1
+        amountSum.innerText = actualPrice
+      });
+      
+
     // Handler for active lable
 
     let operationType = 'buySelect';
