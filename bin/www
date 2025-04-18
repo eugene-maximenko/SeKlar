@@ -94,6 +94,8 @@ io.on('connection', (socket) => {
           
           socket.emit('stockMarketCard:display', 
             randomStockCard)
+            } else {
+              socket.emit('notification:operationIsNotApproved')
             }
   }
     

@@ -140,3 +140,7 @@ socket.on("state:stockDisplay", stockState => {
             socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
         })
 }) 
+
+socket.on('notification:operationIsNotApproved', ()=>{
+    alert('Operation is not approved, try again :)')
+})
