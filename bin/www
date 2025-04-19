@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
     
       // Notification about new connection
       console.log('User opened the game page')
-      const user = addUser({id: socket.id})  
+      const user = addUser(socket.id)  
 
       socket.emit('state:display', user)
     }) 

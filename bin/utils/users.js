@@ -1,10 +1,18 @@
 const users = []
-const $CASH_CONSTANT = 5000
+const CASH_CONSTANT = 5000
 
-const addUser = ({id}) => {
-    
-    const user = {id, cashAmount:$CASH_CONSTANT, assets: {stock:{}}}
+const addUser = (id) => {
+
+    const user = {
+        id, 
+        cashAmount:CASH_CONSTANT, 
+        assets: {
+            stock:{}
+        }
+    }
+
     users.push(user)
+    
     return user
 }
 
@@ -120,4 +128,4 @@ const approveStockOperation = ({amount, id, operationType, actualStockPrice, sto
 
 }
 
-module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation}
+module.exports = {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, users, CASH_CONSTANT: CASH_CONSTANT}
