@@ -80,16 +80,16 @@ const updateInteractiveSection = () => {
   return "Don`t quit! Keep it up!"
 }
 
-const pickRandomFinancialEvent = () => {
-  const randomFinancialEvent = financialEvents[Math.floor(Math.random() * financialEvents.length)]
+const pickRandomFinancialEvent = (events) => {
   
-  const randomNumber = Math.floor(Math.random() * (1500-500+1) + 500)
-  const randomAmount = randomFinancialEvent.type == "income" ? randomNumber : -randomNumber
-  randomFinancialEvent.amount = randomAmount
+  const randomFinancialEvent = events[Math.floor(Math.random() * events.length)]
+  const randomValue = Math.floor(Math.random() * (1500-500+1) + 500)
+  const adjustedAmount = randomFinancialEvent.type == "income" ? randomValue : -randomValue
 
-  console.log(`Random event is gonna change cash by ` + randomFinancialEvent.amount);
+  const newEvent = {...randomFinancialEvent, amount: adjustedAmount
+  }
   
-  return randomFinancialEvent
+  return newEvent
 }
 
 const pickRandomStockMarketCard = () => {
@@ -103,4 +103,4 @@ const pickRandomStockMarketCard = () => {
 }
 
 
-module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard }
+module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents }
