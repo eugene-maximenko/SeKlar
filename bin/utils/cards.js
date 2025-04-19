@@ -92,15 +92,14 @@ const pickRandomFinancialEvent = (events) => {
   return newEvent
 }
 
-const pickRandomStockMarketCard = () => {
-  const randomStockMarketCard = stockCardCompanies[Math.floor(Math.random() * stockCardCompanies.length)]
+const pickRandomStockMarketCard = (stocks) => {
+  const randomStockMarketCard = stocks[Math.floor(Math.random() * stocks.length)]
   const randomActualPrice = Math.floor(Math.random() * (randomStockMarketCard.maxPrice - randomStockMarketCard.minPrice) + randomStockMarketCard.minPrice)
 
-  randomStockMarketCard.actualPrice = randomActualPrice
-  console.log(`Random stock card: ` + JSON.stringify(randomStockMarketCard))
-  
-  return randomStockMarketCard
+  const newCard = {...randomStockMarketCard, actualPrice: randomActualPrice}
+    
+  return newCard
 }
 
 
-module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents }
+module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents, stockCardCompanies }
