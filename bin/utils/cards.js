@@ -75,11 +75,6 @@ const stockCardCompanies = [
     "maxPrice": 75
   }]
 
-const updateInteractiveSection = () => {
-
-  return "Don`t quit! Keep it up!"
-}
-
 const pickRandomFinancialEvent = (events) => {
   
   const randomFinancialEvent = events[Math.floor(Math.random() * events.length)]
@@ -102,4 +97,4 @@ const pickRandomStockMarketCard = (stocks) => {
 }
 
 
-module.exports = { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents, stockCardCompanies }
+module.exports = { pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents, stockCardCompanies }
