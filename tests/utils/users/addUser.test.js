@@ -2,6 +2,12 @@ const { users, addUser, CASH_CONSTANT } = require('../../../bin/utils/users')
 
 describe('addUser', () => {
 
+    beforeEach(
+        () => {
+         users.length = 0    
+        }
+    )
+
     const fakeId = 'fakeId'
 
     it('should return an object with `id`, `cashAmount`, `assets`', () => {
@@ -44,10 +50,8 @@ describe('addUser', () => {
     it('creates users only with unique IDs', () => {
 
         addUser(fakeId)
-        const result = addUser(fakeId)
+        const createDuplicate = () => addUser(fakeId)
 
-        expect(result).toThrow('User already exists')
+        expect(createDuplicate).toThrow('User already exists')
     })
-
-
 })

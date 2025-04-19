@@ -1,8 +1,20 @@
 const users = []
 const CASH_CONSTANT = 5000
 
+
+const findUser = (id) => {
+    
+    const user = users.find(user => user.id === id)
+    
+    return user
+}
+
 const addUser = (id) => {
 
+    if(findUser(id)) {
+        throw new Error('User already exists');
+    }
+    
     const user = {
         id,
         cashAmount: CASH_CONSTANT,
@@ -16,16 +28,8 @@ const addUser = (id) => {
     return user
 }
 
-const findUser = (id) => {
-    
-    const user = users.find(user => user.id === id)
-
-    return user
-}
-
-
 const updateStateDelta = ({ id, cashAmountDelta }) => {
-
+    
     const user = findUser(id)
     user.cashAmountDelta = cashAmountDelta
 }
