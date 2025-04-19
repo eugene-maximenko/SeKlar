@@ -1,4 +1,5 @@
 const { users, addUser, CASH_CONSTANT } = require('../../../bin/utils/users')
+
 describe('addUser', () => {
 
     const fakeId = 'fakeId'
@@ -39,4 +40,14 @@ describe('addUser', () => {
 
         expect(typeof result.assets.stock).toBe('object')
     })
+
+    it('creates users only with unique IDs', () => {
+
+        addUser(fakeId)
+        const result = addUser(fakeId)
+
+        expect(result).toThrow('User already exists')
+    })
+
+
 })
