@@ -1,9 +1,10 @@
-const { users, addUser, findUser } = require('../../../bin/utils/users')
+const { users, addUser, findUser, resetUsers } = require('../../../bin/utils/users')
+
 describe('addUser', () => {
 
     beforeEach(
         () => {
-         users.length = 0    
+            resetUsers()        
         }
     )
     const fakeId = 'fakeId'

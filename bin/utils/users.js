@@ -1,20 +1,29 @@
-const users = []
+let users = {}
 const CASH_CONSTANT = 5000
 
 
 const findUser = (id) => {
-    
-    const user = users.find(user => user.id === id)
-    
+
+    const user = users[id]
+
     return user
+}
+
+const resetUsers = () => {
+    users = {}
 }
 
 const addUser = (id) => {
 
-    if(findUser(id)) {
+    
+    if (findUser(id)) {
+        
+        console.log(users);
+        // console.log(findUser(id));
+        
         throw new Error('User already exists');
     }
-    
+
     const user = {
         id,
         cashAmount: CASH_CONSTANT,
@@ -23,13 +32,13 @@ const addUser = (id) => {
         }
     }
 
-    users.push(user)
+    users[id] = user
 
     return user
 }
 
 const updateStateDelta = ({ id, cashAmountDelta }) => {
-    
+
     const user = findUser(id)
     user.cashAmountDelta = cashAmountDelta
 }
@@ -138,4 +147,4 @@ const approveStockOperation = ({ amount, id, operationType, actualStockPrice, st
 
 }
 
-module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, users, CASH_CONSTANT, findUser }
+module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers }

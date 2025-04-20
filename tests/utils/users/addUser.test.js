@@ -1,10 +1,10 @@
-const { users, addUser, CASH_CONSTANT } = require('../../../bin/utils/users')
+const { addUser, resetUsers, CASH_CONSTANT, findUser } = require('../../../bin/utils/users')
 
 describe('addUser', () => {
 
     beforeEach(
-        () => {
-         users.length = 0    
+        () => {           
+            resetUsers()        
         }
     )
 
@@ -22,7 +22,6 @@ describe('addUser', () => {
 
     })
 
-
     it('should create user with 5000 cash', () => {
         const result = addUser(fakeId)
 
@@ -36,9 +35,10 @@ describe('addUser', () => {
     })
 
     it('should add user to users array ', () => {
-        const result = addUser(fakeId)
+        const newUser = addUser(fakeId)
+        const result = findUser(fakeId)
 
-        expect(users).toContain(result)
+        expect(result).toBe(newUser)
     })
 
     it('should contain `stock` object in `assets` property', () => {
