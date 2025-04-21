@@ -17,10 +17,7 @@ const addUser = (id) => {
 
     
     if (findUser(id)) {
-        
-        console.log(users);
-        // console.log(findUser(id));
-        
+                
         throw new Error('User already exists');
     }
 
@@ -37,10 +34,17 @@ const addUser = (id) => {
     return user
 }
 
-const updateStateDelta = ({ id, cashAmountDelta }) => {
-
+const updateStateDelta = (id, cashAmountDelta) => {
+    
     const user = findUser(id)
-    user.cashAmountDelta = cashAmountDelta
+
+    if (typeof cashAmountDelta !== 'number' || cashAmountDelta === 0 || !cashAmountDelta || isNaN(cashAmountDelta)) {
+        return user;
+      }
+      
+    user.cashAmountDelta = cashAmountDelta    
+
+    return user
 }
 
 const applyStateDelta = (id) => {
