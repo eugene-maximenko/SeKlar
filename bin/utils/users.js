@@ -17,7 +17,6 @@ const addUser = (id) => {
 
     
     if (findUser(id)) {
-                
         throw new Error('User already exists');
     }
 
@@ -48,6 +47,10 @@ const updateStateDelta = (id, cashAmountDelta) => {
 }
 
 const applyStateDelta = (id) => {
+
+    if (typeof id !== 'string') {
+        throw new Error('You didn`t pass ID param to applyStateDelta function');
+    }
 
     const user = findUser(id)
 
