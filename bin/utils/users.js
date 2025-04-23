@@ -65,10 +65,11 @@ const updateStock = (data) => {
     // validate input
     if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
         typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
-        typeof data.operationType !== 'string' || data.operationType === '' ||
+        !['buySelect', 'sellSelect'].includes(data.operationType) ||
         typeof data.id !== 'string' ||
         typeof data.stockCompanyName !== 'string' || data.stockCompanyName === '' 
-    ) { throw new Error('Invalid input') }
+    ) { 
+        throw new Error('Invalid input') }
 
     const { amount, operationType, id, stockCompanyName, actualStockPrice } = data
 

@@ -11,11 +11,11 @@ describe('addUser', () => {
 
     const createData = (overrides = {}) => {
         const defaults = {
-          amount: testAmount, // положительное число
-          operationType: purchaseTypeOperation, // строка
-          id: testId, // строка
-          stockCompanyName: testCompany, // строка
-          actualStockPrice: testPrice, // положительное число
+          amount: testAmount,
+          operationType: purchaseTypeOperation,
+          id: testId, 
+          stockCompanyName: testCompany,
+          actualStockPrice: testPrice,
         };
       
         return { ...defaults, ...overrides };
@@ -34,6 +34,7 @@ describe('addUser', () => {
         ['operationType is null', createData({ operationType: null })],
         ['operationType is number', createData({ operationType: 123 })],
         ['operationType is empty string', createData({ operationType: '' })],
+        ['operationType is random string', createData({ operationType: 'randomstring' })],
       
         // id
         ['id is null', createData({ id: null })],
@@ -64,6 +65,9 @@ describe('addUser', () => {
     it('should return a number with right input parameters', () => {
         
         const testInput = createData()
+        console.log(testInput);
+        
+
         const result = updateStock(testInput)
         
         expect(typeof result).toBe('number')
@@ -75,9 +79,6 @@ describe('addUser', () => {
         });
     })
       
-
-    // test for checking values of amount, operationType, id, stockCompanyName, actualStockPrice
-
     // operationType not buySelect or sellSelect - bye
 
     // if (stockCompanyName in stocks) {stocks[stockCompanyName].totalInvestment += investmentDelta}
