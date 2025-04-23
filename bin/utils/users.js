@@ -15,7 +15,7 @@ const resetUsers = () => {
 
 const addUser = (id) => {
 
-    
+
     if (findUser(id)) {
         throw new Error('User already exists');
     }
@@ -34,14 +34,14 @@ const addUser = (id) => {
 }
 
 const updateStateDelta = (id, cashAmountDelta) => {
-    
+
     const user = findUser(id)
 
     if (typeof cashAmountDelta !== 'number' || cashAmountDelta === 0 || !cashAmountDelta || isNaN(cashAmountDelta)) {
         return user;
-      }
-      
-    user.cashAmountDelta = cashAmountDelta    
+    }
+
+    user.cashAmountDelta = cashAmountDelta
 
     return user
 }
@@ -62,11 +62,17 @@ const applyStateDelta = (id) => {
 
 const updateStock = (data) => {
 
-    console.log(JSON.stringify(data))
+    // validate input
+    if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
+        typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
+        typeof data.operationType !== 'string' || data.operationType === '' ||
+        typeof data.id !== 'string' ||
+        typeof data.stockCompanyName !== 'string' || data.stockCompanyName === '' 
+    ) { throw new Error('Invalid input') }
+
     const { amount, operationType, id, stockCompanyName, actualStockPrice } = data
 
     const user = findUser(id)
-    console.log('User before changes' + JSON.stringify(user))
 
     const stocks = user.assets.stock
 
@@ -81,20 +87,16 @@ const updateStock = (data) => {
 
         if (stocks[stockCompanyName].amount === 0) {
             delete stocks[stockCompanyName]
-            console.log('User after removing stock' + JSON.stringify(user))
         } else {
             stocks[stockCompanyName].averagePrice = Math.round(stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount)
-            console.log('User after changing stock' + JSON.stringify(user))
         }
-        console.log('')
+
     } else if (Number(amount) > 0) {
         stocks[stockCompanyName] = {
             amount: amountDelta,
             totalInvestment: investmentDelta,
             averagePrice: actualStockPrice
         }
-        console.log('User after initiating stock' + JSON.stringify(user))
-        console.log('')
     } else {
         console.log(`Update stock function didn't change user.`);
     }
