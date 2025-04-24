@@ -88,16 +88,20 @@ const updateStock = (data) => {
 
     if (stockCompanyName in stocks) {
 
-        stocks[stockCompanyName].totalInvestment += investmentDelta
         stocks[stockCompanyName].amount += amountDelta
-
+        
+        // users sells everything
         if (stocks[stockCompanyName].amount === 0) {
             delete stocks[stockCompanyName]
+            
         } else {
+            // recalculation
+            stocks[stockCompanyName].totalInvestment += investmentDelta
             stocks[stockCompanyName].averagePrice = Math.round(stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount)
         }
 
     } else if (Number(amount) > 0) {
+        // user doesn't own company yet
         stocks[stockCompanyName] = {
             amount: amountDelta,
             totalInvestment: investmentDelta,
