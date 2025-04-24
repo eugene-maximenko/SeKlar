@@ -60,16 +60,21 @@ const applyStateDelta = (id) => {
     return user
 }
 
-const updateStock = (data) => {
-
+const validateStockUpdate = data => {
     // validate input
     if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
         typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
         !['buySelect', 'sellSelect'].includes(data.operationType) ||
         typeof data.id !== 'string' ||
-        typeof data.stockCompanyName !== 'string' || data.stockCompanyName === '' 
-    ) { 
-        throw new Error('Invalid input') }
+        typeof data.stockCompanyName !== 'string' || data.stockCompanyName === ''
+    ) {
+        throw new Error('Invalid input')
+    }
+}
+
+const updateStock = (data) => {
+
+    validateStockUpdate(data)
 
     const { amount, operationType, id, stockCompanyName, actualStockPrice } = data
 
@@ -98,8 +103,6 @@ const updateStock = (data) => {
             totalInvestment: investmentDelta,
             averagePrice: actualStockPrice
         }
-    } else {
-        console.log(`Update stock function didn't change user.`);
     }
 
     return investmentDelta
