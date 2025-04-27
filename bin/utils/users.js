@@ -1,6 +1,7 @@
 let users = {}
 const CASH_CONSTANT = 5000
-
+const purchaseType = 'buySelect'
+const sellType = 'sellSelect'
 
 const findUser = (id) => {
 
@@ -64,7 +65,7 @@ const validateStockUpdate = data => {
     // validate input
     if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
         typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
-        !['buySelect', 'sellSelect'].includes(data.operationType) ||
+        ![purchaseType, sellType].includes(data.operationType) ||
         typeof data.id !== 'string' ||
         typeof data.stockCompanyName !== 'string' || data.stockCompanyName === ''
     ) {
@@ -126,37 +127,23 @@ const getStockState = (id) => {
 
 const approveStockOperation = ({ amount, id, operationType, actualStockPrice, stockCompanyName }) => {
 
-    const purchaseType = 'buySelect'
-    const sellType = 'sellSelect'
-
     const user = findUser(id)
     const stockState = user.assets.stock
 
-    console.log(`stockOperationIsApproved: ` + JSON.stringify(user));
-    console.log('')
-
-
     if (operationType === purchaseType) {
 
-        if (user.cashAmount >= actualStockPrice * amount) {
-            console.log('TRUE fro BUY is gonna be returned!');
-
-            return true
-        }
-
-        return false
+        // Can user afford purchase of stocks?
+        return user.cashAmount >= actualStockPrice * amount
 
     } else if (operationType === sellType) {
+
         if (stockCompanyName in stockState) {
+
             const stockOnHands = stockState[stockCompanyName].amount
+            
+            // Does user have enough stocks to sell as much as he wants to? 
+            return amount <= stockOnHands
 
-            if (amount <= stockOnHands) {
-                console.log(`TRUE fro SELL is gonna be returned - stockOnHands = ${stockOnHands} and amount to sell = ${amount}`);
-
-                return true
-            }
-
-            return false
         }
 
         return false
