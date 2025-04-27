@@ -154,23 +154,4 @@ describe('addUser', () => {
   })
 
 
-
-
-  // if (stockCompanyName in stocks) {stocks[stockCompanyName].totalInvestment += investmentDelta}
-  // {stocks[stockCompanyName].amount += amountDelta}
-
-  // if (stocks[stockCompanyName].amount === 0) {
-  // delete stocks[stockCompanyName]
-
-  // else 
-  // stocks[stockCompanyName].averagePrice = Math.round(stocks[stockCompanyName].totalInvestment / stocks[stockCompanyName].amount)
-
-  // else if (Number(amount) > 0) {
-  // //     stocks[stockCompanyName] = {
-  // //         amount: amountDelta,
-  // //         totalInvestment: investmentDelta,
-  // //         averagePrice: actualStockPrice
-  // //     }
-  // // } else { nothing}
-
 })

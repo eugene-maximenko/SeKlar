@@ -112,7 +112,7 @@ const updateStock = (data) => {
     return investmentDelta
 }
 
-const prepareStockState = (id) => {
+const getStockState = (id) => {
 
     const user = findUser(id)
 
@@ -164,4 +164,4 @@ const approveStockOperation = ({ amount, id, operationType, actualStockPrice, st
 
 }
 
-module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers }
+module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers }
