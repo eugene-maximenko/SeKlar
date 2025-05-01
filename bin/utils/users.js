@@ -39,7 +39,9 @@ const updateStateDelta = (id, cashAmountDelta) => {
     const user = findUser(id)
 
     if (typeof cashAmountDelta !== 'number' || cashAmountDelta === 0 || !cashAmountDelta || isNaN(cashAmountDelta)) {
-        return user;
+        console.log('Error is about this ' + cashAmountDelta);
+        
+        throw new Error('Wrong `cashAmountDelta` value in updateStateDelta function');
     }
 
     user.cashAmountDelta = cashAmountDelta

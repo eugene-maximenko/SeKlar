@@ -75,9 +75,9 @@ const stockCardCompanies = [
     "maxPrice": 75
   }]
 
-const pickRandomFinancialEvent = (events) => {
+const pickRandomFinancialEvent = () => {
   
-  const randomFinancialEvent = events[Math.floor(Math.random() * events.length)]
+  const randomFinancialEvent = financialEvents[Math.floor(Math.random() * financialEvents.length)]
   const randomValue = Math.floor(Math.random() * (1500-500+1) + 500)
   const adjustedAmount = randomFinancialEvent.type == "income" ? randomValue : -randomValue
 
@@ -88,7 +88,7 @@ const pickRandomFinancialEvent = (events) => {
 }
 
 const pickRandomStockMarketCard = (stocks) => {
-  const randomStockMarketCard = stocks[Math.floor(Math.random() * stocks.length)]
+  const randomStockMarketCard = stockCardCompanies[Math.floor(Math.random() * stockCardCompanies.length)]
   const randomActualPrice = Math.floor(Math.random() * (randomStockMarketCard.maxPrice - randomStockMarketCard.minPrice) + randomStockMarketCard.minPrice)
 
   const newCard = {...randomStockMarketCard, actualPrice: randomActualPrice}

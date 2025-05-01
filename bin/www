@@ -9,8 +9,8 @@ var app = require('../app');
 var debug = require('debug')('back25:server');
 var http = require('http');
 const socketio = require('socket.io');
-const {updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard,} = require('./utils/cards')
-const {addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation } = require('./utils/users')
+const { updateInteractiveSection, pickRandomFinancialEvent, pickRandomStockMarketCard, } = require('./utils/cards')
+const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation } = require('./utils/users')
 
 /**
  * Get port from environment and store in Express.
@@ -32,18 +32,18 @@ io.on('connection', (socket) => {
   let actualStockPrice = null
 
   socket.on('user:join', () => {
-    
-      // Notification about new connection
-      console.log('User opened the game page')
-      const user = addUser(socket.id)  
 
-      socket.emit('state:display', user)
-    }) 
+    // Notification about new connection
+    console.log('User opened the game page')
+    const user = addUser(socket.id)
 
-  socket.on('game:start', ()=>{
+    socket.emit('state:display', user)
+  })
+
+  socket.on('game:start', () => {
     const randomFinancialEvent = pickRandomFinancialEvent()
-  
-    updateStateDelta({id: socket.id, cashAmountDelta: randomFinancialEvent.amount})
+
+    updateStateDelta(socket.id, randomFinancialEvent.amount )
     socket.emit("randomEventCard:display", randomFinancialEvent)
   })
 
@@ -55,64 +55,64 @@ io.on('connection', (socket) => {
 
     stockCompanyName = randomStockCard.companyName
     actualStockPrice = randomStockCard.actualPrice
-    
-    socket.emit('stockMarketCard:display', 
+
+    socket.emit('stockMarketCard:display',
       randomStockCard
     )
   })
 
-  socket.on('state:stockUpdate', ({amount, operationType}) => {
+  socket.on('state:stockUpdate', ({ amount, operationType }) => {
 
     console.log('We got state:stockUpdate event from client :)');
 
-    console.log(amount,operationType);
+    console.log(amount, operationType);
 
-    const stockOperationIsApproved = approveStockOperation({amount, id: socket.id,operationType, actualStockPrice, stockCompanyName})
+    const stockOperationIsApproved = approveStockOperation({ amount, id: socket.id, operationType, actualStockPrice, stockCompanyName })
 
-    if(stockOperationIsApproved) {
-      
-      const cashAmountDelta = -updateStock({amount, operationType, id : socket.id, stockCompanyName, actualStockPrice})
+    if (stockOperationIsApproved) {
 
-      updateStateDelta({id: socket.id, cashAmountDelta })
+      const cashAmountDelta = -updateStock({ amount, operationType, id: socket.id, stockCompanyName, actualStockPrice })
+
+      updateStateDelta(socket.id, cashAmountDelta)
       const user = applyStateDelta(socket.id)
       socket.emit('state:display', user)
-  
+
       const stockState = prepareStockState(socket.id)
       socket.emit('state:stockDisplay', stockState)
 
       const randomStockCard = pickRandomStockMarketCard()
 
-      if(randomStockCard.companyName in stockState) {
-            randomStockCard.amountOnHands = stockState[randomStockCard.companyName].amount
-            randomStockCard.averagePrice = stockState[randomStockCard.companyName].averagePrice
-          } else {
-            randomStockCard.amountOnHands = 0
-          }
+      if (randomStockCard.companyName in stockState) {
+        randomStockCard.amountOnHands = stockState[randomStockCard.companyName].amount
+        randomStockCard.averagePrice = stockState[randomStockCard.companyName].averagePrice
+      } else {
+        randomStockCard.amountOnHands = 0
+      }
 
-          stockCompanyName = randomStockCard.companyName
-          actualStockPrice = randomStockCard.actualPrice
-          
-          socket.emit('stockMarketCard:display', 
-            randomStockCard)
-            } else {
-              socket.emit('notification:operationIsNotApproved')
-            }
+      stockCompanyName = randomStockCard.companyName
+      actualStockPrice = randomStockCard.actualPrice
+
+      socket.emit('stockMarketCard:display',
+        randomStockCard)
+    } else {
+      socket.emit('notification:operationIsNotApproved')
+    }
   }
-    
-
-  //  to try number of stocks 
-/* 
-) */
-   ) 
 
 
+    //  to try number of stocks 
+    /* 
+    ) */
+  )
 
-    
+
+
+
 })
 
-  /**
- * Listen on provided port, on all network interfaces.
- */
+/**
+* Listen on provided port, on all network interfaces.
+*/
 
 server.listen(port);
 server.on('error', onError);
