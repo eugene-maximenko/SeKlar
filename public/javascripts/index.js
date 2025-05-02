@@ -109,7 +109,7 @@ socket.on('stockMarketCard:display', ({actualPrice,
     // Next button handler
     const nextCardButton = document.querySelector('#next-card-button')
     nextCardButton.addEventListener('click', () => {
-        socket.emit('state:stockUpdate', {amount: inputElement.value || 1, operationType})
+        socket.emit('state:stockUpdate', {amount: Number(inputElement.value) || 1, operationType})
     })
 })
 

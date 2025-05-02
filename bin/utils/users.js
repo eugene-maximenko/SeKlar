@@ -64,6 +64,8 @@ const applyStateDelta = (id) => {
 }
 
 const validateStockUpdate = data => {
+    console.log(data);
+    
     // validate input
     if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
         typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
@@ -71,7 +73,7 @@ const validateStockUpdate = data => {
         typeof data.id !== 'string' ||
         typeof data.stockCompanyName !== 'string' || data.stockCompanyName === ''
     ) {
-        throw new Error('Invalid input')
+        throw new Error(`Invalid input in 'validateStockUpdate'`)
     }
 }
 
@@ -129,6 +131,9 @@ const getStockState = (id) => {
 
 const approveStockOperation = ({ amount, id, operationType, actualStockPrice, stockCompanyName }) => {
 
+
+    console.log([...arguments]);
+    
     const user = findUser(id)
     const stockState = user.assets.stock
 
