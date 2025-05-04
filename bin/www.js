@@ -118,9 +118,10 @@ io.on('connection', (socket) => {
   })
 
   socket.on('business:purchase', () => {
-    purchaseBusiness(socket.id)
+    const user = purchaseBusiness(socket.id)
 
-
+    // Display change in cash
+    socket.emit('cash:update', user)
   })
 
 

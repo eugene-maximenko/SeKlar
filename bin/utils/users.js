@@ -207,11 +207,18 @@ const purchaseBusiness = (id) => {
     const businessBuffer = user.buffer.assets.business
 
     if (businessBuffer.length = 1) {
+        // Update cash
+        const changeInCash = -businessBuffer[0].actualPrice
+        updateStateDelta(id, changeInCash)
+        applyStateDelta(id)
+
         businessAssets.push({ ...businessBuffer[0] })
         businessBuffer.length = 0
     }
 
     console.log(JSON.stringify(user, null, 2));
+    
+    return user
 }
 
 module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers, purchaseBusiness, putBuinessCardInBuffer }
