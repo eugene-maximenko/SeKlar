@@ -109,7 +109,8 @@ io.on('connection', (socket) => {
   )
 
   socket.on('skipTheCard', () => {
-    console.log('User skips the current card');
+
+    socket.emit('businessCard:display')
   })
 
 

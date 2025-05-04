@@ -14,6 +14,7 @@ const stockStateSection = document.querySelector('#assets-deposit-after')
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const stockMarketCardTemplate = document.querySelector("#stock-market-card-template").innerHTML
 const stockStateTemplate = document.querySelector('#stock-state-template').innerHTML
+const businessCardTemplate = document.querySelector('#business-card-template').innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -149,4 +150,15 @@ socket.on("state:stockDisplay", stockState => {
 
 socket.on('notification:operationIsNotApproved', () => {
     alert('Operation is not approved, try again :)')
+})
+
+socket.on('businessCard:display', () => {
+    const html = Mustache.render(businessCardTemplate, {
+        actualPrice: 500,
+        businessUnit : 'Grocery store',
+        fairPrice: 800,
+        passiveIncome: 25,
+        roi: '15%'
+      });
+    interactiveSection.innerHTML = html
 })

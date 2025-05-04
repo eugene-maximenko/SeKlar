@@ -587,8 +587,9 @@
                         </div>
                     </div>
 
-                    <div class="card-buttons"><button class="button button-green" style="display: none;">Пройти обучение</button><button
-                            class="button button-green" id="start-button">Начать игру</button></div>
+                    <div class="card-buttons"><button class="button button-green" style="display: none;">Пройти
+                            обучение</button><button class="button button-green" id="start-button">Начать игру</button>
+                    </div>
 
                     <div class="info-message-wrapper" id="infoMessage">
                         <div class="message-content-wrapper">
@@ -609,7 +610,50 @@
                         <div class="button button-green" id="next-card-button">Next card</button></div>
 
                     </div>
-                </script>        
+                </script>
+
+                <script id="business-card-template" type="text/html">
+                    <div style="color: white;">
+                        <h1><strong><span style="color: rgb(0, 255, 191);">{{businessUnit}}</span> is being sold!</strong></h1>
+
+                        <p>Price: <span style="color: cyan;">{{actualPrice}}</span></p>
+
+                        <div>
+
+                            <table class="report" style="width: 100%;     margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;">
+                        <colgroup>
+                            <col>
+                            <col width="">
+                        </colgroup>
+
+
+                        <tbody>
+                            
+                            <tr>
+                                <td>Can be sold around:</td>
+                                <td style="text-align:right; color: cyan;">{{fairPrice}}</td>
+                            </tr>
+                            <tr>
+                                <td>Passive income:</td>
+                                <td style="text-align:right; color: cyan;">{{passiveIncome}}</td>
+                            </tr>
+                            <tr>
+                                <td>ROI a year:</td>
+                                <td style="text-align:right; color: cyan;">{{roi}}</td>
+                            </tr>
+
+                        </tbody>
+                            </table>
+                    </div>
+
+                    <div>
+                        <button class="button button-green" id="buy-button">Buy</button>
+                        <button class="button button-green" id="skip-button">Skip</button>
+                    </div>
+                </script>
 
                 <script id="stock-market-card-template" type="text/html">
                     <div class="cash-event-card" style="color: white;">
@@ -671,7 +715,7 @@
                 </script>
 
 
-                 </script>
+                </script>
 
                 <script id="stock-state-template" type="text/html">
                     <tr id="stock-row" class="titles">
@@ -682,18 +726,18 @@
                         <td class="num">{{totalInvestment}}
                         </td>
                     </tr>
-                        </script>     
+                        </script>
 
 
-                
-                
+
+
                 <div id="financial-tools">
                     <div class="indicators-row separator i-shadow">
-                        
+
                         <!--Вклад-->
                         <button class="indicator bank-btn bank-deposit" title="Открыть" id="bankDepositOpen"
-                        disabled="disabled">
-                        <span class="icon icon-card-plus"></span>
+                            disabled="disabled">
+                            <span class="icon icon-card-plus"></span>
                         </button>
                         <button class="indicator bank-btn bank-deposit" title="Закрыть" id="bankDepositClose"
                             disabled="disabled">
