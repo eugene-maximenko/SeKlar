@@ -82,6 +82,41 @@ const businessCards = [
     actualPrice: undefined,
     passiveIncome: undefined,
     roi: undefined
+  },
+  {
+    businessUnit: 'Coffee shop',
+    fairPrice: 350,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
+  },
+  {
+    businessUnit: 'Car wash',
+    fairPrice: 800,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
+  },
+  {
+    businessUnit: 'Laundromat',
+    fairPrice: 600,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
+  },
+  {
+    businessUnit: 'Vending machine network',
+    fairPrice: 200,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
+  },
+  {
+    businessUnit: 'Pet grooming salon',
+    fairPrice: 450,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
   }
 ]
 
@@ -121,26 +156,26 @@ const calculatePrice = ({ fairPrice }) => {
   return Math.floor(randomPrice);
 }
 
-const calculatePassiveIncome = ({ actualPrice }) => {
-  const randomFactor = Math.random() * 0.7 / 12 - 0.1;
-  console.log(randomFactor);
-  
-  
-  const randomPassiveIncome = actualPrice * randomFactor
-  console.log(randomPassiveIncome);
+const calculatePassiveIncome = ({ actualPrice, roi }) => {
 
-  return Math.floor(randomPassiveIncome)
+  const passiveIncome = Math.floor((roi / 100) * actualPrice / 12);
 
+  return passiveIncome
 }
 
+const calculateROIPercentage = () => {
+  const roiPercentage = Math.floor(Math.random() * 140 - 70)
+
+  return roiPercentage
+}
 
 const generateBusinessCard = () => {
 
   const business = getRandomBusiness()
 
   business.actualPrice = calculatePrice(business)
+  business.roi = calculateROIPercentage()
   business.passiveIncome = calculatePassiveIncome(business)
-  business.roi = Math.floor(business.passiveIncome / business.actualPrice * 100) + '%'
 
   return business
 }
