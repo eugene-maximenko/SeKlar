@@ -25,7 +25,24 @@ const addUser = (id) => {
         id,
         cashAmount: CASH_CONSTANT,
         assets: {
-            stock: {}
+            stock: {},
+            business: []
+        },
+        buffer: {
+            assets: {
+                stock: [],
+                business: [
+                    //     {
+                    //     businessUnit: 'Grocery store',
+                    //     actualPrice: undefined,
+                    //     passiveIncome: undefined,
+                    //     roi: undefined
+                    // }
+                ],
+                income: 0,
+                costs: 0,
+                liabilities: []
+            }
         }
     }
 
@@ -40,7 +57,7 @@ const updateStateDelta = (id, cashAmountDelta) => {
 
     if (typeof cashAmountDelta !== 'number' || cashAmountDelta === 0 || !cashAmountDelta || isNaN(cashAmountDelta)) {
         console.log('Error is about this ' + cashAmountDelta);
-        
+
         throw new Error('Wrong `cashAmountDelta` value in updateStateDelta function');
     }
 
@@ -65,7 +82,7 @@ const applyStateDelta = (id) => {
 
 const validateStockUpdate = data => {
     console.log(data);
-    
+
     // validate input
     if (typeof data.amount !== 'number' || data.amount <= 0 || isNaN(data.amount) ||
         typeof data.actualStockPrice !== 'number' || data.actualStockPrice <= 0 || isNaN(data.actualStockPrice) ||
@@ -94,11 +111,11 @@ const updateStock = (data) => {
     if (stockCompanyName in stocks) {
 
         stocks[stockCompanyName].amount += amountDelta
-        
+
         // users sells everything
         if (stocks[stockCompanyName].amount === 0) {
             delete stocks[stockCompanyName]
-            
+
         } else {
             // recalculation
             stocks[stockCompanyName].totalInvestment += investmentDelta
@@ -133,7 +150,7 @@ const approveStockOperation = ({ amount, id, operationType, actualStockPrice, st
 
 
     console.log([...arguments]);
-    
+
     const user = findUser(id)
     const stockState = user.assets.stock
 
@@ -147,7 +164,7 @@ const approveStockOperation = ({ amount, id, operationType, actualStockPrice, st
         if (stockCompanyName in stockState) {
 
             const stockOnHands = stockState[stockCompanyName].amount
-            
+
             // Does user have enough stocks to sell as much as he wants to? 
             return amount <= stockOnHands
 
@@ -158,4 +175,43 @@ const approveStockOperation = ({ amount, id, operationType, actualStockPrice, st
 
 }
 
-module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers }
+const putBuinessCardInBuffer = (
+    id,
+    {
+        businessUnit,
+        actualPrice,
+        passiveIncome,
+        roi
+    }
+) => {
+
+    const user = findUser(id)
+
+    const businessBuffer = user.buffer.assets.business
+
+    businessBuffer.push({
+        businessUnit,
+        actualPrice,
+        passiveIncome,
+        roi
+    })
+
+    return user
+}
+
+const purchaseBusiness = (id) => {
+
+    const user = findUser(id)
+
+    const businessAssets = user.assets.business
+    const businessBuffer = user.buffer.assets.business
+
+    if (businessBuffer.length = 1) {
+        businessAssets.push({ ...businessBuffer[0] })
+        businessBuffer.length = 0
+    }
+
+    console.log(JSON.stringify(user, null, 2));
+}
+
+module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers, purchaseBusiness, putBuinessCardInBuffer }

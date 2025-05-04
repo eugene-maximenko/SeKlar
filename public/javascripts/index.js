@@ -157,5 +157,13 @@ socket.on('businessCard:display', (card) => {
     const html = Mustache.render(businessCardTemplate, card);
     interactiveSection.innerHTML = html
 
+    // Next button handler
+    const buyButton = document.querySelector('#buy-button')
+    
+    buyButton.addEventListener('click', () => {
+        socket.emit('business:purchase')
+    })
+
+
 
 })

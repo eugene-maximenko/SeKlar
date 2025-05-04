@@ -4,7 +4,7 @@ const socketio = require('socket.io');
 
 // Import helpers
 const { pickRandomFinancialEvent, pickRandomStockMarketCard, generateBusinessCard } = require('./utils/cards')
-const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation  } = require('./utils/users')
+const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, purchaseBusiness, putBuinessCardInBuffer } = require('./utils/users')
 
 // Configure port
 const port = process.env.PORT || '3001'
@@ -112,7 +112,15 @@ io.on('connection', (socket) => {
 
     const businessCard = generateBusinessCard()
 
+    putBuinessCardInBuffer(socket.id, businessCard)
+
     socket.emit('businessCard:display', businessCard)
+  })
+
+  socket.on('business:purchase', () => {
+    purchaseBusiness(socket.id)
+
+
   })
 
 
