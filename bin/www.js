@@ -102,6 +102,12 @@ io.on('connection', (socket) => {
 
       socket.emit('stockMarketCard:display',
         randomStockCard)
+
+      // Go to business card
+      const businessCard = generateBusinessCard()
+      putBuinessCardInBuffer(socket.id, businessCard)
+      socket.emit('businessCard:display', businessCard)
+
     } else {
       socket.emit('notification:operationIsNotApproved')
     }
@@ -122,8 +128,12 @@ io.on('connection', (socket) => {
 
     // Display change in cash
     socket.emit('cash:update', user)
-  })
 
+    const businessAssets = user.assets.business
+
+    // Display change in assets
+    socket.emit('assets:business:update', businessAssets)
+  })
 
   // Closing brackets to the io function
 })

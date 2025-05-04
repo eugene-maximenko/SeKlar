@@ -9,12 +9,14 @@ const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
 const startButton = document.querySelector('#start-button')
 const stockStateSection = document.querySelector('#assets-deposit-after')
+const businessStateSection = document.querySelector('#assets-real_estate-after')
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
 const stockMarketCardTemplate = document.querySelector("#stock-market-card-template").innerHTML
 const stockStateTemplate = document.querySelector('#stock-state-template').innerHTML
 const businessCardTemplate = document.querySelector('#business-card-template').innerHTML
+const businessStateTemplate = document.querySelector('#business-state-template').innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -159,11 +161,25 @@ socket.on('businessCard:display', (card) => {
 
     // Next button handler
     const buyButton = document.querySelector('#buy-button')
-    
+
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
     })
 
 
 
+})
+
+socket.on('assets:business:update', (businessState) => {
+
+    console.log(`Client got this businessState ` + JSON.stringify(businessState, null, 2))
+
+    const businessRows = document.querySelectorAll(`#business-row`)
+
+    businessRows.forEach((e) => { e.remove() })
+
+    businessState.forEach(element => {
+        const html = Mustache.render(businessStateTemplate, element);
+        businessStateSection.insertAdjacentHTML('afterend', html)
+    })
 })
