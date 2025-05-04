@@ -3,8 +3,8 @@ const http = require('http');
 const socketio = require('socket.io');
 
 // Import helpers
-const { pickRandomFinancialEvent, pickRandomStockMarketCard, } = require('./utils/cards')
-const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation } = require('./utils/users')
+const { pickRandomFinancialEvent, pickRandomStockMarketCard, generateBusinessCard } = require('./utils/cards')
+const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation  } = require('./utils/users')
 
 // Configure port
 const port = process.env.PORT || '3001'
@@ -110,7 +110,9 @@ io.on('connection', (socket) => {
 
   socket.on('skipTheCard', () => {
 
-    socket.emit('businessCard:display')
+    const businessCard = generateBusinessCard()
+
+    socket.emit('businessCard:display', businessCard)
   })
 
 

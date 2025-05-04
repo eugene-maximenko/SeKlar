@@ -75,15 +75,26 @@ const stockCardCompanies = [
     "maxPrice": 75
   }]
 
+const businessCards = [
+  {
+    businessUnit: 'Grocery store',
+    fairPrice: 500,
+    actualPrice: undefined,
+    passiveIncome: undefined,
+    roi: undefined
+  }
+]
+
 const pickRandomFinancialEvent = () => {
-  
+
   const randomFinancialEvent = financialEvents[Math.floor(Math.random() * financialEvents.length)]
-  const randomValue = Math.floor(Math.random() * (1500-500+1) + 500)
+  const randomValue = Math.floor(Math.random() * (1500 - 500 + 1) + 500)
   const adjustedAmount = randomFinancialEvent.type == "income" ? randomValue : -randomValue
 
-  const newEvent = {...randomFinancialEvent, amount: adjustedAmount
+  const newEvent = {
+    ...randomFinancialEvent, amount: adjustedAmount
   }
-  
+
   return newEvent
 }
 
@@ -91,10 +102,47 @@ const pickRandomStockMarketCard = (stocks) => {
   const randomStockMarketCard = stockCardCompanies[Math.floor(Math.random() * stockCardCompanies.length)]
   const randomActualPrice = Math.floor(Math.random() * (randomStockMarketCard.maxPrice - randomStockMarketCard.minPrice) + randomStockMarketCard.minPrice)
 
-  const newCard = {...randomStockMarketCard, actualPrice: randomActualPrice}
-    
+  const newCard = { ...randomStockMarketCard, actualPrice: randomActualPrice }
+
   return newCard
 }
 
+const getRandomBusiness = () => {
+  const randomIndex = Math.floor(Math.random() * businessCards.length)
 
-module.exports = { pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents, stockCardCompanies }
+  return { ...businessCards[randomIndex] }
+}
+
+const calculatePrice = ({ fairPrice }) => {
+  const randomFactor = Math.random() - 0.5;
+
+  const randomPrice = fairPrice * (1 + randomFactor);
+
+  return Math.floor(randomPrice);
+}
+
+const calculatePassiveIncome = ({ actualPrice }) => {
+  const randomFactor = Math.random() * 0.7 / 12 - 0.1;
+  console.log(randomFactor);
+  
+  
+  const randomPassiveIncome = actualPrice * randomFactor
+  console.log(randomPassiveIncome);
+
+  return Math.floor(randomPassiveIncome)
+
+}
+
+
+const generateBusinessCard = () => {
+
+  const business = getRandomBusiness()
+
+  business.actualPrice = calculatePrice(business)
+  business.passiveIncome = calculatePassiveIncome(business)
+  business.roi = Math.floor(business.passiveIncome / business.actualPrice * 100) + '%'
+
+  return business
+}
+
+module.exports = { pickRandomFinancialEvent, pickRandomStockMarketCard, financialEvents, stockCardCompanies, generateBusinessCard }

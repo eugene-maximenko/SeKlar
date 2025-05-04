@@ -152,13 +152,10 @@ socket.on('notification:operationIsNotApproved', () => {
     alert('Operation is not approved, try again :)')
 })
 
-socket.on('businessCard:display', () => {
-    const html = Mustache.render(businessCardTemplate, {
-        actualPrice: 500,
-        businessUnit : 'Grocery store',
-        fairPrice: 800,
-        passiveIncome: 25,
-        roi: '15%'
-      });
+socket.on('businessCard:display', (card) => {
+
+    const html = Mustache.render(businessCardTemplate, card);
     interactiveSection.innerHTML = html
+
+
 })
