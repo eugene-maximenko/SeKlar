@@ -10,6 +10,7 @@ const assetsCashPointer = document.querySelector('#asset-section-cash')
 const startButton = document.querySelector('#start-button')
 const stockStateSection = document.querySelector('#assets-deposit-after')
 const businessStateSection = document.querySelector('#assets-real_estate-after')
+const businessIncomeSection = document.querySelector('#incomes-real_estate-after')
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
@@ -17,6 +18,7 @@ const stockMarketCardTemplate = document.querySelector("#stock-market-card-templ
 const stockStateTemplate = document.querySelector('#stock-state-template').innerHTML
 const businessCardTemplate = document.querySelector('#business-card-template').innerHTML
 const businessStateTemplate = document.querySelector('#business-state-template').innerHTML
+const businessIncomeTemplate = document.querySelector('#business-income-template').innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -164,6 +166,8 @@ socket.on('businessCard:display', (card) => {
 
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
+        
+        socket.emit('game:start')
     })
 
 
@@ -174,12 +178,26 @@ socket.on('assets:business:update', (businessState) => {
 
     console.log(`Client got this businessState ` + JSON.stringify(businessState, null, 2))
 
-    const businessRows = document.querySelectorAll(`#business-row`)
+    const businessAssetRows = document.querySelectorAll(`#business-row`)
+    const businessIncomeRows = document.querySelectorAll('#business-income-row')
 
-    businessRows.forEach((e) => { e.remove() })
+    businessAssetRows.forEach((e) => { e.remove() })
+    businessIncomeRows.forEach((e) => { e.remove() })
 
+    // Can be simplified
     businessState.forEach(element => {
-        const html = Mustache.render(businessStateTemplate, element);
-        businessStateSection.insertAdjacentHTML('afterend', html)
+        const businessAssetHtml = Mustache.render(businessStateTemplate, element);
+        const businessIncomeHtml = Mustache.render(businessIncomeTemplate, element);
+
+        console.log(businessIncomeHtml);
+
+        businessStateSection.insertAdjacentHTML('afterend', businessAssetHtml)
+        
+        businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
+
+    const incomeDelta = businessState.reduce(
+        (accumulator, currentValue) => accumulator.passiveIncome + currentValue.passiveIncome
+    )
+    
 })

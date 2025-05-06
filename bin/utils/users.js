@@ -206,7 +206,7 @@ const purchaseBusiness = (id) => {
     const businessAssets = user.assets.business
     const businessBuffer = user.buffer.assets.business
 
-    if (businessBuffer.length = 1) {
+    if (businessBuffer.length === 1) {
         // Update cash
         const changeInCash = -businessBuffer[0].actualPrice
         updateStateDelta(id, changeInCash)
