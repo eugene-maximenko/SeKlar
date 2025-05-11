@@ -170,6 +170,7 @@ socket.on('businessCard:display', (card) => {
 
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
+        socket.emit('game:start')
     })
 
     // Skip button handler
@@ -180,12 +181,15 @@ socket.on('businessCard:display', (card) => {
     })
 })
 
-socket.on('assets:business:update', (businessState) => {
+socket.on('assets:business:update', (user) => {
+
+    const businessState = user.assets.business
 
     console.log(`Client got this businessState ` + JSON.stringify(businessState, null, 2))
 
     const businessAssetRows = document.querySelectorAll(`#business-row`)
     const businessIncomeRows = document.querySelectorAll('#business-income-row')
+    const totalIncome = document.querySelector('#incomes-total')
 
     businessAssetRows.forEach((e) => { e.remove() })
     businessIncomeRows.forEach((e) => { e.remove() })
@@ -202,8 +206,6 @@ socket.on('assets:business:update', (businessState) => {
         businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
 
-    const incomeDelta = businessState.reduce(
-        (accumulator, currentValue) => accumulator.passiveIncome + currentValue.passiveIncome
-    )
+    totalIncome.innerHTML = user.income
 
 })

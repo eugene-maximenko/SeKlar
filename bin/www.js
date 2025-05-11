@@ -133,10 +133,8 @@ io.on('connection', (socket) => {
       // Display change in cash
       socket.emit('cash:update', user)
 
-      const businessAssets = user.assets.business
-
       // Display change in assets
-      socket.emit('assets:business:update', businessAssets)
+      socket.emit('assets:business:update', user)
       
     } else {
       socket.emit('notification:notEnoughCash')

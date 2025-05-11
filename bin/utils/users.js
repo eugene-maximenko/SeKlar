@@ -1,5 +1,7 @@
 let users = {}
-const CASH_CONSTANT = 500
+const CASH_CONSTANT = 5000
+const INCOME = 5000
+const COSTS = 4000
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
@@ -24,6 +26,8 @@ const addUser = (id) => {
     const user = {
         id,
         cashAmount: CASH_CONSTANT,
+        income: INCOME,
+        costs: COSTS,
         assets: {
             stock: {},
             business: []
@@ -32,12 +36,6 @@ const addUser = (id) => {
             assets: {
                 stock: [],
                 business: [
-                    //     {
-                    //     businessUnit: 'Grocery store',
-                    //     actualPrice: undefined,
-                    //     passiveIncome: undefined,
-                    //     roi: undefined
-                    // }
                 ],
                 income: 0,
                 costs: 0,
@@ -221,6 +219,9 @@ const purchaseBusiness = (id) => {
     const businessBuffer = user.buffer.assets.business
 
     if (businessBuffer.length === 1) {
+        
+        user.income += businessBuffer[0].passiveIncome
+        
         // Update cash
         const changeInCash = -businessBuffer[0].actualPrice
         updateStateDelta(id, changeInCash)
