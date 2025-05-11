@@ -4,6 +4,12 @@ const socket = io();
 // Inform server about new connection
 socket.emit('user:join');
 
+function insertSpaceBeforeLastThreeDigits(num) {
+    const str = num.toString();
+    if (str.length <= 3) return str;
+    return str.slice(0, -3) + ' ' + str.slice(-3);
+}
+
 const interactiveSection = document.querySelector("#card-field")
 const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
@@ -11,6 +17,7 @@ const startButton = document.querySelector('#start-button')
 const stockStateSection = document.querySelector('#assets-deposit-after')
 const businessStateSection = document.querySelector('#assets-real_estate-after')
 const businessIncomeSection = document.querySelector('#incomes-real_estate-after')
+const headerCashflow = document.querySelector('.header-cashflow')
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
@@ -56,14 +63,19 @@ socket.on('cash:update', user => {
 
     headerCashPointer.style.opacity = 0.1
     assetsCashPointer.style.opacity = 0.1
+    headerCashflow.style.opacity = 0.1
 
     setTimeout(() => {
-        headerCashPointer.innerText = user.cashAmount
-        assetsCashPointer.innerText = user.cashAmount
+        headerCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
+        assetsCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
+        headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
 
         headerCashPointer.style.opacity = 1;
         assetsCashPointer.style.opacity = 1
+        headerCashflow.style.opacity = 1
     }, 500);  // 1000ms matches the duration of the fade-out
+
+
 })
 
 // Stock Card
@@ -199,13 +211,11 @@ socket.on('assets:business:update', (user) => {
         const businessAssetHtml = Mustache.render(businessStateTemplate, element);
         const businessIncomeHtml = Mustache.render(businessIncomeTemplate, element);
 
-        console.log(businessIncomeHtml);
-
         businessStateSection.insertAdjacentHTML('afterend', businessAssetHtml)
-
         businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
 
-    totalIncome.innerHTML = user.income
+    totalIncome.innerHTML = insertSpaceBeforeLastThreeDigits(user.income)
+    headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
 
 })
