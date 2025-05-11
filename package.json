@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "kill-port": "kill -9 $(lsof -t -i:3001)",
     "restart": "sh -c 'kill -9 $(lsof -t -i:3001) && nodemon ./bin/www'",
+    "restarton": "npm run kill-port && nodemon ./bin/www'",
     "test": "jest"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 let users = {}
-const CASH_CONSTANT = 5000
+const CASH_CONSTANT = 500
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
@@ -199,6 +199,20 @@ const putBuinessCardInBuffer = (
     return user
 }
 
+const approveBusinessOperation = (id) => {
+    const user = findUser(id)
+
+    const businessBuffer = user.buffer.assets.business
+    const priceOfBusiness = businessBuffer[0]?.actualPrice
+    const cashOnHands = user.cashAmount
+
+    if (cashOnHands >= priceOfBusiness) {
+        return true
+    }
+
+    return false
+}
+
 const purchaseBusiness = (id) => {
 
     const user = findUser(id)
@@ -217,8 +231,11 @@ const purchaseBusiness = (id) => {
     }
 
     console.log(JSON.stringify(user, null, 2));
-    
+
     return user
+
+
+
 }
 
-module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers, purchaseBusiness, putBuinessCardInBuffer }
+module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers, purchaseBusiness, putBuinessCardInBuffer, approveBusinessOperation }

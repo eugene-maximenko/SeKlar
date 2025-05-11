@@ -156,6 +156,10 @@ socket.on('notification:operationIsNotApproved', () => {
     alert('Operation is not approved, try again :)')
 })
 
+socket.on('notification:notEnoughCash', () => {
+    alert('Sorry, you can afford it :) Now you can only move to the next card.')
+})
+
 socket.on('businessCard:display', (card) => {
 
     const html = Mustache.render(businessCardTemplate, card);
@@ -166,12 +170,14 @@ socket.on('businessCard:display', (card) => {
 
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
-        
-        socket.emit('game:start')
     })
 
+    // Skip button handler
+    const skipButton = document.querySelector('#skip-button')
 
-
+    skipButton.addEventListener('click', () => {
+        socket.emit('game:start')
+    })
 })
 
 socket.on('assets:business:update', (businessState) => {
@@ -192,12 +198,12 @@ socket.on('assets:business:update', (businessState) => {
         console.log(businessIncomeHtml);
 
         businessStateSection.insertAdjacentHTML('afterend', businessAssetHtml)
-        
+
         businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
 
     const incomeDelta = businessState.reduce(
         (accumulator, currentValue) => accumulator.passiveIncome + currentValue.passiveIncome
     )
-    
+
 })
