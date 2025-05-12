@@ -29,6 +29,7 @@ const addUser = (id) => {
         cashAmount: CASH_CONSTANT,
         income: INCOME,
         costs: COSTS,
+        loan: 0,
         assets: {
             stock: {},
             business: []
@@ -225,18 +226,21 @@ const purchaseBusinessWithLoan = (id) => {
     if (businessBuffer.length === 1) {
         user.income += businessBuffer[0].passiveIncome
         
+
         // Update loan
         user.loan = priceOfBusiness - user.cashAmount
-        
+        user.loanMonthlyRent = Math.round(user.loan * LOAN_INTEREST_MONTHLY)
+        user.costs -= user.loanMonthlyRent
+
         console.log(`Before the loan purchase ${user.cashAmount}`);
-        
+
         // Withdraw all cash
         const changeInCash = -user.cashAmount
         updateStateDelta(id, changeInCash)
         applyStateDelta(id)
 
         console.log(`After the loan purchase ${user.cashAmount}`);
-        
+
         businessAssets.push({ ...businessBuffer[0] })
         businessBuffer.length = 0
     }
@@ -293,18 +297,18 @@ const purchaseBusiness = (id) => {
 
 module.exports = {
     addUser,
-    updateStateDelta, 
-    applyStateDelta, 
-    updateStock, 
-    prepareStockState: getStockState, 
-    approveStockOperation, 
-    users, 
-    CASH_CONSTANT, 
-    findUser, 
-    resetUsers, 
-    purchaseBusiness, 
-    putBuinessCardInBuffer, 
-    approveBusinessOperation, 
-    checkLoanEligibility, 
+    updateStateDelta,
+    applyStateDelta,
+    updateStock,
+    prepareStockState: getStockState,
+    approveStockOperation,
+    users,
+    CASH_CONSTANT,
+    findUser,
+    resetUsers,
+    purchaseBusiness,
+    putBuinessCardInBuffer,
+    approveBusinessOperation,
+    checkLoanEligibility,
     purchaseBusinessWithLoan
 }

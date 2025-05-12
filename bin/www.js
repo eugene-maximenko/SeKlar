@@ -4,7 +4,7 @@ const socketio = require('socket.io');
 
 // Import helpers
 const { pickRandomFinancialEvent, pickRandomStockMarketCard, generateBusinessCard } = require('./utils/cards')
-const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, purchaseBusiness, putBuinessCardInBuffer, approveBusinessOperation, checkLoanEligibility, purchaseBusinessWithLoan } = require('./utils/users')
+const { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState, approveStockOperation, purchaseBusiness, putBuinessCardInBuffer, approveBusinessOperation, checkLoanEligibility, purchaseBusinessWithLoan, findUser } = require('./utils/users')
 
 // Configure port
 const port = process.env.PORT || '3001'
@@ -33,6 +33,10 @@ io.on('connection', (socket) => {
 
   // 1st card
   socket.on('game:start', () => {
+
+    const user = findUser(socket.id)
+    // Display change in cash
+    socket.emit('cash:update', user)
 
     const randomFinancialEvent = pickRandomFinancialEvent()
 
@@ -144,10 +148,22 @@ io.on('connection', (socket) => {
 
       // Display change in assets
       socket.emit('assets:business:update', user)
-      
+
     } else {
       socket.emit('notification:notEnoughCash')
     }
+  })
+
+  socket.on('requestMonthlySummary', () => {
+    const user = findUser(socket.id)
+
+    const profit = user.income - user.costs
+
+    updateStateDelta(socket.id, profit)
+
+    const info = applyStateDelta(socket.id)
+
+    socket.emit('monthlySummary', info)
   })
 
   // Closing brackets to the io function

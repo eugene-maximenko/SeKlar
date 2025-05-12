@@ -155,6 +155,10 @@
                                 <td class="num" style="text-align:right">4&nbsp;000&nbsp;<span class="rub">kr</span>
                                 </td>
                             </tr>
+                            <tr class="loan-costs-row">
+                                <td>Loan</td>
+                                <td id="sidebar-loan-number" style="text-align:right">0</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -742,6 +746,49 @@
                                 <td style="color: cyan">{{businessUnit}}</td>
                                 <td class="num">{{passiveIncome}}</td>
                             </tr>
+                                </script>
+
+
+                <script id="payroll-template" type="text/html">
+                                    <div style="color: white;">
+                                        <h1><strong>Monthly summary!</strong></h1>
+                                
+                                        <div>
+                
+                                            <table class="report" style="
+                    width: 100%;     
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                    box-sizing: border-box;">
+                                        <colgroup>
+                                            <col>
+                                            <col width="">
+                                        </colgroup>
+                
+                
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td>Income:</td>
+                                                <td style="text-align:right; color: cyan;">{{income}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Costs:</td>
+                                                <td style="text-align:right; color: cyan;">{{costs}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Summary:</td>
+                                                <td style="text-align:right; color: cyan;">{{profit}}</td>
+                                            </tr>
+                
+                                        </tbody>
+                                            </table>
+                                    </div>
+                
+                                    <div>
+                                        <button class="button button-green" id="next-card-button">Next card</button>
+                                    </div>
                                 </script>
 
 

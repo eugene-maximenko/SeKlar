@@ -20,6 +20,7 @@ const businessIncomeSection = document.querySelector('#incomes-real_estate-after
 const headerCashflow = document.querySelector('.header-cashflow')
 const headerLoan = document.querySelector('#header-loan')
 const sidebarLoan = document.querySelector('#liabilities-total')
+const sidebarLoanCosts = document.querySelector('#sidebar-loan-number')
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
@@ -28,6 +29,7 @@ const stockStateTemplate = document.querySelector('#stock-state-template').inner
 const businessCardTemplate = document.querySelector('#business-card-template').innerHTML
 const businessStateTemplate = document.querySelector('#business-state-template').innerHTML
 const businessIncomeTemplate = document.querySelector('#business-income-template').innerHTML
+const monthlySummaryTemplate = document.querySelector('#payroll-template').innerHTML
 
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
@@ -184,14 +186,13 @@ socket.on('businessCard:display', (card) => {
 
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
-        socket.emit('game:start')
+        socket.emit('requestMonthlySummary')
     })
 
     // Skip button handler
     const skipButton = document.querySelector('#skip-button')
-
     skipButton.addEventListener('click', () => {
-        socket.emit('game:start')
+        socket.emit('requestMonthlySummary')
     })
 })
 
@@ -223,4 +224,24 @@ socket.on('assets:business:update', (user) => {
     // Display loan
     headerLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
     sidebarLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
+
+    // Display costs
+    sidebarLoanCosts.innerHTML = user.loanMonthlyRent
+})
+
+socket.on('monthlySummary', (user) => {
+    const profit = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
+    user.income = insertSpaceBeforeLastThreeDigits(user.income)
+    user.costs = insertSpaceBeforeLastThreeDigits(user.costs)
+
+    const html = Mustache.render(monthlySummaryTemplate, { ...user, profit });
+    interactiveSection.innerHTML = html
+
+    // Next card
+    const nextCardButton = document.querySelector('#next-card-button')
+
+    nextCardButton.addEventListener('click', () => {
+        socket.emit('game:start')
+    })
+
 })
