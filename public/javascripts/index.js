@@ -18,6 +18,8 @@ const stockStateSection = document.querySelector('#assets-deposit-after')
 const businessStateSection = document.querySelector('#assets-real_estate-after')
 const businessIncomeSection = document.querySelector('#incomes-real_estate-after')
 const headerCashflow = document.querySelector('.header-cashflow')
+const headerLoan = document.querySelector('#header-loan')
+const sidebarLoan = document.querySelector('#liabilities-total')
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
@@ -197,7 +199,7 @@ socket.on('assets:business:update', (user) => {
 
     const businessState = user.assets.business
 
-    console.log(`Client got this businessState ` + JSON.stringify(businessState, null, 2))
+    console.log(`Client got this user state ` + JSON.stringify(user, null, 2))
 
     const businessAssetRows = document.querySelectorAll(`#business-row`)
     const businessIncomeRows = document.querySelectorAll('#business-income-row')
@@ -218,4 +220,7 @@ socket.on('assets:business:update', (user) => {
     totalIncome.innerHTML = insertSpaceBeforeLastThreeDigits(user.income)
     headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
 
+    // Display loan
+    headerLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
+    sidebarLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
 })

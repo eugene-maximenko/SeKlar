@@ -2,6 +2,7 @@ let users = {}
 const CASH_CONSTANT = 5000
 const INCOME = 5000
 const COSTS = 4000
+const LOAN_INTEREST_MONTHLY = 0.01
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
@@ -146,9 +147,6 @@ const getStockState = (id) => {
 
 const approveStockOperation = ({ amount, id, operationType, actualStockPrice, stockCompanyName }) => {
 
-
-    console.log([...arguments]);
-
     const user = findUser(id)
     const stockState = user.assets.stock
 
@@ -197,7 +195,61 @@ const putBuinessCardInBuffer = (
     return user
 }
 
-const approveBusinessOperation = (id) => {
+const checkLoanEligibility = (id) => {
+
+    const user = findUser(id)
+
+    const businessBuffer = user.buffer.assets.business
+    const priceOfBusiness = businessBuffer[0]?.actualPrice
+    const cashOnHands = user.cashAmount
+
+    const loanSum = priceOfBusiness - cashOnHands
+    const cashflow = user.income - user.costs
+
+    if (loanSum * LOAN_INTEREST_MONTHLY <= cashflow) {
+        return true
+    }
+
+    return false
+}
+
+const purchaseBusinessWithLoan = (id) => {
+
+    const user = findUser(id)
+
+    const businessAssets = user.assets.business
+    const businessBuffer = user.buffer.assets.business
+    const priceOfBusiness = businessBuffer[0]?.actualPrice
+
+
+    if (businessBuffer.length === 1) {
+        user.income += businessBuffer[0].passiveIncome
+        
+        // Update loan
+        user.loan = priceOfBusiness - user.cashAmount
+        
+        console.log(`Before the loan purchase ${user.cashAmount}`);
+        
+        // Withdraw all cash
+        const changeInCash = -user.cashAmount
+        updateStateDelta(id, changeInCash)
+        applyStateDelta(id)
+
+        console.log(`After the loan purchase ${user.cashAmount}`);
+        
+        businessAssets.push({ ...businessBuffer[0] })
+        businessBuffer.length = 0
+    }
+
+    console.log(JSON.stringify(user, null, 2));
+
+    return user
+
+
+
+}
+
+const approveBusinessOperation = id => {
     const user = findUser(id)
 
     const businessBuffer = user.buffer.assets.business
@@ -219,9 +271,9 @@ const purchaseBusiness = (id) => {
     const businessBuffer = user.buffer.assets.business
 
     if (businessBuffer.length === 1) {
-        
+
         user.income += businessBuffer[0].passiveIncome
-        
+
         // Update cash
         const changeInCash = -businessBuffer[0].actualPrice
         updateStateDelta(id, changeInCash)
@@ -239,4 +291,20 @@ const purchaseBusiness = (id) => {
 
 }
 
-module.exports = { addUser, updateStateDelta, applyStateDelta, updateStock, prepareStockState: getStockState, approveStockOperation, users, CASH_CONSTANT, findUser, resetUsers, purchaseBusiness, putBuinessCardInBuffer, approveBusinessOperation }
+module.exports = {
+    addUser,
+    updateStateDelta, 
+    applyStateDelta, 
+    updateStock, 
+    prepareStockState: getStockState, 
+    approveStockOperation, 
+    users, 
+    CASH_CONSTANT, 
+    findUser, 
+    resetUsers, 
+    purchaseBusiness, 
+    putBuinessCardInBuffer, 
+    approveBusinessOperation, 
+    checkLoanEligibility, 
+    purchaseBusinessWithLoan
+}

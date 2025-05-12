@@ -123,7 +123,7 @@ const businessCards = [
 const pickRandomFinancialEvent = () => {
 
   const randomFinancialEvent = financialEvents[Math.floor(Math.random() * financialEvents.length)]
-  const randomValue = Math.floor(Math.random() * (1500 - 500 + 1) + 500)
+  const randomValue = Math.floor(Math.random() * (100 - 50 + 1) + 50)
   const adjustedAmount = randomFinancialEvent.type == "income" ? randomValue : -randomValue
 
   const newEvent = {
