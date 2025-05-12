@@ -30,6 +30,7 @@ const addUser = (id) => {
         income: INCOME,
         costs: COSTS,
         loan: 0,
+        loanMonthlyRent: 0,
         assets: {
             stock: {},
             business: []
