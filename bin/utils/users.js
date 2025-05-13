@@ -231,7 +231,7 @@ const purchaseBusinessWithLoan = (id) => {
         // Update loan
         user.loan = priceOfBusiness - user.cashAmount
         user.loanMonthlyRent = Math.round(user.loan * LOAN_INTEREST_MONTHLY)
-        user.costs -= user.loanMonthlyRent
+        user.costs += user.loanMonthlyRent
 
         console.log(`Before the loan purchase ${user.cashAmount}`);
 

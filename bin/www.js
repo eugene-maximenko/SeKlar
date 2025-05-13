@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
     updateStateDelta(socket.id, randomFinancialEvent.amount)
 
     // Display randomEventCard
-    socket.emit("randomEventCard:display", randomFinancialEvent)
+    socket.emit("randomEventCard:display", { user, randomFinancialEvent })
   })
 
   // Apply changes after random event card
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
 
     // Send stock market card to a client
     socket.emit('stockMarketCard:display',
-      randomStockCard
+      {user, randomStockCard}
     )
   })
 

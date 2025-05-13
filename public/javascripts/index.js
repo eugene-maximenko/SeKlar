@@ -21,6 +21,9 @@ const headerCashflow = document.querySelector('.header-cashflow')
 const headerLoan = document.querySelector('#header-loan')
 const sidebarLoan = document.querySelector('#liabilities-total')
 const sidebarLoanCosts = document.querySelector('#sidebar-loan-number')
+const sideBarTotalCosts = document.querySelector('#costs-total')
+const totalIncome = document.querySelector('#incomes-total')
+
 
 // Templates
 const cashEventCardTemplate = document.querySelector("#cash-event-card-template").innerHTML
@@ -31,12 +34,55 @@ const businessStateTemplate = document.querySelector('#business-state-template')
 const businessIncomeTemplate = document.querySelector('#business-income-template').innerHTML
 const monthlySummaryTemplate = document.querySelector('#payroll-template').innerHTML
 
+function updateBalance(user) {
+    console.log(JSON.stringify(user))
+
+    const state = [headerCashPointer,
+        assetsCashPointer,
+        headerCashflow,
+        totalIncome,
+        headerLoan,
+        sidebarLoan,
+        sideBarTotalCosts,
+        sidebarLoanCosts]
+
+    state.forEach(e => e.style.opacity = 0.1)
+
+    setTimeout(() => {
+
+        // Update cash
+        headerCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
+        assetsCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
+
+        // Update Cashflow
+        headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
+
+        // Display income
+        totalIncome.innerHTML = insertSpaceBeforeLastThreeDigits(user.income)
+
+        // Display loan
+        headerLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
+        sidebarLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
+
+        // Display costs
+        sideBarTotalCosts.innerHTML = insertSpaceBeforeLastThreeDigits(user.costs)
+        sidebarLoanCosts.innerHTML = insertSpaceBeforeLastThreeDigits(user.loanMonthlyRent)
+
+        state.forEach(e => e.style.opacity = 1)
+
+    }, 300);  // 1000ms matches the duration of the fade-out
+}
+
 startButton.addEventListener('click', () => {
     socket.emit('game:start')
 })
 
 // Random Event Card
-socket.on("randomEventCard:display", randomFinancialEvent => {
+socket.on("randomEventCard:display", data => {
+
+    const { user, randomFinancialEvent } = data
+
+    updateBalance(user)
 
     console.log(JSON.stringify(randomFinancialEvent))
 
@@ -63,29 +109,19 @@ socket.on("randomEventCard:display", randomFinancialEvent => {
 
 // Display change in cash
 socket.on('cash:update', user => {
-    console.log(JSON.stringify(user))
-
-    headerCashPointer.style.opacity = 0.1
-    assetsCashPointer.style.opacity = 0.1
-    headerCashflow.style.opacity = 0.1
-
-    setTimeout(() => {
-        headerCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
-        assetsCashPointer.innerText = insertSpaceBeforeLastThreeDigits(user.cashAmount)
-        headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
-
-        headerCashPointer.style.opacity = 1;
-        assetsCashPointer.style.opacity = 1
-        headerCashflow.style.opacity = 1
-    }, 500);  // 1000ms matches the duration of the fade-out
-
-
+    updateBalance(user)
 })
 
 // Stock Card
-socket.on('stockMarketCard:display', ({ actualPrice,
-    companyName,
-    fairPrice, amountOnHands, averagePrice }) => {
+socket.on('stockMarketCard:display', data => {
+
+    const { user,
+        randomStockCard:
+        { actualPrice,
+            companyName,
+            fairPrice, amountOnHands, averagePrice }
+    } = data
+    updateBalance(user)
 
     const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} по ${averagePrice}` : 0
 
@@ -204,7 +240,6 @@ socket.on('assets:business:update', (user) => {
 
     const businessAssetRows = document.querySelectorAll(`#business-row`)
     const businessIncomeRows = document.querySelectorAll('#business-income-row')
-    const totalIncome = document.querySelector('#incomes-total')
 
     businessAssetRows.forEach((e) => { e.remove() })
     businessIncomeRows.forEach((e) => { e.remove() })
@@ -218,15 +253,8 @@ socket.on('assets:business:update', (user) => {
         businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
 
-    totalIncome.innerHTML = insertSpaceBeforeLastThreeDigits(user.income)
-    headerCashflow.innerHTML = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
+    updateBalance(user)
 
-    // Display loan
-    headerLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
-    sidebarLoan.innerHTML = insertSpaceBeforeLastThreeDigits(user.loan)
-
-    // Display costs
-    sidebarLoanCosts.innerHTML = user.loanMonthlyRent
 })
 
 socket.on('monthlySummary', (user) => {
