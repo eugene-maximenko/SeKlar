@@ -23,6 +23,7 @@ const sidebarLoan = document.querySelector('#liabilities-total')
 const sidebarLoanCosts = document.querySelector('#sidebar-loan-number')
 const sideBarTotalCosts = document.querySelector('#costs-total')
 const totalIncome = document.querySelector('#incomes-total')
+const totalAssets = document.querySelector('#assets-total')
 
 
 // Templates
@@ -44,7 +45,8 @@ function updateBalance(user) {
         headerLoan,
         sidebarLoan,
         sideBarTotalCosts,
-        sidebarLoanCosts]
+        sidebarLoanCosts,
+        totalAssets]
 
     state.forEach(e => e.style.opacity = 0.1)
 
@@ -68,8 +70,10 @@ function updateBalance(user) {
         sideBarTotalCosts.innerHTML = insertSpaceBeforeLastThreeDigits(user.costs)
         sidebarLoanCosts.innerHTML = insertSpaceBeforeLastThreeDigits(user.loanMonthlyRent)
 
-        state.forEach(e => e.style.opacity = 1)
+        // Display assets
+        totalAssets.innerHTML = insertSpaceBeforeLastThreeDigits(user.totalAssets)
 
+        state.forEach(e => e.style.opacity = 1)
     }, 300);  // 1000ms matches the duration of the fade-out
 }
 

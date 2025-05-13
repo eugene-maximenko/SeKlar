@@ -56,6 +56,26 @@ const addUser = (id) => {
                 costs: 0,
                 liabilities: []
             }
+        },
+        get totalAssets() {    
+            
+            // Cash
+            let total = this.cashAmount
+
+            // Stocks
+            const stocks = this.assets.stock
+            for (const key in stocks) {
+                const stock = stocks[key]
+                total += stock.totalInvestment
+            }
+        
+            // Business
+            const businessAssets = this.assets.business
+            for (const business of businessAssets) {
+                total += business.actualPrice
+            }
+        
+            return total
         }
     }
 
@@ -239,7 +259,7 @@ const purchaseBusinessWithLoan = (id) => {
     if (businessBuffer.length === 1) {
 
         // Update loan
-        user.loan = priceOfBusiness - user.cashAmount
+        user.loan = priceOfBusiness - user.cashAmount + user.loan
         user.loanMonthlyRent = Math.round(user.loan * LOAN_INTEREST_MONTHLY)
 
         console.log(`Before the loan purchase ${user.cashAmount}`);

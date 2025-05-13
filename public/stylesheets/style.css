@@ -4256,7 +4256,7 @@ body.mobile #chat .block-body.chat-thread {
   left: 0;
   right: 0;
   cursor: default;
-  border-bottom: 4px solid #dedddd;
+  /* border-bottom: 4px solid #dedddd; */
 }
 #card-field a {
   text-decoration: none;
