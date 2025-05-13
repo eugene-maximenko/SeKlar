@@ -27,11 +27,19 @@ const addUser = (id) => {
     const user = {
         id,
         cashAmount: CASH_CONSTANT,
-        income: INCOME,
+        wage: INCOME,
         generalCosts: COSTS,
         loan: 0,
         loanMonthlyRent: 0,
 
+        get income() {
+            const businessAssets = this.assets.business
+            if (businessAssets.length > 0) {
+                const passiveIncomeFromBusiness = businessAssets.reduce((accumulator, current) => accumulator + current.passiveIncome, 0)
+                return this.wage + passiveIncomeFromBusiness
+            }
+            return this.wage
+        },
         get costs() {
             return this.loanMonthlyRent + this.generalCosts
         },
@@ -229,8 +237,6 @@ const purchaseBusinessWithLoan = (id) => {
 
 
     if (businessBuffer.length === 1) {
-        user.income += businessBuffer[0].passiveIncome
-        
 
         // Update loan
         user.loan = priceOfBusiness - user.cashAmount
@@ -279,8 +285,6 @@ const purchaseBusiness = (id) => {
     const businessBuffer = user.buffer.assets.business
 
     if (businessBuffer.length === 1) {
-
-        user.income += businessBuffer[0].passiveIncome
 
         // Update cash
         const changeInCash = -businessBuffer[0].actualPrice
