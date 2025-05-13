@@ -105,7 +105,7 @@ io.on('connection', (socket) => {
       actualStockPrice = randomStockCard.actualPrice
 
       socket.emit('stockMarketCard:display',
-        randomStockCard)
+        {user, randomStockCard})
 
       // Go to business card
       const businessCard = generateBusinessCard()
