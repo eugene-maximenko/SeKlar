@@ -28,9 +28,13 @@ const addUser = (id) => {
         id,
         cashAmount: CASH_CONSTANT,
         income: INCOME,
-        costs: COSTS,
+        generalCosts: COSTS,
         loan: 0,
         loanMonthlyRent: 0,
+
+        get costs() {
+            return this.loanMonthlyRent + this.generalCosts
+        },
         assets: {
             stock: {},
             business: []
@@ -231,7 +235,6 @@ const purchaseBusinessWithLoan = (id) => {
         // Update loan
         user.loan = priceOfBusiness - user.cashAmount
         user.loanMonthlyRent = Math.round(user.loan * LOAN_INTEREST_MONTHLY)
-        user.costs += user.loanMonthlyRent
 
         console.log(`Before the loan purchase ${user.cashAmount}`);
 
