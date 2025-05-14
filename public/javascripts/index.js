@@ -6,8 +6,8 @@ socket.emit('user:join');
 
 function insertSpaceBeforeLastThreeDigits(num) {
     const str = num.toString();
-    if (str.length <= 3) return str;
-    return str.slice(0, -3) + ' ' + str.slice(-3);
+    if (str.length <= 3) return str + " kr";
+    return str.slice(0, -3) + ' ' + str.slice(-3) + " kr";
 }
 
 const interactiveSection = document.querySelector("#card-field")
