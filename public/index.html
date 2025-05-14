@@ -510,7 +510,7 @@
                     <div class="card-content">
                         <div id="start_dlg" class="field-content-inner" style="display: block;">
                             You're on the playing field.
-                            
+
                             <p></p>
                             <h2>Game objective:</h2>
                             <ul class="game-task">
@@ -547,7 +547,7 @@
                 </div>
 
                 <script id="cash-event-card-template" type="text/html">
-                    <div class="cash-event-card" style="color: white;">
+                    <div class="cash-event-card" style="color: white; margin-top: 40px;">
                         <h1><strong>Look at this!</strong></h1>
 
                         <p>{{eventDescription}}</p>
@@ -560,7 +560,7 @@
                 </script>
 
                 <script id="business-card-template" type="text/html">
-                    <div style="color: white;">
+                    <div style="color: white; margin-top: 50px;">
                         <h1><strong>You've found a <span style="color: rgb(0, 255, 191);">{{businessUnit}}</span> you can buy!</strong></h1>
 
                         <p>Price: <span style="color: cyan;">{{actualPrice}}</span></p>
@@ -596,7 +596,7 @@
                             </table>
                     </div>
 
-                    <div style="display: flex; justify-content: center; gap: 30px;">
+                    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
                         <button class="button button-green" id="buy-button">Buy</button>
                         <button class="button button-green" id="skip-button">Skip</button>
                     </div>
@@ -713,16 +713,19 @@
                                         <tbody>
                                             
                                             <tr>
-                                                <td>Income:</td>
+                                                <td><strong>Income:</strong></td>
                                                 <td style="text-align:right; color: cyan;">{{income}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Costs:</td>
+                                                <td><strong>Costs:</strong></td>
                                                 <td style="text-align:right; color: cyan;">{{costs}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Summary:</td>
-                                                <td style="text-align:right; color: cyan;">{{profit}}</td>
+                                                <td colspan="2"><hr style="border: none; border-top: 1px solid #ccc;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:right"><strong>Summary:</strong></td>
+                                                <td style="text-align:right; color: cyan; width: 50px;">{{profit}}</td>
                                             </tr>
                 
                                         </tbody>
@@ -885,7 +888,7 @@
             <!-- {{!--End of interactive field --}} -->
         </div>
         <!-- {{!-- Start of action history --}} -->
-        <div class="layout-column column-right swiper-slide">
+        <div class="layout-column column-right swiper-slide" style="display: none;">
             <div class="column-content">
                 <div class="font-icon icon-bars folding-button" id="graphFolder" data-folded="1"></div>
 
