@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
       if (userIsWinner === true) {
         socket.emit('win')
       } else if (userIsWinner === false) {
-        socket.emit('lost')
+        socket.emit('loss')
       }
     } else {
 

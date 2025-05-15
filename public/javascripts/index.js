@@ -35,6 +35,7 @@ const businessStateTemplate = document.querySelector('#business-state-template')
 const businessIncomeTemplate = document.querySelector('#business-income-template').innerHTML
 const monthlySummaryTemplate = document.querySelector('#payroll-template').innerHTML
 const winTemplate = document.querySelector('#win-template').innerHTML
+const lossTemplate = document.querySelector('#loss-template').innerHTML
 
 function updateBalance(user) {
     console.log(JSON.stringify(user))
@@ -280,5 +281,10 @@ socket.on('monthlySummary', (user) => {
 
 socket.on('win', () => {
     const html = Mustache.render(winTemplate);
+    interactiveSection.innerHTML = html
+})
+
+socket.on('loss', () => {
+    const html = Mustache.render(lossTemplate);
     interactiveSection.innerHTML = html
 })
