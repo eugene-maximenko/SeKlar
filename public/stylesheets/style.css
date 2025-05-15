@@ -1391,8 +1391,6 @@ noscript .noscript-message {
   left: 0;
   right: 0;
   height: 4px;
-  border-top: 1px solid #aac46a;
-  background: #95ac5c;
 }
 .button.button-orange,
 .ui-button.button-orange,
@@ -1422,12 +1420,6 @@ noscript .noscript-message {
 .ui-widget button.button-green {
   background: #cd860c;
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#accf57,endColorstr=#9ebd55);
-}
-.button.button-green:before,
-.ui-button.button-green:before,
-.ui-widget button.button-green:before {
-  border-top: 1px solid #aac46a;
-  background: #95ac5c;
 }
 .button.button-green:hover,
 .ui-button.button-green:hover,
