@@ -58,7 +58,7 @@
                         </colgroup>
 
                         <tbody>
-                            <tr class="game-id-salary">
+                            <tr class="game-id-salary" style="border-bottom: 1px solid">
                                 <td>Salary</td>
                                 <td class="num" style="text-align:right">5&nbsp;000&nbsp;<span class="rub">kr</span>
                                 </td>
@@ -69,7 +69,7 @@
                                 </td>
                                 <td></td>
                             </tr>
-                            <tr id="incomes-deposit-after" class="titles">
+                            <tr id="incomes-deposit-after" class="titles" style="display:none">
                                 <td>
                                     <div>Real estate</div>
                                 </td>
@@ -79,7 +79,7 @@
                                 <td>
                                     <div>Business</div>
                                 </td>
-                                <td></td>
+                                <td>0</td>
                             </tr>
                             <tr id="incomes-business-after" class="titles" style="display:none">
                                 <td>
@@ -141,6 +141,7 @@
 
                 <div class="block-body" style="overflow-y: auto; box-sizing: border-box; margin: 0px; border: 0px;">
                     <table class="report" style="width: 100%;     margin: 0;
+                    
     padding: 0;
     border: 0;
     box-sizing: border-box;">
@@ -150,13 +151,13 @@
                         </colgroup>
 
                         <tbody>
-                            <tr class="game-id-salary">
+                            <tr class="game-id-salary" style="border-bottom: 1px solid">
                                 <td>General</td>
                                 <td class="num" style="text-align:right">4&nbsp;000&nbsp;<span class="rub">kr</span>
                                 </td>
                             </tr>
-                            <tr class="loan-costs-row">
-                                <td>Loan</td>
+                            <tr class="loan-costs-row titles">
+                                <td>Loan payment</td>
                                 <td id="sidebar-loan-number" style="text-align:right">0</td>
                             </tr>
                         </tbody>
@@ -209,6 +210,7 @@
                     <table class="report" style="width: 100%;     margin: 0;
     padding: 0;
     border: 0;
+    border-bottom: 1px solid;
     box-sizing: border-box;">
                         <colgroup>
                             <col>
@@ -661,7 +663,7 @@
 
                 <script id="stock-state-template" type="text/html">
                     <tr id="stock-row" class="titles">
-                        <td>{{companyName}}</td>
+                        <td class="asset-unit">{{companyName}}</td>
                         <td class="num">
                             <span class="num-income"></span>{{amount}} at {{averagePrice}} each
                         </td>
@@ -672,7 +674,7 @@
 
                 <script id="business-state-template" type="text/html">
                             <tr id="business-row" class="titles">
-                                <td style="color: cyan">{{businessUnit}}</td>
+                                <td class="asset-unit">{{businessUnit}}</td>
                                 <td class="num"></td>
                                 <td class="num">{{actualPrice}}
                                 </td>
@@ -681,7 +683,7 @@
 
                 <script id="business-income-template" type="text/html">
                             <tr id="business-income-row" class="titles">
-                                <td style="color: cyan">{{businessUnit}}</td>
+                                <td class="asset-unit">{{businessUnit}}</td>
                                 <td class="num">{{passiveIncome}}</td>
                             </tr>
                                 </script>
