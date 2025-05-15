@@ -10,7 +10,7 @@ function insertSpaceBeforeLastThreeDigits(num) {
     return str.slice(0, -3) + ' ' + str.slice(-3) + " kr";
 }
 
-const interactiveSection = document.querySelector("#card-field")
+const interactiveSection = document.querySelector(".card-content")
 const headerCashPointer = document.querySelector(".header-cash")
 const assetsCashPointer = document.querySelector('#asset-section-cash')
 const startButton = document.querySelector('#start-button')
