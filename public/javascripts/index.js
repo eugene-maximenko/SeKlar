@@ -96,9 +96,13 @@ socket.on('updateWelcomeScreen', data => {
 
     // Salary
     const professionSalary = document.querySelector('.salary')
-    
     const salary = insertSpaceBeforeLastThreeDigits(data.INCOME)
     professionSalary.innerText = salary
+
+    // Turns Limit
+    const gameTurnsLimit = document.querySelector('.limit')
+    const turnsLimit = data.GAME_LENGTH
+    gameTurnsLimit.innerText = `${turnsLimit} turns`
 })
 
 // Random Event Card

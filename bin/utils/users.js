@@ -1,10 +1,10 @@
 let users = {}
 const CASH_CONSTANT = 5000
-const INCOME = 5000
+const INCOME = 32000
 const COSTS = 4000
 const LOAN_INTEREST_MONTHLY = 0.01
 const GAME_CAPITAL_GOAL = 60000
-const GAME_LENGTH = 3
+const GAME_LENGTH = 10
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
