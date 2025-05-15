@@ -4973,7 +4973,7 @@ body.mobile #chat .block-body.chat-thread {
   top: 0;
   right: 0;
   bottom: 0;
-  background: #f6f6f6;
+  /* background: #f6f6f6; */
 }
 .card-content .tabs-holder input[type="radio"] {
   visibility: hidden;
@@ -5009,7 +5009,7 @@ body.mobile #chat .block-body.chat-thread {
 }
 .card-content .tabs-content {
   padding: 10px 20px;
-  background: #f6f6f6;
+  background: #e0a93d;
   border-bottom: 1px solid #ececec;
 }
 .card-content .card-slider-wrapper {

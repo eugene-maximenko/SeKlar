@@ -24,6 +24,7 @@ const sidebarLoanCosts = document.querySelector('#sidebar-loan-number')
 const sideBarTotalCosts = document.querySelector('#costs-total')
 const totalIncome = document.querySelector('#incomes-total')
 const totalAssets = document.querySelector('#assets-total')
+const cardButtons = document.querySelector('.card-buttons')
 
 
 // Templates
@@ -122,7 +123,6 @@ socket.on("randomEventCard:display", data => {
     });
     interactiveSection.innerHTML = html
 
-    const cardButtons = document.querySelector('.card-buttons');
     if (cardButtons) {
         cardButtons.innerHTML = `
     <button class="button button-green" id="next-card-button">Next card</button>`;
@@ -163,6 +163,14 @@ socket.on('stockMarketCard:display', data => {
         actualPrice, companyName, fairPrice, stockAmountOnHands
     });
     interactiveSection.innerHTML = html
+
+    // Buttons
+    if (cardButtons) {
+        cardButtons.innerHTML = `
+    <button class="button button-green" id="next-card-button">Confirm</button>
+    <button class="button button-green" id="skip-button">Skip</button>
+    `;
+    }
 
     const inputElement = document.querySelector('#input_amount')
     const amountSum = document.querySelector(".amount-sum")
