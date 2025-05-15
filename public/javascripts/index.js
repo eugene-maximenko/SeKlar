@@ -149,15 +149,20 @@ socket.on('cash:update', user => {
 // Stock Card
 socket.on('stockMarketCard:display', data => {
 
+    console.log(JSON.stringify(data, 0, 2));
+
     const { user,
         randomStockCard:
         { actualPrice,
             companyName,
-            fairPrice, amountOnHands, averagePrice }
+            fairPrice }
     } = data
     updateBalance(user)
 
-    const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} по ${averagePrice}` : 0
+    const amountOnHands = user.assets.stock[companyName]?.amount
+    const averagePrice = user.assets.stock[companyName]?.averagePrice
+
+    const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} at ${averagePrice} each` : 0
 
     const html = Mustache.render(stockMarketCardTemplate, {
         actualPrice, companyName, fairPrice, stockAmountOnHands
