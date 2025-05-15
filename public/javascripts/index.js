@@ -85,7 +85,7 @@ startButton.addEventListener('click', () => {
 
 
 socket.on('updateWelcomeScreen', data => {
-    
+
     // Goal
     const helpSpan = document.querySelector('#capital-task .help-inline');
     const goal = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL)
@@ -121,6 +121,12 @@ socket.on("randomEventCard:display", data => {
         amount: amountIsPositiveNumber ? `+${randomFinancialEvent.amount}` : randomFinancialEvent.amount
     });
     interactiveSection.innerHTML = html
+
+    const cardButtons = document.querySelector('.card-buttons');
+    if (cardButtons) {
+        cardButtons.innerHTML = `
+    <button class="button button-green" id="next-card-button">Next card</button>`;
+    }
 
     let cashEventColor = document.getElementById("cash-event-amount").style
 
