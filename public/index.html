@@ -434,7 +434,7 @@
                                 <div class="progress-values">
                                     <span class="progress-sum" id="progress-value">
                                         500<br>
-                                    <span class="progress-value">1%</span>
+                                        <span class="progress-value">1%</span>
                                 </div>
                                 <span class="progress-title">
                                     Capital </span>
@@ -504,41 +504,36 @@
 
                 <div id="card-field" class="card-start" style="top: 90px; bottom: 64px;">
                     <div class="card-header">
-                        <div class="card-help icon-info-circle" onclick="currentCard.loadHelper('help')"
-                            title="Информация о карточке"></div>
-                        <div class="card-icon"></div>
-                        <div class="card-title">Hey!</div>
+                        <div class="card-title" style="text-align: center;">Hey! You're on the playing field.</div>
                     </div>
 
                     <div class="card-content">
-                        <div id="start_dlg" class="field-content-inner" style="display: block; color:white; font-weight: bold">
-                            You're on the playing field.
+                        <div id="start_dlg" class="field-content-inner"
+                            style="display: block; color:white; font-size: 1.4em;">
 
-                            <p></p>
-                            <h2>Game objective:</h2>
+
                             <ul class="game-task">
                                 <li id="capital-task">
-                                    Accumulate
-                                    <span class="help-inline"
-                                        help-note="Value of Assets minus the value of Liabilities">a capital of</span>
+                                    You start salary is <span class="salary" style="font-weight: bold;"></span>.
                                 </li>
-                            </ul>
-                            <h2>Game conditions:</h2>
-                            <div class="game-term profession-info">
-                                <span class="profession-title">Profession:</span>Medarbeider in Extra. Salary: <span
-                                    class="salary"></span></span>
-                            </div>
+                                <li id="capital-task">
+                                    Goal is to create
+                                    <span class="help-inline"
+                                    title="Value of Assets minus the value of Liabilities">a capital of </span><span class="capital-goal" style="font-weight: bold;"></span>
+                                </li>
 
-                            <div class="game-term steps-limit">
-                                <span class="limit-title">Limit:
-                                </span>
-                                You have <span class="limit"></span> for the entire game
+                            </ul>
+
+
+
+                            <div class="game-term steps-limit" style="text-align: center;">
+                                You have <span class="limit" style="font-weight: bold;"></span> for the entire game. 😉
                             </div>
                         </div>
                     </div>
 
                     <div class="card-buttons">
-                        <button class="button button-green" id="start-button">Начать игру</button>
+                        <button class="button button-green" id="start-button">Start</button>
                     </div>
 
                     <div class="info-message-wrapper" id="infoMessage">

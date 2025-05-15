@@ -88,13 +88,9 @@ startButton.addEventListener('click', () => {
 socket.on('updateWelcomeScreen', data => {
 
     // Goal
-    const helpSpan = document.querySelector('#capital-task .help-inline');
-    const goal = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL)
-    if (helpSpan) {
-        const goalNode = document.createTextNode(` ${goal}`)
-        helpSpan.parentNode.insertBefore(goalNode, helpSpan.nextSibling)
-    }
-
+    const capitalGoalField = document.querySelector('.capital-goal');
+    capitalGoalField.innerHTML = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL) 
+    
     // Salary
     const professionSalary = document.querySelector('.salary')
     const salary = insertSpaceBeforeLastThreeDigits(data.INCOME)
