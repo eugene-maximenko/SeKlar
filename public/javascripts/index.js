@@ -259,6 +259,16 @@ socket.on('businessCard:display', (card) => {
     const html = Mustache.render(businessCardTemplate, card);
     interactiveSection.innerHTML = html
 
+    // Buttons
+    if (cardButtons) {
+        cardButtons.innerHTML = `
+            <button class="button button-green" id = "buy-button" > Buy</button>
+            <button class="button button-green" id="skip-button">Skip</button>
+        `;
+    }
+
+
+
     // Next button handler
     const buyButton = document.querySelector('#buy-button')
 
@@ -307,6 +317,13 @@ socket.on('monthlySummary', (user) => {
     const html = Mustache.render(monthlySummaryTemplate, { ...user, profit });
     interactiveSection.innerHTML = html
 
+    // Buttons
+    // Buttons
+    if (cardButtons) {
+        cardButtons.innerHTML = `
+            <button class="button button-green" id="next-card-button">Next card</button>
+        `;
+    }
     // Next card
     const nextCardButton = document.querySelector('#next-card-button')
 
