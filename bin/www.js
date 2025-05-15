@@ -35,15 +35,29 @@ io.on('connection', (socket) => {
   socket.on('game:start', () => {
 
     const user = findUser(socket.id)
-    // Display change in cash
-    socket.emit('cash:update', user)
+    
+    console.log(`gameOver = ${user.gameOver()}`);
+    
+    if (user.gameOver()) {
+      const userIsWinner = user.gameResult()
+      
+      if (userIsWinner === true) {
+        socket.emit('win')
+      } else if (userIsWinner === false) {
+        socket.emit('lost')
+      }
+    } else {
 
-    const randomFinancialEvent = pickRandomFinancialEvent()
+      // Display change in cash
+      socket.emit('cash:update', user)
 
-    updateStateDelta(socket.id, randomFinancialEvent.amount)
+      const randomFinancialEvent = pickRandomFinancialEvent()
 
-    // Display randomEventCard
-    socket.emit("randomEventCard:display", { user, randomFinancialEvent })
+      updateStateDelta(socket.id, randomFinancialEvent.amount)
+
+      // Display randomEventCard
+      socket.emit("randomEventCard:display", { user, randomFinancialEvent })
+    }
   })
 
   // Apply changes after random event card
@@ -62,7 +76,7 @@ io.on('connection', (socket) => {
 
     // Send stock market card to a client
     socket.emit('stockMarketCard:display',
-      {user, randomStockCard}
+      { user, randomStockCard }
     )
   })
 
@@ -105,7 +119,7 @@ io.on('connection', (socket) => {
       actualStockPrice = randomStockCard.actualPrice
 
       socket.emit('stockMarketCard:display',
-        {user, randomStockCard})
+        { user, randomStockCard })
 
       // Go to business card
       const businessCard = generateBusinessCard()
@@ -163,6 +177,7 @@ io.on('connection', (socket) => {
 
     const info = applyStateDelta(socket.id)
 
+    user.nextMonth()
     socket.emit('monthlySummary', info)
   })
 

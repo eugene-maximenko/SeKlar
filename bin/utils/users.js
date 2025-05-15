@@ -3,6 +3,8 @@ const CASH_CONSTANT = 5000
 const INCOME = 5000
 const COSTS = 4000
 const LOAN_INTEREST_MONTHLY = 0.01
+const GAME_CAPITAL_GOAL = 6000
+const GAME_LENGTH = 3
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
@@ -31,7 +33,16 @@ const addUser = (id) => {
         generalCosts: COSTS,
         loan: 0,
         loanMonthlyRent: 0,
-
+        month: 0,
+        nextMonth() {
+            this.month += 1;
+        },
+        gameOver() {
+            return this.month >= GAME_LENGTH
+        },
+        gameResult() {
+            return this.totalAssets - this.loan >= GAME_CAPITAL_GOAL
+        },
         get income() {
             const businessAssets = this.assets.business
             if (businessAssets.length > 0) {
