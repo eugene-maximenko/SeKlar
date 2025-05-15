@@ -34,6 +34,7 @@ const businessCardTemplate = document.querySelector('#business-card-template').i
 const businessStateTemplate = document.querySelector('#business-state-template').innerHTML
 const businessIncomeTemplate = document.querySelector('#business-income-template').innerHTML
 const monthlySummaryTemplate = document.querySelector('#payroll-template').innerHTML
+const winTemplate = document.querySelector('#win-template').innerHTML
 
 function updateBalance(user) {
     console.log(JSON.stringify(user))
@@ -275,5 +276,9 @@ socket.on('monthlySummary', (user) => {
     nextCardButton.addEventListener('click', () => {
         socket.emit('game:start')
     })
+})
 
+socket.on('win', () => {
+    const html = Mustache.render(winTemplate);
+    interactiveSection.innerHTML = html
 })
