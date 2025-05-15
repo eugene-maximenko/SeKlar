@@ -83,6 +83,16 @@ startButton.addEventListener('click', () => {
     socket.emit('game:start')
 })
 
+
+socket.on('updateWelcomeScreen', data => {
+    const helpSpan = document.querySelector('#capital-task .help-inline');
+    const goal = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL)
+    if (helpSpan) {
+        const goalNode = document.createTextNode(` ${goal}`)
+        helpSpan.parentNode.insertBefore(goalNode, helpSpan.nextSibling)
+    }
+})
+
 // Random Event Card
 socket.on("randomEventCard:display", data => {
 

@@ -349,5 +349,8 @@ module.exports = {
     putBuinessCardInBuffer,
     approveBusinessOperation,
     checkLoanEligibility,
-    purchaseBusinessWithLoan
+    purchaseBusinessWithLoan,
+    INCOME,
+    GAME_CAPITAL_GOAL,
+    GAME_LENGTH
 }
