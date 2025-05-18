@@ -433,8 +433,8 @@
                             <div class="i-content">
                                 <div class="progress-values">
                                     <span class="progress-sum" id="progress-value"></span>
-                                        <br>
-                                        <span class="progress-value"></span>
+                                    <br>
+                                    <span class="progress-value"></span>
                                 </div>
                                 <span class="progress-title">
                                     Capital </span>
@@ -518,8 +518,8 @@
                                 </li>
                                 <li id="capital-task">
                                     Goal is to create
-                                    <span class="help-inline"
-                                    title="Value of Assets minus the value of Liabilities">a capital of </span><span class="capital-goal" style="font-weight: bold;"></span>
+                                    <span class="help-inline" title="Value of Assets minus the value of Liabilities">a
+                                        capital of </span><span class="capital-goal" style="font-weight: bold;"></span>
                                 </li>
 
                             </ul>
@@ -532,7 +532,7 @@
                         </div>
                     </div>
 
-                    <div class="card-buttons" >
+                    <div class="card-buttons">
                         <button class="button button-green" id="start-button">Start</button>
                     </div>
 
@@ -596,7 +596,7 @@
                     <div class="cash-event-card" style="color: white;">
                         <h1><strong>Stock market</strong></h1>
 
-                        <p>Actual price: <span style="color: cyan;">{{actualPrice}}</span></p>
+                        <p>Actual price: <span id="stock-actual-price">{{actualPrice}}</span></p>
 
                         <div>
 
@@ -641,14 +641,14 @@
                             <div class="tabs-content">
                                 <div class="amount-line">Enter quantity 
                                     <input autocomplete="off" id="input_amount" type="text" value="1" tabindex="" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="color: cyan;">{{actualPrice}}</span>
+                                    <span onclick="maximizeAmount()" style="cursor: pointer; color: black; text-decoration: underline; font-weight: bold; font-size: 1.2em; padding-left: 40px;">
+                                        Max amount
+                                    </span> 
                                 </div>
                             </div>
                 </div>
-                    
-                    <div style="display: flex; justify-content: center; gap: 10px;">
-                        <!-- <button class="button button-green" id="next-card-button">Confirm</button>
-                        <button class="button button-green" id="skip-button">Skip</button> -->
-                    </div>
+
+                
                 </script>
 
 

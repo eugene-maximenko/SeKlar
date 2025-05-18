@@ -7712,9 +7712,25 @@ body > div > div.layout-column.column-center.swiper-slide {
     text-align: center !important;
 }
 
-button#start-button:hover {
+button#start-button:hover,
+button#buy-button:hover,
+button#next-card-button:hover {
   transition-duration: 0.5s;
   color: #000;
   background: #b27205;
+  transform: translateY(-5px);
+}
+
+button#skip-button {
+  background: gray;
+  color: white;
+
+}
+
+button#skip-button:hover
+ {
+  transition-duration: 0.5s;
+  background: #585858;
+  color: black;
   transform: translateY(-5px);
 }
