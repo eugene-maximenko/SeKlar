@@ -545,7 +545,7 @@
                 </div>
 
                 <script id="cash-event-card-template" type="text/html">
-                    <div class="cash-event-card" style="color: white; margin-top: 40px;">
+                    <div class="cash-event-card" style="color: white;">
                         <h1><strong>Look at this!</strong></h1>
 
                         <p>{{eventDescription}}</p>
@@ -633,15 +633,15 @@
                     <div class="tabs-panel">
                         <div class="tabs-holder">
                             <label>
-                                <input type="radio" name="operationChoice" id="buySelect" checked=""><span class="marker"></span>Покупка
+                                <input type="radio" name="operationChoice" id="buySelect" checked=""><span class="marker"></span>Buy
                                 <div class="tab-background"></div>
                             </label>
-                            <label><input type="radio" name="operationChoice" id="sellSelect"><span class="marker"></span>Продажа
+                            <label><input type="radio" name="operationChoice" id="sellSelect"><span class="marker"></span>Sell
                                 <div class="tab-background"></div>
                             </label>
                             <span class="clear"></span></div>
                             <div class="tabs-content">
-                                <div class="amount-line">Введите количество 
+                                <div class="amount-line">Enter the quantity 
                                     <input autocomplete="off" id="input_amount" type="text" value="1" tabindex="" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="color: cyan;">{{actualPrice}}</span>
                                 </div>
                             </div>
