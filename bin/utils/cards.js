@@ -14,11 +14,11 @@ const financialEvents = [
   },
   {
     type: "income",
-    description: "Got a surprise work bonus"
+    description: "You've got a surprise work bonus"
   },
   {
     type: "income",
-    description: "Sold something you no longer need"
+    description: "Sold furniture you no longer need"
   },
   // 🔴 Cost
   {

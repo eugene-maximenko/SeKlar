@@ -4329,7 +4329,6 @@ body.mobile #chat .block-body.chat-thread {
 .card-header .card-title {
   font-size: 1.5em;
   line-height: 45px;
-  text-transform: uppercase;
   color: white;
   overflow: hidden;
   text-overflow: ellipsis;

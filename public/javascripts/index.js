@@ -28,6 +28,7 @@ const cardButtons = document.querySelector('.card-buttons')
 const progressInner = document.querySelector('.progress-line.orange > div')
 const progressValue = document.querySelector('.progress-value')
 const progressSum = document.querySelector('.progress-sum')
+const cardTitle = document.querySelector('.card-title')
 
 
 // Templates
@@ -118,6 +119,7 @@ socket.on("randomEventCard:display", data => {
     const { user, randomFinancialEvent } = data
 
     updateBalance(user)
+    cardTitle.innerText = `It’s all part of the flow...` 
 
     console.log(JSON.stringify(randomFinancialEvent))
 
@@ -166,17 +168,19 @@ socket.on('stockMarketCard:display', data => {
     } = data
     updateBalance(user)
 
+    cardTitle.innerText = `Market's twitchin' again...!` 
+    
     const amountOnHands = user.assets.stock[companyName]?.amount
     const averagePrice = user.assets.stock[companyName]?.averagePrice
-
+    
     const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} at ${insertSpaceBeforeLastThreeDigits(averagePrice)} each` : 0
-
+    
     const html = Mustache.render(stockMarketCardTemplate, {
         actualPrice: insertSpaceBeforeLastThreeDigits(actualPrice), companyName,
         fairPrice: insertSpaceBeforeLastThreeDigits(fairPrice), stockAmountOnHands
     });
     interactiveSection.innerHTML = html
-
+    
     // Buttons
     if (cardButtons) {
         cardButtons.innerHTML = `
@@ -184,22 +188,22 @@ socket.on('stockMarketCard:display', data => {
     <button class="button button-green" id="skip-button">Skip</button>
     `;
     }
-
+    
     const inputElement = document.querySelector('#input_amount')
     const amountSum = document.querySelector(".amount-sum")
-
+    
     // Handler for the amount field
     inputElement.onchange = function () {
         amountSum.innerText = insertSpaceBeforeLastThreeDigits(this.value * actualPrice)
     }
-
+    
     // Validator for input
     inputElement.addEventListener('blur', () => {
         const value = inputElement.value.trim();
 
         // Allow only digits (and not empty string)
         const isValid = /^[1-9][0-9]*$/.test(value);
-
+        
         if (!isValid) {
             // Optional: show error, shake input, or reset value
             alert('Only positive numbers allowed!');
@@ -208,21 +212,21 @@ socket.on('stockMarketCard:display', data => {
             amountSum.innerText = actualPrice
         }
     });
-
-
+    
+    
     // Handler for active lable
     let operationType = 'buySelect';
-
+    
     document.querySelector('.tabs-holder').addEventListener('change', function (e) {
         operationType = e.target.id;
     });
-
+    
     // Next button handler
     const nextCardButton = document.querySelector('#next-card-button')
     nextCardButton.addEventListener('click', () => {
         socket.emit('state:stockUpdate', { amount: Number(inputElement.value) || 1, operationType })
     })
-
+    
     // Skip button handler
     const skipButton = document.querySelector('#skip-button')
     skipButton.addEventListener('click', () => {
@@ -232,28 +236,28 @@ socket.on('stockMarketCard:display', data => {
 
 // Display Stock State
 socket.on("state:stockDisplay", stockState => {
-
+    
     console.log(`Client got this stockState ` + JSON.stringify(stockState))
-
+    
     const stockRows = document.querySelectorAll(`#stock-row`)
-
+    
     stockRows.forEach((e) => { e.remove() })
-
+    
     for (key in stockState) {
-
+        
         const html = Mustache.render(stockStateTemplate, {
             companyName: key,
             amount: stockState[key].amount,
             totalInvestment: stockState[key].totalInvestment,
             averagePrice: stockState[key].averagePrice,
         });
-
+        
         stockStateSection.insertAdjacentHTML('afterend', html)
-
+        
     }
-
+    
     const nextCardButton = document.querySelector('#next-card-button')
-
+    
     nextCardButton.addEventListener('click', () => {
         socket.emit('state:stockUpdate', { amount: inputElement.value || 1, operationType })
     })
@@ -268,11 +272,13 @@ socket.on('notification:notEnoughCash', () => {
 })
 
 socket.on('businessCard:display', (card) => {
-
+    
+    cardTitle.innerText = `Deal or No Deal?`
+    
     card.actualPrice = insertSpaceBeforeLastThreeDigits(card.actualPrice)
     card.fairPrice = insertSpaceBeforeLastThreeDigits(card.fairPrice)
     card.passiveIncome = insertSpaceBeforeLastThreeDigits(card.passiveIncome)
-
+    
     const html = Mustache.render(businessCardTemplate, card);
     interactiveSection.innerHTML = html
 
@@ -281,19 +287,19 @@ socket.on('businessCard:display', (card) => {
         cardButtons.innerHTML = `
             <button class="button button-green" id = "buy-button" > Buy</button>
             <button class="button button-green" id="skip-button">Skip</button>
-        `;
+            `;
     }
+    
 
-
-
+    
     // Next button handler
     const buyButton = document.querySelector('#buy-button')
-
+    
     buyButton.addEventListener('click', () => {
         socket.emit('business:purchase')
         socket.emit('requestMonthlySummary')
     })
-
+    
     // Skip button handler
     const skipButton = document.querySelector('#skip-button')
     skipButton.addEventListener('click', () => {
@@ -302,31 +308,34 @@ socket.on('businessCard:display', (card) => {
 })
 
 socket.on('assets:business:update', (user) => {
-
+    
+    
     const businessState = user.assets.business
-
+    
     console.log(`Client got this user state ` + JSON.stringify(user, null, 2))
-
+    
     const businessAssetRows = document.querySelectorAll(`#business-row`)
     const businessIncomeRows = document.querySelectorAll('#business-income-row')
-
+    
     businessAssetRows.forEach((e) => { e.remove() })
     businessIncomeRows.forEach((e) => { e.remove() })
-
+    
     // Can be simplified
     businessState.forEach(element => {
         const businessAssetHtml = Mustache.render(businessStateTemplate, element);
         const businessIncomeHtml = Mustache.render(businessIncomeTemplate, element);
-
+        
         businessStateSection.insertAdjacentHTML('afterend', businessAssetHtml)
         businessIncomeSection.insertAdjacentHTML('afterend', businessIncomeHtml)
     })
-
+    
     updateBalance(user)
-
+    
 })
 
 socket.on('monthlySummary', (user) => {
+    cardTitle.innerText = `Looks good to you?`
+    
     const profit = insertSpaceBeforeLastThreeDigits(user.income - user.costs)
     user.income = insertSpaceBeforeLastThreeDigits(user.income)
     user.costs = insertSpaceBeforeLastThreeDigits(user.costs)
