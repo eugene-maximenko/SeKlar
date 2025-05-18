@@ -89,8 +89,8 @@ socket.on('updateWelcomeScreen', data => {
 
     // Goal
     const capitalGoalField = document.querySelector('.capital-goal');
-    capitalGoalField.innerHTML = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL) 
-    
+    capitalGoalField.innerHTML = insertSpaceBeforeLastThreeDigits(data.GAME_CAPITAL_GOAL)
+
     // Salary
     const professionSalary = document.querySelector('.salary')
     const salary = insertSpaceBeforeLastThreeDigits(data.INCOME)
@@ -162,7 +162,7 @@ socket.on('stockMarketCard:display', data => {
     const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} at ${insertSpaceBeforeLastThreeDigits(averagePrice)} each` : 0
 
     const html = Mustache.render(stockMarketCardTemplate, {
-        actualPrice: insertSpaceBeforeLastThreeDigits(actualPrice), companyName, 
+        actualPrice: insertSpaceBeforeLastThreeDigits(actualPrice), companyName,
         fairPrice: insertSpaceBeforeLastThreeDigits(fairPrice), stockAmountOnHands
     });
     interactiveSection.innerHTML = html
@@ -258,6 +258,10 @@ socket.on('notification:notEnoughCash', () => {
 })
 
 socket.on('businessCard:display', (card) => {
+
+    card.actualPrice = insertSpaceBeforeLastThreeDigits(card.actualPrice)
+    card.fairPrice = insertSpaceBeforeLastThreeDigits(card.fairPrice)
+    card.passiveIncome = insertSpaceBeforeLastThreeDigits(card.passiveIncome)
 
     const html = Mustache.render(businessCardTemplate, card);
     interactiveSection.innerHTML = html
