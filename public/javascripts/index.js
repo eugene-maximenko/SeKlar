@@ -25,6 +25,9 @@ const sideBarTotalCosts = document.querySelector('#costs-total')
 const totalIncome = document.querySelector('#incomes-total')
 const totalAssets = document.querySelector('#assets-total')
 const cardButtons = document.querySelector('.card-buttons')
+const progressInner = document.querySelector('.progress-line.orange > div')
+const progressValue = document.querySelector('.progress-value')
+const progressSum = document.querySelector('.progress-sum')
 
 
 // Templates
@@ -76,7 +79,14 @@ function updateBalance(user) {
         // Display assets
         totalAssets.innerHTML = insertSpaceBeforeLastThreeDigits(user.totalAssets)
 
-        state.forEach(e => e.style.opacity = 1)
+        const progressPercent = Math.round(user.totalAssets / user.goal * 100) + `%`
+
+        // Progress section
+        progressInner.style.width = progressPercent
+        progressValue.innerText = progressPercent
+        progressSum.innerText = `${insertSpaceBeforeLastThreeDigits(user.totalAssets)} / ${insertSpaceBeforeLastThreeDigits(user.goal)}` 
+
+            state.forEach(e => e.style.opacity = 1)
     }, 300);  // 1000ms matches the duration of the fade-out
 }
 

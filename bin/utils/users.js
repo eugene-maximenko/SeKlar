@@ -58,6 +58,7 @@ const addUser = (id) => {
             stock: {},
             business: []
         },
+        goal: GAME_CAPITAL_GOAL,
         buffer: {
             assets: {
                 stock: [],
