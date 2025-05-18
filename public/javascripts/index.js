@@ -112,6 +112,7 @@ socket.on("randomEventCard:display", data => {
     console.log(JSON.stringify(randomFinancialEvent))
 
     const amountIsPositiveNumber = randomFinancialEvent.amount > 0 ? true : false
+    randomFinancialEvent.amount = insertSpaceBeforeLastThreeDigits(randomFinancialEvent.amount)
 
     const html = Mustache.render(cashEventCardTemplate, {
         eventDescription: randomFinancialEvent.description,
@@ -158,10 +159,11 @@ socket.on('stockMarketCard:display', data => {
     const amountOnHands = user.assets.stock[companyName]?.amount
     const averagePrice = user.assets.stock[companyName]?.averagePrice
 
-    const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} at ${averagePrice} each` : 0
+    const stockAmountOnHands = amountOnHands > 0 ? `${amountOnHands} at ${insertSpaceBeforeLastThreeDigits(averagePrice)} each` : 0
 
     const html = Mustache.render(stockMarketCardTemplate, {
-        actualPrice, companyName, fairPrice, stockAmountOnHands
+        actualPrice: insertSpaceBeforeLastThreeDigits(actualPrice), companyName, 
+        fairPrice: insertSpaceBeforeLastThreeDigits(fairPrice), stockAmountOnHands
     });
     interactiveSection.innerHTML = html
 
@@ -178,7 +180,7 @@ socket.on('stockMarketCard:display', data => {
 
     // Handler for the amount field
     inputElement.onchange = function () {
-        amountSum.innerText = this.value * actualPrice
+        amountSum.innerText = insertSpaceBeforeLastThreeDigits(this.value * actualPrice)
     }
 
     // Validator for input

@@ -4607,6 +4607,9 @@ body.mobile #chat .block-body.chat-thread {
   padding-left: 20px;
   padding-right: 20px;
   width: auto;
+  border-radius: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 .card-complete {
   overflow: hidden;
@@ -7708,4 +7711,11 @@ body > div > div.layout-column.column-center.swiper-slide {
 
   .block .report .asset-unit {
     text-align: center !important;
+}
+
+button#start-button:hover {
+  transition-duration: 0.5s;
+  color: #000;
+  background: #b27205;
+  transform: translateY(-5px);
 }
