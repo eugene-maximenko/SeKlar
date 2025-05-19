@@ -378,11 +378,21 @@ socket.on('monthlySummary', (user) => {
 })
 
 socket.on('win', () => {
+    cardTitle.innerText = `Wow!`
+
     const html = Mustache.render(winTemplate);
     interactiveSection.innerHTML = html
+
+    cardButtons.innerHTML = `
+        <button class="button button-green" id="next-card-button" onclick="location.reload()">Play again!</button>
+    `;
 })
 
 socket.on('loss', () => {
     const html = Mustache.render(lossTemplate);
     interactiveSection.innerHTML = html
+
+        cardButtons.innerHTML = `
+            <button class="button button-green" id="next-card-button" onclick="location.reload()">Try again!</button>
+        `;
 })
