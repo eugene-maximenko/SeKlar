@@ -4,7 +4,7 @@ const INCOME = 32000
 const COSTS = 30000
 const LOAN_INTEREST_MONTHLY = 0.01
 const GAME_CAPITAL_GOAL = 60000
-const GAME_LENGTH = 10
+const GAME_LENGTH = 20
 const purchaseType = 'buySelect'
 const sellType = 'sellSelect'
 
