@@ -505,14 +505,14 @@
 
                 <div id="card-field" class="card-start" style="top: 90px; bottom: 64px;">
                     <div class="card-header">
-                        <div class="card-title" style="text-align: center;">Hey! You're on the playing field.</div>
+                        <div class="card-title" style="text-align: center;"></div>
                     </div>
 
                     <div class="card-content">
                         <div id="start_dlg" class="field-content-inner"
                             style="display: block; color:white; font-size: 1.4em;">
 
-
+                            <H1>Welcome to the game!</H1>
                             <ul class="game-task">
                                 <li id="capital-task">
                                     Your start salary is <span class="salary" style="font-weight: bold;"></span>.
@@ -579,7 +579,10 @@
 
                 <script id="business-card-template" type="text/html">
                     <div style="color: white; font-weight: bold;">
-                        <h1><strong>You've found a <span style="color: rgb(0, 255, 191);">{{businessUnit}}</span> you can buy!</strong></h1>
+                        <h1><strong>You've found a <span style="text-decoration: underline;
+                            text-decoration-style: dashed; /* solid | dashed | wavy */
+                            text-underline-offset: 7px; /* отступ от текста */
+                          ">{{businessUnit}}</span> you can buy!</strong></h1>
 
                         <p>Price: <span style="">{{actualPrice}}</span></p>
 
@@ -727,7 +730,7 @@
                                         <tbody>
                                             
                                             <tr>
-                                                <td><strong>Income:</strong></td>
+                                                <td style="width: 10%;"><strong>Income:</strong></td>
                                                 <td style="text-align:right; ">{{income}}</td>
                                             </tr>
                                             <tr>
