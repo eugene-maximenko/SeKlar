@@ -1160,7 +1160,7 @@ form {
   margin: 0;
 }
 body {
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   background: white;
@@ -1175,7 +1175,7 @@ li {
   list-style: none;
 }
 input {
-  font-family: SF UI !important;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: normal;
   color: #4b6169;
@@ -1222,7 +1222,7 @@ noscript .noscript-message {
   font-weight: bold;
 }
 .default-font {
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
 }
@@ -1346,7 +1346,7 @@ noscript .noscript-message {
   height: 34px;
   padding: 0 5px 1px;
   margin-bottom: 5px;
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   font-size: 13px;
@@ -2115,7 +2115,7 @@ noscript .noscript-message {
   width: 100%;
   color: red;
   text-align: center;
-  font-family: SF UI !important;
+  font-family: 'Poppins', sans-serif;
   font-size: 8px;
 }
 .players-row .user-ava.user-leader-mark {
@@ -4430,7 +4430,6 @@ body.mobile #chat .block-body.chat-thread {
 .card-content .amount-line .amount-sum {
   display: inline-block;
   margin-left: 10px;
-  color: #f58216;
   font-weight: bold;
 }
 .card-content .extra-box {
@@ -4843,6 +4842,7 @@ body.mobile #chat .block-body.chat-thread {
   display: inline;
 }
 .card-content input[type="text"] {
+  border-radius: 3px;
   padding: 4px 5px;
   font-size: 1em;
   text-align: right;
@@ -4990,8 +4990,6 @@ body.mobile #chat .block-body.chat-thread {
 }
 .card-content .tabs-content {
   padding: 10px 20px;
-  background: #e0a93d;
-  border-bottom: 1px solid #ececec;
 }
 .card-content .card-slider-wrapper {
   margin: 15px 0;
@@ -5127,7 +5125,7 @@ body.mobile #chat .block-body.chat-thread {
   height: 34px;
 }
 .ui-widget {
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
 }
@@ -5181,7 +5179,7 @@ body.mobile #chat .block-body.chat-thread {
   display: none;
   float: right;
   margin-right: -30px;
-  font-family: 'icomoon' !important;
+  font-family: 'Poppins', sans-serif;
   display: inline-block;
   speak: none;
   font-style: normal;
@@ -5197,7 +5195,7 @@ body.mobile #chat .block-body.chat-thread {
   cursor: pointer;
 }
 .ui-dialog .ui-widget-header .card-icon {
-  font-family: 'icomoon' !important;
+  font-family: 'Poppins', sans-serif;
   display: inline-block;
   speak: none;
   font-style: normal;
@@ -5254,7 +5252,7 @@ body.mobile #chat .block-body.chat-thread {
 }
 .ui-dialog .ui-dialog-titlebar-close:after {
   display: block;
-  font-family: 'icomoon' !important;
+  font-family: 'Poppins', sans-serif;
   display: inline-block;
   speak: none;
   font-style: normal;
@@ -7488,7 +7486,7 @@ body.mobile #chat .block-body.chat-thread {
     display: inline-block;
     float: left;
     margin-top: 4px;
-    font-family: 'icomoon' !important;
+    font-family: 'Poppins', sans-serif;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -7634,7 +7632,7 @@ body.mobile #chat .block-body.chat-thread {
 
 .left-sidebar {
   --rem: 16;
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   visibility: visible;
@@ -7650,7 +7648,7 @@ body.mobile #chat .block-body.chat-thread {
 
 body > div > div.layout-column.column-center.swiper-slide {
   --rem: 16;
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   visibility: visible;
@@ -7666,7 +7664,7 @@ body > div > div.layout-column.column-center.swiper-slide {
 }
 
 .field-wrapper {    --rem: 16;
-  font-family: SF UI;
+  font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 300;
   visibility: visible;
@@ -7690,7 +7688,7 @@ body > div > div.layout-column.column-center.swiper-slide {
 
   #my > div.board-content.swiper-wrapper > div.layout-column.column-right.swiper-slide {
     --rem: 16;
-    font-family: SF UI;
+    font-family: 'Poppins', sans-serif;
     font-size: 1em;
     font-weight: 300;
     visibility: visible;
@@ -7733,4 +7731,8 @@ button#skip-button:hover
   background: #585858;
   color: black;
   transform: translateY(-5px);
+}
+
+* {
+  font-family: 'Poppins', sans-serif !important;
 }

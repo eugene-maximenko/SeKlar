@@ -55,7 +55,7 @@ function maximizeAmount() {
     const maxAmount = Math.floor(cash / price)
 
     const inputElement = document.querySelector('#input_amount')
-    
+
 
     inputElement.value = maxAmount
     inputElement.onchange()
@@ -158,9 +158,9 @@ socket.on("randomEventCard:display", data => {
 
     let cashEventColor = document.getElementById("cash-event-amount").style
 
-    if (randomFinancialEvent.amount > 0) {
-        cashEventColor.color = "#00d062"
-    } else { cashEventColor.color = "red" }
+    if (!amountIsPositiveNumber) {
+        cashEventColor.color = "red"
+    }
 
     const nextCardButton = document.querySelector('#next-card-button')
 

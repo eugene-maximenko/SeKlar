@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Page</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -548,7 +549,30 @@
                     <div class="cash-event-card" style="color: white;">
                         <h1><strong>{{eventDescription}}</strong></h1>
                         
-                        <p>Cash: <span id="cash-event-amount">{{amount}}</span></p>
+                        <div>
+                
+                            <table class="report" style="
+    width: 100%;     
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;">
+                        <colgroup>
+                            <col>
+                            <col width="">
+                        </colgroup>
+
+
+                        <tbody>
+                            
+                            <tr>
+                                <td class="text-card" style="font-size: 1.4em; font-family: Poppins, sans-serif;"><strong>Cash:</strong></td>
+                                <td id="cash-event-amount" style="text-align:right; font-size: 1.4em; ">{{amount}}</td>
+                            </tr>
+
+                        </tbody>
+                            </table>
+                    </div>
 
                     </div>
                 </script>
@@ -557,7 +581,7 @@
                     <div style="color: white; font-weight: bold;">
                         <h1><strong>You've found a <span style="color: rgb(0, 255, 191);">{{businessUnit}}</span> you can buy!</strong></h1>
 
-                        <p>Price: <span style="color: cyan;">{{actualPrice}}</span></p>
+                        <p>Price: <span style="">{{actualPrice}}</span></p>
 
                         <div>
 
@@ -575,15 +599,15 @@
                             
                             <tr>
                                 <td>Can be sold around:</td>
-                                <td style="text-align:right; color: cyan;">{{fairPrice}}</td>
+                                <td style="text-align:right;">{{fairPrice}}</td>
                             </tr>
                             <tr>
                                 <td>Passive income / month:</td>
-                                <td style="text-align:right; color: cyan;">{{passiveIncome}}</td>
+                                <td style="text-align:right;">{{passiveIncome}}</td>
                             </tr>
                             <tr>
                                 <td>ROI / year:</td>
-                                <td style="text-align:right; color: cyan;">{{roi}}%</td>
+                                <td style="text-align:right;">{{roi}}%</td>
                             </tr>
 
                         </tbody>
@@ -594,7 +618,7 @@
 
                 <script id="stock-market-card-template" type="text/html">
                     <div class="cash-event-card" style="color: white;">
-                        <h1><strong>Stock market</strong></h1>
+                        <h1><strong>Stock market card</strong></h1>
 
                         <p>Actual price: <span id="stock-actual-price">{{actualPrice}}</span></p>
 
@@ -613,16 +637,16 @@
                         <tbody>
                             <tr>
                                 <td>Company name:</td>
-                                <td style="text-align:right; color: cyan;">{{companyName}}
+                                <td style="text-align:right; ">{{companyName}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Fair price:</td>
-                                <td style="text-align:right; color: cyan;">{{fairPrice}}</td>
+                                <td style="text-align:right; ">{{fairPrice}}</td>
                             </tr>
                             <tr>
                                 <td>You have:</td>
-                                <td style="text-align:right; color: cyan;">{{stockAmountOnHands}}</td>
+                                <td style="text-align:right; ">{{stockAmountOnHands}}</td>
                             </tr>
                         </tbody>
                             </table>
@@ -640,8 +664,8 @@
                             <span class="clear"></span></div>
                             <div class="tabs-content">
                                 <div class="amount-line">Enter quantity 
-                                    <input autocomplete="off" id="input_amount" type="text" value="1" tabindex="" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="color: cyan;">{{actualPrice}}</span>
-                                    <span onclick="maximizeAmount()" style="cursor: pointer; color: black; text-decoration: underline; font-weight: bold; font-size: 1.2em; padding-left: 40px;">
+                                    <input autocomplete="off" id="input_amount" type="text" value="1" tabindex="" inputmode="numeric" pattern="[0-9 ]*" gameautonumeric="true" style="text-align: right;">=<span class="amount-sum" style="">{{actualPrice}}</span>
+                                    <span onclick="maximizeAmount()" style="cursor: pointer; text-decoration: underline; font-weight: bold; font-size: 1.2em; padding-left: 40px;">
                                         Max amount
                                     </span> 
                                 </div>
@@ -704,27 +728,24 @@
                                             
                                             <tr>
                                                 <td><strong>Income:</strong></td>
-                                                <td style="text-align:right; color: cyan;">{{income}}</td>
+                                                <td style="text-align:right; ">{{income}}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Costs:</strong></td>
-                                                <td style="text-align:right; color: cyan;">{{costs}}</td>
+                                                <td style="text-align:right; ">{{costs}}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2"><hr style="border: none; border-top: 1px solid #ccc;"></td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align:right"><strong>Summary:</strong></td>
-                                                <td style="text-align:right; color: cyan; width: 50px;">{{profit}}</td>
+                                                <td style="text-align:right;  width: 50px;">{{profit}}</td>
                                             </tr>
                 
                                         </tbody>
                                             </table>
                                     </div>
                 
-                                    <!-- <div>
-                                        <button class="button button-green" id="next-card-button">Next card</button>
-                                    </div> -->
                                 </script>
 
                 <!-- Win template -->
